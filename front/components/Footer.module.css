@@ -1,0 +1,25 @@
+.footerContainer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: 250px;
+  background-color: #383cc1;
+  padding: 20px 10%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+.footerContent {
+  color: #fff;
+  font-size: 1.2rem;
+  font-weight: 300;
+  flex: 1 1 100%;
+}
+
+.copyright {
+  color: #fff;
+  font-size: 1.2rem;
+  font-weight: 300;
+  flex: 0 0 auto;
+}
