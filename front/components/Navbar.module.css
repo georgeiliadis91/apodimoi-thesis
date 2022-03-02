@@ -7,3 +7,19 @@
   align-items: center;
   justify-content: space-between;
 }
+
+.menuItem {
+  color: #fff;
+  font-weight: bold;
+  text-decoration: none;
+
+  cursor: pointer;
+}
+
+.left {
+  margin-right: 1rem;
+}
+
+.right {
+  margin-left: 1rem;
+}

@@ -1,25 +1,36 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { Navbar } from "../Navbar";
 import { Footer } from "../Footer";
 
 import styles from "./Layout.module.css";
 
-export async function getStaticProps(context) {
-  const layoutData = await fetch(process.env.apiUrl + "/layout");
-  const data = await layoutData.json();
-  return {
-    props: { data },
-  };
-}
-
 export const Layout = (props) => {
-  // const { navbar, footer } = layoutData;
-  console.log(props);
+  const [layoutData, setLayoutData] = useState(null);
+
+  useEffect(() => {
+    const fetchLayoutData = async () => {
+      try {
+        const layoutData = await fetch(
+          process.env.NEXT_PUBLIC_API_URL + "/layout"
+        );
+        const data = await layoutData.json();
+        setLayoutData(data);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    fetchLayoutData();
+  }, []);
+
+  if (!layoutData) {
+    return null;
+  }
+
   return (
     <div className={styles.layoutContainer}>
-      <Navbar className={styles.navbar} />
+      <Navbar className={styles.navbar} navbar={layoutData.navbar} />
       <main className={styles.main}>{props.children}</main>
-      <Footer className={styles.footer} />
+      <Footer className={styles.footer} footer={layoutData.footer} />
     </div>
   );
 };
