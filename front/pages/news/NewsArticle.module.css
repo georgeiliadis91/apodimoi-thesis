@@ -1,0 +1,12 @@
+.root {
+}
+
+.articleImg {
+  width: 100%;
+  object-fit: contain;
+}
+
+.title {
+  margin-top: 36px;
+  margin-bottom: 24px;
+}

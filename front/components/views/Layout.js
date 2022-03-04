@@ -16,7 +16,7 @@ export const Layout = (props) => {
         const data = await layoutData.json();
         setLayoutData(data);
       } catch (error) {
-        console.log(error);
+        console.error(error);
       }
     };
     fetchLayoutData();
