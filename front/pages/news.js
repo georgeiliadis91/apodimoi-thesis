@@ -9,6 +9,7 @@ const News = ({ data }) => {
 
   return (
     <>
+      <h1>Νέα</h1>
       {data.map((article) => (
         <ArticlesBlock
           key={article.id}

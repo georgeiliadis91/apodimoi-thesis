@@ -15,8 +15,6 @@ const NewsArticle = ({ data }) => {
       />
       <h1 className={styles.title}>{data.title}</h1>
       <p>{description}</p>
-
-      {JSON.stringify(data)}
     </div>
   );
 };
