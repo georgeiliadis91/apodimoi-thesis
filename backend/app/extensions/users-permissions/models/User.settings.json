@@ -70,6 +70,29 @@
       "plugin": "upload",
       "required": false,
       "pluginOptions": {}
+    },
+    "name": {
+      "type": "string",
+      "required": true
+    },
+    "surname": {
+      "type": "string",
+      "required": true
+    },
+    "father_name": {
+      "type": "string"
+    },
+    "mother_name": {
+      "type": "string"
+    },
+    "father_surname": {
+      "type": "string"
+    },
+    "mother_surname": {
+      "type": "string"
+    },
+    "birthdate": {
+      "type": "date"
     }
   }
 }

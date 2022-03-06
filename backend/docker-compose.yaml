@@ -1,4 +1,4 @@
-version: '3'
+version: "3"
 services:
   strapi:
     image: strapi/strapi
@@ -12,7 +12,7 @@ services:
     volumes:
       - ./app:/srv/app
     ports:
-      - '1337:1337'
+      - "1337:1337"
     depends_on:
       - postgres
 
@@ -22,5 +22,7 @@ services:
       POSTGRES_DB: strapi
       POSTGRES_USER: strapi
       POSTGRES_PASSWORD: strapi
+    ports:
+      - "5432:5432"
     volumes:
       - ./data:/var/lib/postgresql/data

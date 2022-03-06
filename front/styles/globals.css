@@ -22,3 +22,35 @@ p,
 span {
   color: #2c2c2c;
 }
+
+input {
+  border-radius: 4px;
+  border: 1px solid #dcdcdc;
+  margin-bottom: 12px;
+  padding: 2px 4px;
+}
+
+label {
+  margin-bottom: 4px;
+}
+
+button.form-submitBtn {
+  align-self: end;
+  padding: 4px 8px;
+}
+
+h2.form-title {
+  margin-bottom: 16px;
+}
+
+div.form-container {
+  display: flex;
+  justify-content: center;
+}
+
+form.loginForm {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+}

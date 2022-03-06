@@ -3,6 +3,7 @@ import { ArticlesBlock } from "../components/ArticlesBlock";
 import { parse250Chars } from "../utils";
 
 const News = ({ data }) => {
+  
   if (!data || !data.length) {
     return null;
   }
