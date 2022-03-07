@@ -7,3 +7,8 @@ export const replaceSpacesToDash = (str) => {
 export const parse250Chars = (str) => {
   return str.substring(0, 250);
 };
+
+//add localhost on uri
+export const addLocalhostToUri = (uri) => {
+  return process.env.NEXT_PUBLIC_API_URL + uri;
+};

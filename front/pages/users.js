@@ -4,6 +4,7 @@ import { UserBlock } from "../components/UserBlock";
 export const Users = ({ data }) => {
   return (
     <>
+      <h1 className="pageTitle">Χρήστες</h1>
       {data.map((user) => (
         <UserBlock
           id={user.id}

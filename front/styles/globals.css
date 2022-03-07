@@ -1,3 +1,5 @@
+@import "~react-image-gallery/styles/css/image-gallery.css";
+
 html,
 body {
   padding: 0;
@@ -53,4 +55,23 @@ button.form-submitBtn {
 
 h2.form-title {
   margin-bottom: 16px;
+}
+
+h1.pageTitle {
+  text-align: center;
+  margin-bottom: 36px;
+}
+
+p.pageDescription {
+  margin-top: 36px;
+}
+
+form > textarea {
+  border-radius: 4px;
+  border: 1px solid #dcdcdc;
+  margin-bottom: 12px;
+  padding: 4px 8px;
+  width: 100%;
+  resize: none;
+  font-size: 13px;
 }

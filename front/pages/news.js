@@ -3,14 +3,13 @@ import { ArticlesBlock } from "../components/ArticlesBlock";
 import { parse250Chars } from "../utils";
 
 const News = ({ data }) => {
-  
   if (!data || !data.length) {
     return null;
   }
 
   return (
     <>
-      <h1>Νέα</h1>
+      <h1 className="pageTitle">Νέα</h1>
       {data.map((article) => (
         <ArticlesBlock
           key={article.id}
