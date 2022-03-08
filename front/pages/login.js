@@ -1,14 +1,39 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
+import { verifyLogin, cookieStorage } from "../utils";
+import axios from "axios";
+import { UserContext } from "../store/store";
 
 const Login = () => {
   const [creds, setCreds] = useState({
     email: "",
     password: "",
   });
+  const [err, setErr] = useState("");
+  const { useSetLogged } = useContext(UserContext);
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    alert(JSON.stringify(creds));
+    if (verifyLogin(creds.email, creds.password)) {
+      axios
+        .post(process.env.NEXT_PUBLIC_API_URL + "/auth/local", {
+          identifier: creds.email,
+          password: creds.password,
+        })
+        .then((response) => {
+          // Handle success.
+          console.log("User profile", response.data.user);
+          console.log("User token", response.data.jwt);
+          cookieStorage.set("jwtToken", response.data.jwt);
+          useSetLogged();
+        })
+        .catch((error) => {
+          // Handle error.
+          console.log("An error occurred:", error.response);
+          setErr(error.response.data.message);
+        });
+    } else {
+      setErr("Invalid credentials");
+    }
   };
 
   const onChange = (e) => {
@@ -37,6 +62,7 @@ const Login = () => {
           value={creds.password}
           onChange={onChange}
         />
+        {err && <span className="formErrors">{err}</span>}
         <button className="form-submitBtn" type="submit">
           Login
         </button>

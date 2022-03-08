@@ -1,4 +1,3 @@
-// replaces spaces with _
 export const replaceSpacesToDash = (str) => {
   return str.replace(/\s+/g, "_");
 };

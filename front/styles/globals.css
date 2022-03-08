@@ -75,3 +75,8 @@ form > textarea {
   resize: none;
   font-size: 13px;
 }
+
+form > span.formErrors {
+  color: red;
+  font-size: 13px;
+}

@@ -6,9 +6,16 @@ const Register = () => {
     password: "",
     password2: "",
   });
+  const [err, setErrors] = useState("");
 
   const handleSubmit = (e) => {
     e.preventDefault();
+
+    if (creds.password !== creds.password2) {
+      setErrors("Passwords do not match");
+      return;
+    }
+
     alert(JSON.stringify(creds));
   };
 
@@ -25,6 +32,7 @@ const Register = () => {
           type="email"
           name="email"
           id="email"
+          required
           placeholder="Enter your email"
           value={creds.email}
           onChange={onChange}
@@ -37,6 +45,8 @@ const Register = () => {
           placeholder="Enter your password"
           value={creds.password}
           onChange={onChange}
+          required
+          minLength={8}
         />
         <label htmlFor="password">Confirm Password:</label>
         <input
@@ -46,8 +56,15 @@ const Register = () => {
           placeholder="Confirm your password"
           value={creds.password2}
           onChange={onChange}
+          required
+          minLength={8}
         />
-        <button className="form-submitBtn" type="submit">
+        {err && <span className="formErrors">{err}</span>}
+        <button
+          className="form-submitBtn"
+          type="submit"
+          disabled={err ? true : false}
+        >
           Register
         </button>
       </form>
