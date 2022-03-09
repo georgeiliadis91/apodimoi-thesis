@@ -73,11 +73,11 @@
     },
     "name": {
       "type": "string",
-      "required": true
+      "required": false
     },
     "surname": {
       "type": "string",
-      "required": true
+      "required": false
     },
     "father_name": {
       "type": "string"
