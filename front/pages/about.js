@@ -3,24 +3,27 @@ import ImageCarousel from "../components/ImageCarousel";
 import { formatImage } from "../utils";
 
 const About = ({ data }) => {
-  const { about_description, images } = data;
-  if (!data) return null;
+  const { description, images } = data;
 
-  const formatterImageArray = formatImage(images);
+  if (!data) return null;
+  console.log(data);
+  const formatterImageArray = formatImage(images.data);
   return (
     <>
       <h1 className="pageTitle">Σχετικά</h1>
       <ImageCarousel imageArray={formatterImageArray} />
-      <p className="pageDescription">{about_description}</p>
+      <p className="pageDescription">{description}</p>
     </>
   );
 };
 
 export async function getServerSideProps(context) {
-  const res = await fetch(process.env.NEXT_PUBLIC_API_URL + "/about");
-  const data = await res.json();
+  const res = await fetch(
+    process.env.NEXT_PUBLIC_API_URL + "/about?populate=*"
+  );
+  const { data } = await res.json();
   return {
-    props: { data },
+    props: { data: data.attributes },
   };
 }
 export default About;

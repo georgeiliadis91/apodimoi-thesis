@@ -10,7 +10,7 @@ const NewsArticle = ({ data }) => {
     <div className={styles.root}>
       <img
         className={styles.articleImg}
-        src={`${process.env.NEXT_PUBLIC_API_URL}${thumbnail_img.formats.large.url}`}
+        src={`${process.env.NEXT_PUBLIC_IMG_API_URL}${thumbnail_img.formats.large.url}`}
         alt={title}
       />
       <h1 className={styles.title}>{data.title}</h1>

@@ -9,5 +9,5 @@ export const parse250Chars = (str) => {
 
 //add localhost on uri
 export const addLocalhostToUri = (uri) => {
-  return process.env.NEXT_PUBLIC_API_URL + uri;
+  return process.env.NEXT_PUBLIC_IMG_API_URL + uri;
 };

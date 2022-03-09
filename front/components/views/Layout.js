@@ -13,8 +13,8 @@ export const Layout = (props) => {
         const layoutData = await fetch(
           process.env.NEXT_PUBLIC_API_URL + "/layout"
         );
-        const data = await layoutData.json();
-        setLayoutData(data);
+        const res = await layoutData.json();
+        setLayoutData(res.data.attributes.config);
       } catch (error) {
         console.error(error);
       }
