@@ -29,7 +29,10 @@ const Login = () => {
         .catch((error) => {
           // Handle error.
           console.log("An error occurred:", error.response);
-          setErr(error.response.data.message);
+          setErr(
+            error?.response?.data?.data[0]?.messages[0]?.message ||
+              "Invalid Credentials please try again"
+          );
         });
     } else {
       setErr("Invalid credentials");

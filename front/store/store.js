@@ -1,6 +1,7 @@
 import React, { createContext, useReducer } from "react";
 import { userDataReducer } from "./reducers";
 import { setLogged, removeLogged } from "./actions";
+import { cookieStorage } from "../utils";
 
 export const UserContext = createContext();
 
@@ -13,6 +14,7 @@ export default function Globalstate({ children }) {
 
   const useRemoveLogged = () => {
     dispatch(removeLogged());
+    cookieStorage.remove("jwtToken");
   };
 
   return (
