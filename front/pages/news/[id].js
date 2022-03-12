@@ -8,12 +8,12 @@ const NewsArticle = ({ data }) => {
 
   return (
     <div className={styles.root}>
+      <h1 className={styles.title}>{data.title}</h1>
       <img
         className={styles.articleImg}
         src={`${process.env.NEXT_PUBLIC_API_URL}${thumbnail_img.formats.large.url}`}
         alt={title}
       />
-      <h1 className={styles.title}>{data.title}</h1>
       <p>{description}</p>
     </div>
   );
