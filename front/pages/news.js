@@ -1,5 +1,5 @@
 import React from "react";
-import { ArticlesBlock } from "../components/ArticlesBlock";
+import { ArticlesBlock } from "../components/ArticlesBlock/ArticlesBlock";
 import { parse250Chars } from "../utils";
 
 const News = ({ data }) => {
@@ -26,7 +26,7 @@ const News = ({ data }) => {
 export async function getServerSideProps(context) {
   const res = await fetch(process.env.NEXT_PUBLIC_API_URL + "/articles");
   const data = await res.json();
-  
+
   return {
     props: { data },
   };

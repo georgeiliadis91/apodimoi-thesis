@@ -1,5 +1,5 @@
 import React from "react";
-import { replaceSpacesToDash } from "../utils";
+import { replaceSpacesToDash } from "../../utils";
 
 import styles from "./ArticlesBlock.module.css";
 

@@ -1,5 +1,5 @@
 import React from "react";
-import { UserBlock } from "../components/UserBlock";
+import { UserBlock } from "../components/UserBlock/UserBlock";
 
 export const Users = ({ data }) => {
   return (

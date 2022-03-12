@@ -1,5 +1,5 @@
 import React from "react";
-import ImageCarousel from "../components/ImageCarousel";
+import ImageCarousel from "../components/ImageCarousel/ImageCarousel";
 import { formatImage } from "../utils";
 
 const About = ({ data }) => {
