@@ -11,7 +11,7 @@ const Users = ({ data }) => {
       <h1 className={styles.username}>{username}</h1>
       <img
         className={styles.profileImg}
-        src={`${process.env.NEXT_PUBLIC_IMG_API_URL}${profile_img.attributes.formats.thumbnail.url}`}
+        src={`${process.env.NEXT_PUBLIC_API_URL}${profile_img.attributes.formats.thumbnail.url}`}
         alt={`${username}_profile_img`}
       />
       <span className={styles.email}>{email}</span>

@@ -14,7 +14,6 @@ export const Layout = (props) => {
           process.env.NEXT_PUBLIC_API_URL + "/layout"
         );
         const data = await layoutData.json();
-        console.log("data", data);
         setLayoutData(data);
       } catch (error) {
         console.error(error);
