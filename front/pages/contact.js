@@ -1,19 +1,41 @@
 import React, { useState } from "react";
+import axios from "axios";
+import { isEmail } from "../utils";
+
+const initState = {
+  email: "",
+  message: "",
+};
 
 const contact = () => {
-  const [contactFormData, setContactFormData] = useState({
-    email: "",
-    message: "",
-  });
+  const [contactFormData, setContactFormData] = useState(initState);
+  const [err, setErr] = useState("");
 
   const handleSubmit = (e) => {
-    e.preventDefault();
-    alert(JSON.stringify(creds));
+    if (
+      contactFormData.email &&
+      contactFormData.message &&
+      isEmail(contactFormData.email)
+    ) {
+      e.preventDefault();
+      axios
+        .post(process.env.NEXT_PUBLIC_API_URL + "/contacts", {
+          email: contactFormData.email,
+          message: contactFormData.message,
+        })
+        .then((response) => {
+          setContactFormData(initState);
+        })
+        .catch((error) => {
+          console.log("An error occurred:", error.response);
+        });
+    }
   };
 
   const onChange = (e) => {
     setContactFormData({ ...contactFormData, [e.target.name]: e.target.value });
   };
+
   return (
     <div>
       <h1 className="pageTitle">Φορμα Επικοινωνίας</h1>
@@ -40,6 +62,7 @@ const contact = () => {
           required
           rows={16}
         ></textarea>
+
         <button className="form-submitBtn" type="submit">
           Submit
         </button>
