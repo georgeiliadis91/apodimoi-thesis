@@ -1,4 +1,14 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
+import { verifyLogin, cookieStorage, verifyPasswordsMatch } from "../utils";
+import { useRouter } from "next/router";
+import { UserContext } from "../store/store";
+import axios from "axios";
+
+const initState = {
+  email: "",
+  password: "",
+  password2: "",
+};
 
 const Register = () => {
   const [creds, setCreds] = useState({
@@ -7,16 +17,39 @@ const Register = () => {
     password2: "",
   });
   const [err, setErrors] = useState("");
+  const Router = useRouter();
+  const { useSetLogged } = useContext(UserContext);
 
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    if (creds.password !== creds.password2) {
-      setErrors("Passwords do not match");
-      return;
+    if (
+      verifyLogin(creds.email, creds.password) &&
+      verifyPasswordsMatch(creds.password, creds.password2)
+    ) {
+      axios
+        .post(process.env.NEXT_PUBLIC_API_URL + "/auth/local/register", {
+          email: creds.email,
+          username: creds.email,
+          password: creds.password,
+        })
+        .then((response) => {
+          cookieStorage.set("jwtToken", response.data.jwt);
+          useSetLogged(response.data.jwt);
+          Router.replace("/users/me");
+        })
+        .catch((error) => {
+          // Handle error.
+          console.log("An error occurred:", error);
+          setErrors(
+            error?.response?.data?.data[0]?.messages[0]?.message ||
+              "Invalid Credentials please try again"
+          );
+        });
+    } else {
+      setErrors("Please check your data once more");
     }
-
-    alert(JSON.stringify(creds));
+    setCreds(initState);
   };
 
   const onChange = (e) => {
@@ -60,11 +93,7 @@ const Register = () => {
           minLength={8}
         />
         {err && <span className="formErrors">{err}</span>}
-        <button
-          className="form-submitBtn"
-          type="submit"
-          disabled={err ? true : false}
-        >
+        <button className="form-submitBtn" type="submit">
           Register
         </button>
       </form>

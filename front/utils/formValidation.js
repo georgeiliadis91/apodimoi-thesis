@@ -15,3 +15,11 @@ export const verifyLogin = (email, password) => {
   }
   return true;
 };
+
+// verify that passwords mathc
+export const verifyPasswordsMatch = (password, password2) => {
+  if (password !== password2) {
+    return false;
+  }
+  return true;
+};

@@ -19,8 +19,8 @@ export default function Globalstate({ children }) {
     }
   }, []);
 
-  const useSetLogged = () => {
-    dispatch(setLogged());
+  const useSetLogged = (token) => {
+    dispatch(setLogged(token));
   };
 
   const useRemoveLogged = () => {

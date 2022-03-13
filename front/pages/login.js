@@ -4,11 +4,13 @@ import { verifyLogin, cookieStorage } from "../utils";
 import axios from "axios";
 import { UserContext } from "../store/store";
 
+const initState = {
+  email: "",
+  password: "",
+};
+
 const Login = () => {
-  const [creds, setCreds] = useState({
-    email: "",
-    password: "",
-  });
+  const [creds, setCreds] = useState(initState);
   const Router = useRouter();
   const [err, setErr] = useState("");
   const { useSetLogged } = useContext(UserContext);
@@ -22,12 +24,9 @@ const Login = () => {
           password: creds.password,
         })
         .then((response) => {
-          // Handle success.
-          console.log("User profile", response.data.user);
-          console.log("User token", response.data.jwt);
           cookieStorage.set("jwtToken", response.data.jwt);
-          useSetLogged();
-          Router.replace("/");
+          useSetLogged(response.data.jwt);
+          Router.replace("/users/me");
         })
         .catch((error) => {
           // Handle error.
@@ -40,6 +39,7 @@ const Login = () => {
     } else {
       setErr("Invalid credentials");
     }
+    setCreds(initState);
   };
 
   const onChange = (e) => {
