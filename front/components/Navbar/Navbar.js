@@ -1,10 +1,16 @@
 import React, { useContext } from "react";
 import { UserContext } from "../../store/store";
+import { useRouter } from "next/router";
 import styles from "./Navbar.module.css";
 
 export const Navbar = (props) => {
   const { navbar } = props;
   const { data, useRemoveLogged } = useContext(UserContext);
+  const Routes = useRouter();
+  const logOutUser = () => {
+    useRemoveLogged();
+    Routes.replace("/");
+  };
 
   return (
     <div className={styles.navbarContainer}>
@@ -21,7 +27,12 @@ export const Navbar = (props) => {
       </div>
       <div className={styles.navbarContentRight}>
         {data.userLoggedIn ? (
-          <button onClick={useRemoveLogged}> log out</button>
+          <>
+            <a className={`${styles.menuItem} ${styles.left}`} href="/users/me">
+              profile
+            </a>
+            <button onClick={logOutUser}> log out</button>
+          </>
         ) : (
           <>
             {Object.entries(navbar.rightSideMenu).map(([key, val]) => (

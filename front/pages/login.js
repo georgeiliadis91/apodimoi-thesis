@@ -1,4 +1,5 @@
 import React, { useState, useContext } from "react";
+import { useRouter } from "next/router";
 import { verifyLogin, cookieStorage } from "../utils";
 import axios from "axios";
 import { UserContext } from "../store/store";
@@ -8,6 +9,7 @@ const Login = () => {
     email: "",
     password: "",
   });
+  const Router = useRouter();
   const [err, setErr] = useState("");
   const { useSetLogged } = useContext(UserContext);
 
@@ -25,6 +27,7 @@ const Login = () => {
           console.log("User token", response.data.jwt);
           cookieStorage.set("jwtToken", response.data.jwt);
           useSetLogged();
+          Router.replace("/");
         })
         .catch((error) => {
           // Handle error.

@@ -1,9 +1,6 @@
 import { cookieStorage } from "../utils";
 
-const defaultState = {
-  userLoggedIn: false,
-};
-export const userDataReducer = (state = defaultState, action) => {
+export const userDataReducer = (state, action) => {
   switch (action.type) {
     case "SET_LOGGED":
       if (cookieStorage.get("jwtToken")) {
