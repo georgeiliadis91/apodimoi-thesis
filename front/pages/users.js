@@ -1,19 +1,26 @@
 import React from "react";
 import { UserBlock } from "../components/UserBlock/UserBlock";
+import { withAuth } from "../utils";
 
 export const Users = ({ data }) => {
   return (
     <>
       <h1 className="pageTitle">Χρήστες</h1>
-      {data.map((user) => (
-        <UserBlock
-          id={user.id}
-          key={user.id}
-          username={user.username}
-          email={user.email}
-          profile_img={`${process.env.NEXT_PUBLIC_API_URL}${user.profile_img.formats.thumbnail.url}`}
-        />
-      ))}
+      {data.map((user) => {
+        const imgUrl = user?.profile_img?.formats?.thumbnail?.url
+          ? `${process.env.NEXT_PUBLIC_API_URL}${user?.profile_img?.formats?.thumbnail?.url}`
+          : "/assets/profile_pic.jpeg";
+
+        return (
+          <UserBlock
+            id={user.id}
+            key={user.id} 
+            username={user.username}
+            email={user.email}
+            profile_img={imgUrl}
+          />
+        );
+      })}
     </>
   );
 };
@@ -26,4 +33,4 @@ export async function getServerSideProps(context) {
   };
 }
 
-export default Users;
+export default withAuth(Users);

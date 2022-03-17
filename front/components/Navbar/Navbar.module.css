@@ -23,3 +23,14 @@
 .right {
   margin-left: 1rem;
 }
+
+.logOutBtn {
+  background: #fff;
+  color: #383cc1;
+  border: none;
+  border-radius: 5px;
+  padding: 4px 8px;
+  font-weight: 600;
+  font-size: 16px;
+  cursor: pointer;
+}

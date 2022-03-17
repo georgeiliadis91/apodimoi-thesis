@@ -93,6 +93,11 @@
     },
     "birthdate": {
       "type": "date"
+    },
+    "profile_data": {
+      "type": "component",
+      "repeatable": false,
+      "component": "user-data.data"
     }
   }
 }

@@ -29,9 +29,11 @@ export const Navbar = (props) => {
         {data.userLoggedIn ? (
           <>
             <a className={`${styles.menuItem} ${styles.left}`} href="/users/me">
-              profile
+              Profile
             </a>
-            <button onClick={logOutUser}> log out</button>
+            <button className={styles.logOutBtn} onClick={logOutUser}>
+              Log Out
+            </button>
           </>
         ) : (
           <>

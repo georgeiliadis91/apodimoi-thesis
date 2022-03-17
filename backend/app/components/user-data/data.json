@@ -1,0 +1,23 @@
+{
+  "collectionName": "components_user_data_data",
+  "info": {
+    "name": "data",
+    "icon": "address-card"
+  },
+  "options": {},
+  "attributes": {
+    "fathers_name": {
+      "type": "string"
+    },
+    "profile_pic": {
+      "model": "file",
+      "via": "related",
+      "allowedTypes": [
+        "images"
+      ],
+      "plugin": "upload",
+      "required": false,
+      "pluginOptions": {}
+    }
+  }
+}
