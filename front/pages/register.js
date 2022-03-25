@@ -8,14 +8,19 @@ const initState = {
   email: "",
   password: "",
   password2: "",
+  name: "",
+  surname: "",
+  island: "",
+  dimotiki_enotita: "",
 };
 
-const Register = () => {
+const Register = ({ data }) => {
   const [creds, setCreds] = useState({
-    email: "",
-    password: "",
-    password2: "",
+    ...initState,
+    island: Object.keys(data.names)[0],
+    dimotiki_enotita: Object.keys(data.names)[0],
   });
+
   const [err, setErrors] = useState("");
   const Router = useRouter();
   const { useSetLogged } = useContext(UserContext);
@@ -32,6 +37,9 @@ const Register = () => {
           email: creds.email,
           username: creds.email,
           password: creds.password,
+          surname: creds.surname,
+          island: creds.island,
+          dimotiki_enotita: creds.dimotiki_enotita,
         })
         .then((response) => {
           cookieStorage.set("jwtToken", response.data.jwt);
@@ -53,6 +61,7 @@ const Register = () => {
   };
 
   const onChange = (e) => {
+    console.log("here", e);
     setCreds({ ...creds, [e.target.name]: e.target.value });
   };
 
@@ -60,6 +69,7 @@ const Register = () => {
     <div className="form-container">
       <form className="loginForm" onSubmit={handleSubmit}>
         <h2 className="form-title">Register</h2>
+
         <label htmlFor="email">Email:</label>
         <input
           type="email"
@@ -70,6 +80,7 @@ const Register = () => {
           value={creds.email}
           onChange={onChange}
         />
+
         <label htmlFor="password">Password:</label>
         <input
           type="password"
@@ -81,6 +92,7 @@ const Register = () => {
           required
           minLength={8}
         />
+
         <label htmlFor="password">Confirm Password:</label>
         <input
           type="password"
@@ -92,7 +104,79 @@ const Register = () => {
           required
           minLength={8}
         />
+
+        <label htmlFor="Name">Ονομα</label>
+        <input
+          required
+          type="text"
+          name="name"
+          id="name"
+          placeholder="Enter your name"
+          value={creds.name}
+          onChange={onChange}
+        />
+
+        <label htmlFor="Surname">Επίθετο:</label>
+        <input
+          required
+          type="text"
+          name="surname"
+          id="surname"
+          placeholder="Enter your surname"
+          value={creds.surname}
+          onChange={onChange}
+        />
+
+        <label for="island">Νησί:</label>
+
+        <select name="island" id="island" required onChange={onChange}>
+          {Object.keys(data.names).map((key, index) => {
+            return (
+              <option
+                className="island"
+                key={key}
+                value={key}
+                selected={index === 0}
+              >
+                {key}
+              </option>
+            );
+          })}
+        </select>
+
+        <br />
+
+        <label for="dimotiki_enotita">Δημοτική Ενότητα:</label>
+        <select
+          name="dimotiki_enotita"
+          id="dimotiki_enotita"
+          // disabled if no island selected
+          disabled={!creds.island}
+          required
+          onChange={onChange}
+        >
+          {data.names[creds.island] && (
+            <>
+              <option className="island" value={creds.island}>
+                {creds.island}
+              </option>
+              <>
+                {Object.values(data.names[creds.island]).map((val) => {
+                  return (
+                    <option className="dimotiki_enotita" key={val} value={val}>
+                      {val}
+                    </option>
+                  );
+                })}
+              </>
+            </>
+          )}
+        </select>
+        <br />
+
         {err && <span className="formErrors">{err}</span>}
+
+        <br />
         <button className="form-submitBtn" type="submit">
           Register
         </button>
@@ -100,4 +184,17 @@ const Register = () => {
     </div>
   );
 };
+
+export async function getServerSideProps() {
+  const res = await fetch(
+    process.env.NEXT_PUBLIC_API_URL + "/dimotikes-enotites"
+  );
+
+  const data = await res.json();
+
+  return {
+    props: { data },
+  };
+}
+
 export default Register;

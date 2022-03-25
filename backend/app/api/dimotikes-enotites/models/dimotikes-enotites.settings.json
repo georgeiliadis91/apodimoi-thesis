@@ -1,0 +1,18 @@
+{
+  "kind": "singleType",
+  "collectionName": "dimotikes_enotites",
+  "info": {
+    "name": "dimotikes_enotites"
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true,
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "names": {
+      "type": "json"
+    }
+  }
+}

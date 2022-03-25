@@ -9,7 +9,7 @@ const initState = {
   password: "",
 };
 
-const Login = () => {
+const Login = ({ data }) => {
   const [creds, setCreds] = useState(initState);
   const Router = useRouter();
   const [err, setErr] = useState("");
@@ -52,6 +52,7 @@ const Login = () => {
         <h2 className="form-title">Login</h2>
         <label htmlFor="email">Email:</label>
         <input
+          required
           type="email"
           name="email"
           id="email"
@@ -59,8 +60,10 @@ const Login = () => {
           value={creds.email}
           onChange={onChange}
         />
+
         <label htmlFor="password">Password:</label>
         <input
+          required
           type="password"
           name="password"
           id="password"
@@ -68,6 +71,9 @@ const Login = () => {
           value={creds.password}
           onChange={onChange}
         />
+
+        <br />
+
         {err && <span className="formErrors">{err}</span>}
         <button className="form-submitBtn" type="submit">
           Login

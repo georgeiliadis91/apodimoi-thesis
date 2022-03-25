@@ -1,0 +1,28 @@
+{
+  "routes": [
+    {
+      "method": "GET",
+      "path": "/dimotikes-enotites",
+      "handler": "dimotikes-enotites.find",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "PUT",
+      "path": "/dimotikes-enotites",
+      "handler": "dimotikes-enotites.update",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "DELETE",
+      "path": "/dimotikes-enotites",
+      "handler": "dimotikes-enotites.delete",
+      "config": {
+        "policies": []
+      }
+    }
+  ]
+}

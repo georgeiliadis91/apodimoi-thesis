@@ -23,7 +23,7 @@ const News = ({ data }) => {
   );
 };
 
-export async function getServerSideProps(context) {
+export async function getServerSideProps() {
   const res = await fetch(process.env.NEXT_PUBLIC_API_URL + "/articles");
   const data = await res.json();
 

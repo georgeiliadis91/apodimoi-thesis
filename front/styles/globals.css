@@ -18,6 +18,7 @@ a {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
+  font-size: 16px;
 }
 
 p,
@@ -79,4 +80,14 @@ form > textarea {
 form > span.formErrors {
   color: red;
   font-size: 13px;
+}
+
+form select {
+  width: 100%;
+}
+form option {
+  font-size: 13px;
+}
+form option.island {
+  font-weight: 700;
 }
