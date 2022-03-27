@@ -20,8 +20,8 @@ const Register = ({ data }) => {
     island: Object.keys(data.names)[0],
     dimotiki_enotita: Object.keys(data.names)[0],
   });
-
   const [err, setErrors] = useState("");
+
   const Router = useRouter();
   const { useSetLogged } = useContext(UserContext);
 
@@ -37,9 +37,12 @@ const Register = ({ data }) => {
           email: creds.email,
           username: creds.email,
           password: creds.password,
-          surname: creds.surname,
-          island: creds.island,
-          dimotiki_enotita: creds.dimotiki_enotita,
+          profile_data: {
+            name: creds.name,
+            surname: creds.surname,
+            island: creds.island,
+            dimotiki_enotita: creds.dimotiki_enotita,
+          },
         })
         .then((response) => {
           cookieStorage.set("jwtToken", response.data.jwt);
@@ -143,8 +146,6 @@ const Register = ({ data }) => {
             );
           })}
         </select>
-
-        <br />
 
         <label for="dimotiki_enotita">Δημοτική Ενότητα:</label>
         <select
