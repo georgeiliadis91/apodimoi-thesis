@@ -1,0 +1,13 @@
+{
+  "leftSideMenu": {
+    "news": "Νέα",
+    "about": "Σχετικά",
+    "users": "Χρήστες",
+    "contact": "Επικοινωνία",
+    "services": "Υπηρεσίες"
+  },
+  "rightSideMenu": {
+    "login": "Σύνδεση",
+    "register": "Εγγραφή"
+  }
+}

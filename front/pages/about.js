@@ -5,7 +5,6 @@ import { formatImage } from "../utils";
 const About = ({ data }) => {
   const { about_description, images } = data;
 
-  console.log("data", data);
   if (!data) return null;
   const formatterImageArray = formatImage(images);
   return (

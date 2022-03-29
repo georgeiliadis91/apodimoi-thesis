@@ -97,7 +97,8 @@
     "profile_data": {
       "type": "component",
       "repeatable": false,
-      "component": "user-data.data"
+      "component": "user-data.data",
+      "required": true
     }
   }
 }

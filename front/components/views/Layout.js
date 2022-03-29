@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Navbar } from "../Navbar/Navbar";
 import { Footer } from "../Footer/Footer";
-
+import { parseDataFromRequestSingleType } from "../../utils";
 import styles from "./Layout.module.css";
 
 export const Layout = (props) => {
@@ -11,10 +11,10 @@ export const Layout = (props) => {
     const fetchLayoutData = async () => {
       try {
         const layoutData = await fetch(
-          process.env.NEXT_PUBLIC_API_URL + "/layout"
+          process.env.NEXT_PUBLIC_API_URL + "/api/layout"
         );
-        const data = await layoutData.json();
-        setLayoutData(data);
+        const res = await layoutData.json();
+        setLayoutData(parseDataFromRequestSingleType(res));
       } catch (error) {
         console.error(error);
       }

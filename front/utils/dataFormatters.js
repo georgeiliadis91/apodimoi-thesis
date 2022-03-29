@@ -11,3 +11,9 @@ export const formatImage = (imgArray) => {
 
   return images;
 };
+
+// extract data from the default strapi v4 api
+export const parseDataFromRequestSingleType = ({ data }) => {
+  if (data.attributes) return data.attributes;
+  return null;
+};
