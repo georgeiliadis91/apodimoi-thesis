@@ -1,23 +1,27 @@
 import React from "react";
 import { ArticlesBlock } from "../components/ArticlesBlock/ArticlesBlock";
-import { parse250Chars, parseDataFromRequest } from "../utils";
+import { parse250Chars, getImageUrl } from "../utils";
 
 const News = ({ data }) => {
   if (!data) {
     return null;
   }
-  console.log("here", data);
+
   return (
     <>
       <h1 className="pageTitle">Νέα</h1>
-      {data.map(({ attributes }) => {
+      {data.map((item) => {
+        const { attributes } = item;
         return (
           <ArticlesBlock
-            key={attributes.id}
-            id={attributes.id}
+            key={item.id}
+            id={item.id}
             title={attributes.title}
             description={parse250Chars(attributes.description)}
-            imgUrl={`${process.env.NEXT_PUBLIC_API_URL}${attributes.thumbnail_img.data[0].attributes.formats.thumbnail.url}`}
+            imgUrl={`${process.env.NEXT_PUBLIC_API_URL}${getImageUrl(
+              attributes.thumbnail_img,
+              "thumbnail"
+            )}`}
           />
         );
       })}

@@ -12,6 +12,14 @@ export const formatImage = (imgArray) => {
   return images;
 };
 
+// get
+export const getImageUrl = (imgObj, size = "large") => {
+  if (imgObj?.data[0]?.attributes?.formats[size].url) {
+    return `${imgObj.data[0].attributes.formats[size].url}`;
+  }
+  return null;
+};
+
 // extract data from the default strapi v4 api
 export const parseDataFromRequestSingleType = ({ data }) => {
   if (data.attributes) return data.attributes;
