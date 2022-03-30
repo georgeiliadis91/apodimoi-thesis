@@ -19,9 +19,11 @@ const contact = () => {
     ) {
       e.preventDefault();
       axios
-        .post(process.env.NEXT_PUBLIC_API_URL + "/contacts", {
-          email: contactFormData.email,
-          message: contactFormData.message,
+        .post(process.env.NEXT_PUBLIC_API_URL + "/api/contacts", {
+          data: {
+            email: contactFormData.email,
+            message: contactFormData.message,
+          },
         })
         .then((response) => {
           setContactFormData(initState);
