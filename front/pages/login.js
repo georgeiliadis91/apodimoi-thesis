@@ -19,7 +19,7 @@ const Login = ({ data }) => {
     e.preventDefault();
     if (verifyLogin(creds.email, creds.password)) {
       axios
-        .post(process.env.NEXT_PUBLIC_API_URL + "/auth/local", {
+        .post(process.env.NEXT_PUBLIC_API_URL + "/api/auth/local", {
           identifier: creds.email,
           password: creds.password,
         })
@@ -30,10 +30,9 @@ const Login = ({ data }) => {
         })
         .catch((error) => {
           // Handle error.
-          console.log("An error occurred:", error.response);
+          console.log("An error occurred:", error?.response);
           setErr(
-            error?.response?.data?.data[0]?.messages[0]?.message ||
-              "Invalid Credentials please try again"
+            error.response.statusText || "Invalid Credentials please try again"
           );
         });
     } else {

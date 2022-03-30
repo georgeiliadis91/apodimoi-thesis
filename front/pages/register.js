@@ -8,17 +8,17 @@ const initState = {
   email: "",
   password: "",
   password2: "",
-  name: "",
-  surname: "",
-  island: "",
-  dimotiki_enotita: "",
+  // name: "",
+  // surname: "",
+  // island: "",
+  // dimotiki_enotita: "",
 };
 
 const Register = ({ data }) => {
   const [creds, setCreds] = useState({
     ...initState,
-    island: Object.keys(data.names)[0],
-    dimotiki_enotita: Object.keys(data.names)[0],
+    // island: Object.keys(data.names)[0],
+    // dimotiki_enotita: Object.keys(data.names)[0],
   });
   const [err, setErrors] = useState("");
 
@@ -33,16 +33,16 @@ const Register = ({ data }) => {
       verifyPasswordsMatch(creds.password, creds.password2)
     ) {
       axios
-        .post(process.env.NEXT_PUBLIC_API_URL + "/auth/local/register", {
+        .post(process.env.NEXT_PUBLIC_API_URL + "/api/auth/local/register", {
           email: creds.email,
           username: creds.email,
           password: creds.password,
-          profile_data: {
-            name: creds.name,
-            surname: creds.surname,
-            island: creds.island,
-            dimotiki_enotita: creds.dimotiki_enotita,
-          },
+          // profile_data: {
+          //   name: creds.name,
+          //   surname: creds.surname,
+          //   island: creds.island,
+          //   dimotiki_enotita: creds.dimotiki_enotita,
+          // },
         })
         .then((response) => {
           cookieStorage.set("jwtToken", response.data.jwt);
@@ -51,7 +51,7 @@ const Register = ({ data }) => {
         })
         .catch((error) => {
           // Handle error.
-          console.log("An error occurred:", error);
+          console.error("An error occurred:", error);
           setErrors(
             error?.response?.data?.data[0]?.messages[0]?.message ||
               "Invalid Credentials please try again"
@@ -64,7 +64,6 @@ const Register = ({ data }) => {
   };
 
   const onChange = (e) => {
-    console.log("here", e);
     setCreds({ ...creds, [e.target.name]: e.target.value });
   };
 
@@ -108,7 +107,7 @@ const Register = ({ data }) => {
           minLength={8}
         />
 
-        <label htmlFor="Name">Ονομα</label>
+        {/* <label htmlFor="Name">Ονομα</label>
         <input
           required
           type="text"
@@ -172,7 +171,7 @@ const Register = ({ data }) => {
               </>
             </>
           )}
-        </select>
+        </select> */}
         <br />
 
         {err && <span className="formErrors">{err}</span>}
