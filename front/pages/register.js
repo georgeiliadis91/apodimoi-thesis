@@ -8,17 +8,17 @@ const initState = {
   email: "",
   password: "",
   password2: "",
-  // name: "",
-  // surname: "",
-  // island: "",
-  // dimotiki_enotita: "",
+  name: "",
+  surname: "",
+  island: "",
+  dimotiki_enotita: "",
 };
 
 const Register = ({ data }) => {
   const [creds, setCreds] = useState({
     ...initState,
-    // island: Object.keys(data.names)[0],
-    // dimotiki_enotita: Object.keys(data.names)[0],
+    island: Object.keys(data.attributes.toponimia)[0],
+    dimotiki_enotita: Object.keys(data.attributes.toponimia)[0],
   });
   const [err, setErrors] = useState("");
 
@@ -37,12 +37,12 @@ const Register = ({ data }) => {
           email: creds.email,
           username: creds.email,
           password: creds.password,
-          // profile_data: {
-          //   name: creds.name,
-          //   surname: creds.surname,
-          //   island: creds.island,
-          //   dimotiki_enotita: creds.dimotiki_enotita,
-          // },
+          profile_data: {
+            name: creds.name,
+            surname: creds.surname,
+            island: creds.island,
+            dimotiki_enotita: creds.dimotiki_enotita,
+          },
         })
         .then((response) => {
           cookieStorage.set("jwtToken", response.data.jwt);
@@ -107,7 +107,7 @@ const Register = ({ data }) => {
           minLength={8}
         />
 
-        {/* <label htmlFor="Name">Ονομα</label>
+        <label htmlFor="Name">Ονομα</label>
         <input
           required
           type="text"
@@ -132,7 +132,7 @@ const Register = ({ data }) => {
         <label for="island">Νησί:</label>
 
         <select name="island" id="island" required onChange={onChange}>
-          {Object.keys(data.names).map((key, index) => {
+          {Object.keys(data.attributes.toponimia).map((key, index) => {
             return (
               <option
                 className="island"
@@ -155,23 +155,29 @@ const Register = ({ data }) => {
           required
           onChange={onChange}
         >
-          {data.names[creds.island] && (
+          {data.attributes.toponimia[creds.island] && (
             <>
               <option className="island" value={creds.island}>
                 {creds.island}
               </option>
               <>
-                {Object.values(data.names[creds.island]).map((val) => {
-                  return (
-                    <option className="dimotiki_enotita" key={val} value={val}>
-                      {val}
-                    </option>
-                  );
-                })}
+                {Object.values(data.attributes.toponimia[creds.island]).map(
+                  (val) => {
+                    return (
+                      <option
+                        className="dimotiki_enotita"
+                        key={val}
+                        value={val}
+                      >
+                        {val}
+                      </option>
+                    );
+                  }
+                )}
               </>
             </>
           )}
-        </select> */}
+        </select>
         <br />
 
         {err && <span className="formErrors">{err}</span>}
@@ -186,11 +192,8 @@ const Register = ({ data }) => {
 };
 
 export async function getServerSideProps() {
-  const res = await fetch(
-    process.env.NEXT_PUBLIC_API_URL + "/dimotikes-enotites"
-  );
-
-  const data = await res.json();
+  const res = await fetch(process.env.NEXT_PUBLIC_API_URL + "/api/toponimia");
+  const { data } = await res.json();
 
   return {
     props: { data },
