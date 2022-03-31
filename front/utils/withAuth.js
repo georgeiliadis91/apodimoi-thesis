@@ -18,7 +18,7 @@ export const withAuth = (WrappedComponent) => {
           Router.replace("/");
         } else {
           axios
-            .get(process.env.NEXT_PUBLIC_API_URL + "/users/me", {
+            .get(process.env.NEXT_PUBLIC_API_URL + "/api/users/me", {
               headers: {
                 Authorization: `Bearer ${jwtToken}`,
               },
