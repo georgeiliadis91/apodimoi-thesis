@@ -5,10 +5,10 @@ import styles from "./Navbar.module.css";
 
 export const Navbar = (props) => {
   const { navbar } = props;
-  const { data, useRemoveLogged } = useContext(UserContext);
+  // const { data, useRemoveLogged } = useContext(UserContext);
   const Routes = useRouter();
   const logOutUser = () => {
-    useRemoveLogged();
+    // useRemoveLogged();
     Routes.replace("/");
   };
 
@@ -26,7 +26,7 @@ export const Navbar = (props) => {
         ))}
       </div>
       <div className={styles.navbarContentRight}>
-        {data.userLoggedIn ? (
+        {/* {data?.userLoggedIn ? (
           <>
             <a className={`${styles.menuItem} ${styles.left}`} href="/users/me">
               Profile
@@ -35,19 +35,19 @@ export const Navbar = (props) => {
               Log Out
             </button>
           </>
-        ) : (
-          <>
-            {Object.entries(navbar.rightSideMenu).map(([key, val]) => (
-              <a
-                className={`${styles.menuItem} ${styles.left}`}
-                key={key}
-                href={key}
-              >
-                {val}
-              </a>
-            ))}
-          </>
-        )}
+        ) : ( */}
+        <>
+          {Object.entries(navbar.rightSideMenu).map(([key, val]) => (
+            <a
+              className={`${styles.menuItem} ${styles.left}`}
+              key={key}
+              href={key}
+            >
+              {val}
+            </a>
+          ))}
+        </>
+        {/* )} */}
       </div>
     </div>
   );

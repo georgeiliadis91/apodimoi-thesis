@@ -3,6 +3,7 @@ import { useRouter } from "next/router";
 import { verifyLogin, cookieStorage } from "../utils";
 import axios from "axios";
 import { UserContext } from "../store/store";
+import { setCookie } from "nookies";
 
 const initState = {
   email: "",
@@ -13,7 +14,7 @@ const Login = ({ data }) => {
   const [creds, setCreds] = useState(initState);
   const Router = useRouter();
   const [err, setErr] = useState("");
-  const { useSetLogged } = useContext(UserContext);
+  // const { useSetLogged } = useContext(UserContext);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -24,8 +25,13 @@ const Login = ({ data }) => {
           password: creds.password,
         })
         .then((response) => {
-          cookieStorage.set("jwtToken", response.data.jwt);
-          useSetLogged(response.data.jwt);
+          // cookieStorage.set("jwtToken", response.data.jwt);
+          setCookie(null, "jwtToken", response.data.jwt, {
+            maxAge: 30 * 24 * 60 * 60,
+            path: "/",
+          });
+
+          // useSetLogged(response.data.jwt);
           Router.replace("/users/me");
         })
         .catch((error) => {
