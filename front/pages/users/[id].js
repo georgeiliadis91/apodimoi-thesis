@@ -9,11 +9,11 @@ const Users = ({ data }) => {
   return (
     <div className={styles.root}>
       <h1 className={styles.username}>{username}</h1>
-      <img
+      {/* <img
         className={styles.profileImg}
         src={`${process.env.NEXT_PUBLIC_API_URL}${profile_img.attributes.formats.thumbnail.url}`}
         alt={`${username}_profile_img`}
-      />
+      /> */}
       <span className={styles.email}>{email}</span>
     </div>
   );
@@ -21,7 +21,10 @@ const Users = ({ data }) => {
 
 export async function getServerSideProps(context) {
   const res = await fetch(
-    process.env.NEXT_PUBLIC_API_URL + "/users/" + context.params.id
+    process.env.NEXT_PUBLIC_API_URL + "/api/users/" + context.params.id
+  );
+  console.log(
+    process.env.NEXT_PUBLIC_API_URL + "/api/users/" + context.params.id
   );
   const data = await res.json();
   return {

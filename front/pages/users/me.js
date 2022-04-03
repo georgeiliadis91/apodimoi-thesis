@@ -1,5 +1,5 @@
 import React from "react";
-import { addLocalhostToUri } from "../../utils";GR
+import { addLocalhostToUri } from "../../utils";
 
 import { withAuth } from "../../utils";
 import styles from "./Me.module.css";

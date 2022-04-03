@@ -4,13 +4,14 @@ import { withAuth } from "../utils";
 
 export const Users = ({ data }) => {
   if (!data) return null;
+
   return (
     <>
       <h1 className="pageTitle">Χρήστες</h1>
       {data.map((user) => {
-        // const imgUrl = user?.profile_img?.formats?.thumbnail?.url
-        //   ? `${process.env.NEXT_PUBLIC_API_URL}${user?.profile_img?.formats?.thumbnail?.url}`
-        //   : "/assets/profile_pic.jpeg";
+        const imgUrl = user?.profile_data?.profile_img?.formats?.thumbnail?.url
+          ? `${process.env.NEXT_PUBLIC_API_URL}${user?.profile_data?.profile_img?.formats?.thumbnail?.url}`
+          : "/assets/profile_pic.jpeg";
 
         return (
           <UserBlock
@@ -27,7 +28,7 @@ export const Users = ({ data }) => {
 };
 
 export async function getServerSideProps(context) {
-  const res = await fetch(process.env.NEXT_PUBLIC_API_URL + "/api/user");
+  const res = await fetch(process.env.NEXT_PUBLIC_API_URL + "/api/users");
   const data = await res.json();
   return {
     props: { data },

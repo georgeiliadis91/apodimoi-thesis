@@ -66,7 +66,7 @@ const Register = ({ data }) => {
   const onChange = (e) => {
     setCreds({ ...creds, [e.target.name]: e.target.value });
   };
-
+e
   return (
     <div className="form-container">
       <form className="loginForm" onSubmit={handleSubmit}>
