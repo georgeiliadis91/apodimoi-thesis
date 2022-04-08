@@ -14,8 +14,7 @@ const Login = ({ data }) => {
   const [creds, setCreds] = useState(initState);
   const Router = useRouter();
   const [err, setErr] = useState("");
-  // const { useSetLogged } = useContext(UserContext);
-
+  const { logIn } = useContext(UserContext);
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (verifyLogin(creds.email, creds.password)) {
@@ -25,14 +24,12 @@ const Login = ({ data }) => {
           password: creds.password,
         })
         .then((response) => {
-          // cookieStorage.set("jwtToken", response.data.jwt);
-          setCookie(null, "jwtToken", response.data.jwt, {
+          setCookie(null, "jwt", response.data.jwt, {
             maxAge: 30 * 24 * 60 * 60,
             path: "/",
           });
-
-          // useSetLogged(response.data.jwt);
-          Router.replace("/users/me");
+          logIn();
+          Router.push("/users/me");
         })
         .catch((error) => {
           // Handle error.

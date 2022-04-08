@@ -1,7 +1,6 @@
 import React from "react";
 import { addLocalhostToUri } from "../../utils";
 
-import { withAuth } from "../../utils";
 import styles from "./Me.module.css";
 
 const Me = ({ data }) => {
@@ -31,4 +30,4 @@ export async function getServerSideProps(context) {
   };
 }
 
-export default withAuth(Me);
+export default Me;

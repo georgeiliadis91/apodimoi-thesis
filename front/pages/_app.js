@@ -1,16 +1,16 @@
 import "../styles/globals.css";
 import { Layout } from "../components/views/Layout";
-import Globalstate from "../store/store";
 import { parseCookies } from "nookies";
-
-function MyApp({ Component, pageProps }) {
+import Globalstate from "../store/store";
+import { parseDataFromRequestSingleType } from "../utils";
+function MyApp({ Component, pageProps, navigation, isLoggedIn }) {
   return (
     <>
-      {/* <Globalstate> */}
-      <Layout>
-        <Component {...pageProps} />
-      </Layout>
-      {/* </Globalstate> */}
+      <Globalstate isLoggedIn={isLoggedIn}>
+        <Layout navigation={navigation}>
+          <Component {...pageProps} />
+        </Layout>
+      </Globalstate>
     </>
   );
 }
@@ -31,8 +31,10 @@ MyApp.getInitialProps = async ({ Component, ctx }) => {
   let pageProps = {};
   const jwt = parseCookies(ctx).jwt;
 
-  // const res = await fetch(`${publicRuntimeConfig.API_URL}/navigations`);
-  // const navigation = await res.json();
+  const layoutData = await fetch(
+    process.env.NEXT_PUBLIC_API_URL + "/api/layout"
+  );
+  const navigation = await layoutData.json();
 
   if (Component.getInitialProps) {
     pageProps = await Component.getInitialProps(ctx);
@@ -46,7 +48,8 @@ MyApp.getInitialProps = async ({ Component, ctx }) => {
 
   return {
     pageProps,
-    // navigation,
+    navigation: parseDataFromRequestSingleType(navigation),
+    isLoggedIn: !!jwt,
   };
 };
 

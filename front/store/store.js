@@ -1,35 +1,22 @@
-import React, { createContext, useEffect, useReducer } from "react";
-import { userDataReducer } from "./reducers";
-import { setLogged, removeLogged } from "./actions";
-import { cookieStorage } from "../utils";
-
-const defaultState = {
-  userLoggedIn: false,
-};
+import React, { useState, createContext } from "react";
+import { destroyCookie } from "nookies";
 
 export const UserContext = createContext();
 
-export default function Globalstate({ children }) {
-  const [data, dispatch] = useReducer(userDataReducer, defaultState);
+export default function Globalstate({ isLoggedIn, children }) {
+  const [logged, setLogged] = useState(isLoggedIn);
 
-  useEffect(() => {
-    const userToken = cookieStorage.get("jwtToken");
-    if (userToken) {
-      dispatch(setLogged(userToken));
-    }
-  }, []);
-
-  const useSetLogged = (token) => {
-    dispatch(setLogged(token));
+  const logOut = () => {
+    setLogged(false);
+    destroyCookie(null, "jwt");
   };
 
-  const useRemoveLogged = () => {
-    dispatch(removeLogged());
-    cookieStorage.remove("jwtToken");
+  const logIn = () => {
+    setLogged(true);
   };
 
   return (
-    <UserContext.Provider value={{ data, useSetLogged, useRemoveLogged }}>
+    <UserContext.Provider value={{ logged, logOut, logIn }}>
       {children}
     </UserContext.Provider>
   );
