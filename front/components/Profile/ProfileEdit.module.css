@@ -1,8 +1,61 @@
-.row {
+.row,
+.setAllRow {
   display: flex;
-  justify-content: flex-start;
+  justify-content: space-between;
   gap: 12px;
+  margin-bottom: 12px;
 }
+
 .row > label {
-  min-width: 220px;
+  flex: 0 0 70%;
+}
+
+.setAllRow > .setAllLabel {
+  flex: 0 0 70%;
+  font-size: 22px;
+}
+
+.row > .options {
+  flex: 0 0 30%;
+  display: flex;
+  justify-content: space-around;
+  text-transform: capitalize;
+}
+
+.setAllRow > .options {
+  flex: 0 0 30%;
+  display: flex;
+  justify-content: space-around;
+  text-transform: capitalize;
+}
+
+.options > label {
+  font-weight: bold;
+  font-size: 22px;
+}
+
+.options > input {
+  width: 22px;
+  height: 22px;
+  cursor: pointer;
+}
+
+.labelKey {
+  font-weight: bold;
+  font-size: 22px;
+  text-transform: capitalize;
+}
+
+.options > button {
+  border: none;
+  width: 32px;
+  height: 32px;
+  background: darkgreen;
+  border-radius: 50%;
+  color: #fff;
+  font-size: 28px;
+  font-weight: bold;
+  margin-bottom: 12px;
+  cursor: pointer;
+  margin-right: 22px;
 }
