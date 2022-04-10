@@ -3,6 +3,8 @@ import { Layout } from "../components/views/Layout";
 import { parseCookies } from "nookies";
 import Globalstate from "../store/store";
 import { parseDataFromRequestSingleType } from "../utils";
+import { privatePaths } from "../constants";
+
 function MyApp({ Component, pageProps, navigation, isLoggedIn }) {
   return (
     <>
@@ -41,7 +43,7 @@ MyApp.getInitialProps = async ({ Component, ctx }) => {
   }
 
   if (!jwt) {
-    if (ctx.pathname === "/users") {
+    if (privatePaths.includes(ctx.pathname)) {
       redirectUser(ctx, "/login");
     }
   }

@@ -1,6 +1,6 @@
 import React, { useState, useContext } from "react";
 import { useRouter } from "next/router";
-import { verifyLogin, cookieStorage } from "../utils";
+import { verifyLogin } from "../utils";
 import axios from "axios";
 import { UserContext } from "../store/store";
 import { setCookie } from "nookies";
