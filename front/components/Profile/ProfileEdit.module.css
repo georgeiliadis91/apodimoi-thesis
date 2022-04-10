@@ -1,0 +1,8 @@
+.row {
+  display: flex;
+  justify-content: flex-start;
+  gap: 12px;
+}
+.row > label {
+  min-width: 220px;
+}

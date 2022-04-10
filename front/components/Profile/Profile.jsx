@@ -3,8 +3,9 @@ import React from "react";
 import { addLocalhostToUri } from "../../utils";
 import styles from "./Profile.module.css";
 
-function Profile({ profile_data, email }) {
+function Profile({ profile_data }) {
   const {
+    email,
     profile_img,
     birth_place,
     birthdate,
