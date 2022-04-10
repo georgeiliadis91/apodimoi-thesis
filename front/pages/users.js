@@ -11,7 +11,7 @@ export const Users = ({ data }) => {
       {data.map((user) => {
         const imgUrl = user?.profile_data?.profile_img?.formats?.thumbnail?.url
           ? `${process.env.NEXT_PUBLIC_API_URL}${user?.profile_data?.profile_img?.formats?.thumbnail?.url}`
-          : "/assets/profile_pic.jpeg";
+        : "/assets/profile_pic.jpeg";
         return (
           <UserBlock
             id={user.id}

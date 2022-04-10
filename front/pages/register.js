@@ -3,6 +3,7 @@ import { verifyLogin, cookieStorage, verifyPasswordsMatch } from "../utils";
 import { useRouter } from "next/router";
 import { UserContext } from "../store/store";
 import axios from "axios";
+import { setCookie } from "nookies";
 
 const initState = {
   email: "",
@@ -23,7 +24,7 @@ const Register = ({ data }) => {
   const [err, setErrors] = useState("");
 
   const Router = useRouter();
-  const { useSetLogged } = useContext(UserContext);
+  const { logIn } = useContext(UserContext);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -40,22 +41,22 @@ const Register = ({ data }) => {
           profile_data: {
             name: creds.name,
             surname: creds.surname,
+            country: "Greece",
             island: creds.island,
             dimotiki_enotita: creds.dimotiki_enotita,
           },
         })
         .then((response) => {
-          cookieStorage.set("jwtToken", response.data.jwt);
-          useSetLogged(response.data.jwt);
+          setCookie(null, "jwt", response.data.jwt, {
+            maxAge: 30 * 24 * 60 * 60,
+            path: "/",
+          });
+          logIn(response.data.jwt);
           Router.replace("/users/me");
         })
         .catch((error) => {
-          // Handle error.
           console.error("An error occurred:", error);
-          setErrors(
-            error?.response?.data?.data[0]?.messages[0]?.message ||
-              "Invalid Credentials please try again"
-          );
+          setErrors(error?.response?.error?.messages || "An error occurred:");
         });
     } else {
       setErrors("Please check your data once more");
@@ -66,7 +67,7 @@ const Register = ({ data }) => {
   const onChange = (e) => {
     setCreds({ ...creds, [e.target.name]: e.target.value });
   };
-e
+
   return (
     <div className="form-container">
       <form className="loginForm" onSubmit={handleSubmit}>
@@ -129,7 +130,7 @@ e
           onChange={onChange}
         />
 
-        <label for="island">Νησί:</label>
+        <label htmlFor="island">Νησί:</label>
 
         <select name="island" id="island" required onChange={onChange}>
           {Object.keys(data.attributes.toponimia).map((key, index) => {
@@ -138,7 +139,7 @@ e
                 className="island"
                 key={key}
                 value={key}
-                selected={index === 0}
+                defaultValue={index === 0}
               >
                 {key}
               </option>
@@ -146,7 +147,7 @@ e
           })}
         </select>
 
-        <label for="dimotiki_enotita">Δημοτική Ενότητα:</label>
+        <label htmlFor="dimotiki_enotita">Δημοτική Ενότητα:</label>
         <select
           name="dimotiki_enotita"
           id="dimotiki_enotita"
