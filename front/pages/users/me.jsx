@@ -1,42 +1,16 @@
 import React from "react";
-import { addLocalhostToUri } from "../../utils";
 import { parseCookies } from "nookies";
 
 import styles from "./Me.module.css";
+import Profile from "../../components/Profile/Profile";
 
 const Me = ({ data }) => {
   const { email, profile_data } = data;
 
-  const {
-    birth_place,
-    birthdate,
-    current_city,
-    current_country,
-    current_street,
-    father_name,
-    father_surname,
-    island,
-    mother_name,
-    mother_surname,
-    name,
-    surname,
-    occupation,
-    other_groups,
-    phone_number,
-    postal_code,
-    profile_img,
-    permissions,
-  } = profile_data;
-
   return (
     <div className={styles.root}>
-      <h2>My profile</h2>
-      <p>{JSON.stringify(profile_data)}</p>
-      {/* <img
-        className={styles.profileImg}
-        src={addLocalhostToUri(profile_data.profile_img.formats.small.url)}
-        alt="profile_img"
-      /> */}
+      <h1 className={styles.title}>My profile</h1>
+      <Profile profile_data={profile_data} email={email} />
     </div>
   );
 };

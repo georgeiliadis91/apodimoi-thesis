@@ -1,12 +1,8 @@
 .root {
 }
 
-.profileImg {
-  width: 240px;
-  height: 240px;
-  border-radius: 50%;
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-  background-color: #fff;
+.title {
+  font-size: 32px;
+  font-weight: bold;
+  margin-bottom: 22px;
 }
