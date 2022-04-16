@@ -13,6 +13,7 @@ const News = ({ data }) => {
       {data.map((item) => {
         const { attributes } = item;
         return (
+          
           <ArticlesBlock
             key={item.id}
             id={item.id}
