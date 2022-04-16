@@ -33,6 +33,7 @@ export const inputMatcher = {
   postal_code: inputTypes.text,
   profile_img: inputTypes.image,
   surname: inputTypes.text,
+  dimotiki_enotita: inputTypes.select,
 };
 
 export const privatePaths = ["/users", "/users/me"];

@@ -2,8 +2,10 @@
 .setAllRow {
   display: flex;
   justify-content: space-between;
+  align-items: center;
   gap: 12px;
   margin-bottom: 12px;
+  line-height: 32px;
 }
 
 .row > label {
@@ -29,6 +31,18 @@
   text-transform: capitalize;
 }
 
+.labelKey {
+  font-weight: bold;
+  font-size: 22px;
+  text-transform: capitalize;
+  flex: 0 0 15%;
+}
+
+.inputRenderer {
+  flex: 0 0 55%;
+  width: 100%;
+}
+
 .options > label {
   font-weight: bold;
   font-size: 22px;
@@ -38,12 +52,6 @@
   width: 22px;
   height: 22px;
   cursor: pointer;
-}
-
-.labelKey {
-  font-weight: bold;
-  font-size: 22px;
-  text-transform: capitalize;
 }
 
 .options > button {
@@ -58,4 +66,16 @@
   margin-bottom: 12px;
   cursor: pointer;
   margin-right: 22px;
+}
+
+.submitBtn {
+  border-radius: 4px;
+  padding: 8px 18px;
+  font-size: 20px;
+  color: #fff;
+  background: green;
+  border: none;
+  cursor: pointer;
+  position: absolute;
+  right: 40px;
 }

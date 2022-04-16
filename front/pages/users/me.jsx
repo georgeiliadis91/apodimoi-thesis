@@ -43,7 +43,6 @@ export async function getServerSideProps(ctx) {
   });
   const data = await res.json();
 
-  debugger;
   return {
     props: { data },
   };

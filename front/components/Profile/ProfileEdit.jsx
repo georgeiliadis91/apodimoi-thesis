@@ -69,12 +69,12 @@ function ProfileEdit({ profile_data }) {
               return !["profile_img", "username"].includes(key);
             })
             .map(([key, value], index) => {
-              console.log("data set", key, value, userData[key]);
               return (
                 <div key={`${index}-${key}`} className={styles.row}>
                   <span className={styles.labelKey}>{key}</span>
                   {/* EDIT INPUT VAL */}
                   <FieldRenderer
+                    className={styles.inputRenderer}
                     value={userData[key]}
                     fieldName={key}
                     setFieldVal={updateField}
@@ -107,7 +107,7 @@ function ProfileEdit({ profile_data }) {
               );
             })}
         </div>
-        <input type="submit" value="Submit" />
+        <input className={styles.submitBtn} type="submit" value="Submit" />
       </form>
     </div>
   );
