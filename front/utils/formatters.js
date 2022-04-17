@@ -13,7 +13,7 @@ export const addLocalhostToUri = (uri) => {
 };
 
 // Flatter permissions objects
-export const flatterPermissions = (permissions) => {
+export const flattenPermissions = (permissions) => {
   const newPermissions = {};
 
   Object.keys(permissions).forEach((key) => {

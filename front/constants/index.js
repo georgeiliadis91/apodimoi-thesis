@@ -18,7 +18,7 @@ export const inputMatcher = {
   birth_place: inputTypes.select,
   birthdate: inputTypes.date,
   current_city: inputTypes.text,
-  current_country: inputTypes.text,
+  current_country: inputTypes.select,
   current_street: inputTypes.text,
   email: inputTypes.email,
   father_name: inputTypes.text,

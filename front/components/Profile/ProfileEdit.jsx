@@ -1,15 +1,18 @@
 import React, { useEffect, useState } from "react";
 import { permissionModel } from "../../constants";
-import { flatterPermissions } from "../../utils";
+import { flattenPermissions, createUserData } from "../../utils";
+import { useRouter } from "next/router";
+import axios from "axios";
 import { FieldRenderer } from "../FieldRenderer/FieldRenderer";
+import { parseCookies } from "nookies";
 import styles from "./ProfileEdit.module.css";
-import countryList from "../../json-data-files/countryList.json";
 
 function ProfileEdit({ profile_data }) {
+  const Router = useRouter();
   const { permissions, ...rest } = profile_data;
 
   const [permSettings, setPermissions] = useState(
-    flatterPermissions(permissions)
+    flattenPermissions(permissions)
   );
 
   const [userData, setUserData] = useState({ ...rest });
@@ -34,8 +37,31 @@ function ProfileEdit({ profile_data }) {
   };
 
   const handleSubmit = (e) => {
-    e.preventDefault();
-    // todo handle submit
+    // e.preventDefault();
+
+    //format the data in a structure meaningfuul
+    const formattedData = createUserData(userData, permSettings);
+    const jwt = parseCookies().jwt;
+
+    console.log(jwt);
+    axios
+      .put(
+        process.env.NEXT_PUBLIC_API_URL + "/api/users/me?populate=*",
+        formattedData,
+        {
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${jwt}`,
+          },
+        }
+      )
+      .then((response) => {
+        logIn(response.data.jwt);
+        // Router.
+      })
+      .catch((error) => {
+        console.error("An error occurred:", error);
+      });
   };
 
   useEffect(() => {
@@ -50,8 +76,6 @@ function ProfileEdit({ profile_data }) {
 
     fetchOptions();
   }, []);
-
-  console.log("countryList...", countryList);
 
   if (!options) {
     return null;

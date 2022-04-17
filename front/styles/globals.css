@@ -82,7 +82,8 @@ form > span.formErrors {
   font-size: 13px;
 }
 
-form select {
+form select,
+form input {
   width: 100%;
   margin-bottom: 12px;
 }

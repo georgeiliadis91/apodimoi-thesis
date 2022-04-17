@@ -1,5 +1,6 @@
 import React from "react";
 import { inputMatcher, inputTypes } from "../../constants";
+import countryList from "../../json-data-files/countryList.json";
 import styles from "./Fieldrenderer.module.css";
 
 export const FieldRenderer = ({
@@ -78,6 +79,7 @@ export const FieldRenderer = ({
             required
             onChange={setFieldVal}
             defaultValue={value}
+            className={styles.inputField}
           >
             {Object.keys(options.attributes.toponimia).map((key, index) => {
               return (
@@ -88,6 +90,27 @@ export const FieldRenderer = ({
                   defaultValue={index === 0}
                 >
                   {key}
+                </option>
+              );
+            })}
+          </select>
+        );
+      }
+
+      if (fieldName === "current_country") {
+        return (
+          <select
+            className={styles.inputField}
+            name={fieldName}
+            id={fieldName}
+            required
+            onChange={setFieldVal}
+            defaultValue={value}
+          >
+            {countryList.map(({ label }) => {
+              return (
+                <option className="island" key={label} value={label}>
+                  {label}
                 </option>
               );
             })}

@@ -2,6 +2,7 @@ import React, { useState, useContext } from "react";
 import { verifyLogin, verifyPasswordsMatch } from "../utils";
 import { useRouter } from "next/router";
 import { UserContext } from "../store/store";
+import countryList from "../json-data-files/countryList.json";
 import axios from "axios";
 import { setCookie } from "nookies";
 
@@ -13,6 +14,7 @@ const initState = {
   surname: "",
   island: "",
   dimotiki_enotita: "",
+  current_country: "",
 };
 
 const Register = ({ data }) => {
@@ -169,6 +171,7 @@ const Register = ({ data }) => {
                         className="dimotiki_enotita"
                         key={val}
                         value={val}
+                        defaultValue={val === creds.dimotiki_enotita}
                       >
                         {val}
                       </option>
@@ -178,6 +181,22 @@ const Register = ({ data }) => {
               </>
             </>
           )}
+        </select>
+
+        <label htmlFor="dimotiki_enotita">Χώρα διαμονής:</label>
+        <select
+          name="current_country"
+          id="current_country"
+          required
+          onChange={onChange}
+        >
+          {countryList.map(({ label }, index) => {
+            return (
+              <option className="island" key={label} value={label}>
+                {label}
+              </option>
+            );
+          })}
         </select>
         <br />
 
