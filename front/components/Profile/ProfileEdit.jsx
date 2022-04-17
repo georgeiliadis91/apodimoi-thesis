@@ -3,6 +3,7 @@ import { permissionModel } from "../../constants";
 import { flatterPermissions } from "../../utils";
 import { FieldRenderer } from "../FieldRenderer/FieldRenderer";
 import styles from "./ProfileEdit.module.css";
+import countryList from "../../json-data-files/countryList.json";
 
 function ProfileEdit({ profile_data }) {
   const { permissions, ...rest } = profile_data;
@@ -49,6 +50,8 @@ function ProfileEdit({ profile_data }) {
 
     fetchOptions();
   }, []);
+
+  console.log("countryList...", countryList);
 
   if (!options) {
     return null;
