@@ -7,7 +7,7 @@ import { FieldRenderer } from "../FieldRenderer/FieldRenderer";
 import { parseCookies } from "nookies";
 import styles from "./ProfileEdit.module.css";
 
-function ProfileEdit({ profile_data }) {
+function ProfileEdit({ profile_data, toggleEditOff }) {
   const Router = useRouter();
   const { permissions, ...rest } = profile_data;
 
@@ -37,7 +37,7 @@ function ProfileEdit({ profile_data }) {
   };
 
   const handleSubmit = (e) => {
-    // e.preventDefault();
+    e.preventDefault();
 
     //format the data in a structure meaningfuul
     const formattedData = createUserData(userData, permSettings);
@@ -56,8 +56,8 @@ function ProfileEdit({ profile_data }) {
         }
       )
       .then((response) => {
-        logIn(response.data.jwt);
-        // Router.
+        Router.push("/users/me");
+        toggleEditOff();
       })
       .catch((error) => {
         console.error("An error occurred:", error);

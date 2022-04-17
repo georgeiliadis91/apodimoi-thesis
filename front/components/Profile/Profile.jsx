@@ -32,12 +32,15 @@ function Profile({ profile_data }) {
         {/* important user data */}
         <img
           className={styles.profileImg}
+          // TODO add a default img
           src={addLocalhostToUri(profile_img?.formats?.small?.url) || ""}
           alt="profile_img"
         />
-        <span className={styles.textDisplay}>Email: {email}</span>
-        <span className={styles.textDisplay}>Name: {name}</span>
-        <span className={styles.textDisplay}>Surname: {surname}</span>
+        {email && <span className={styles.textDisplay}>Email: {email}</span>}
+        {name && <span className={styles.textDisplay}>Name: {name}</span>}
+        {surname && (
+          <span className={styles.textDisplay}>Surname: {surname}</span>
+        )}
         <span className={styles.textDisplay}>Island of Origin: {island}</span>
         <span className={styles.textDisplay}>
           Current Location: {current_country}
@@ -80,9 +83,9 @@ function Profile({ profile_data }) {
           <span className={styles.textDisplay}>Occupation: {occupation}</span>
 
           <span className={styles.textDisplay}>
-            Other communities: {phone_number}
+            Phone number: {phone_number}
           </span>
-          <span className={styles.textDisplay}>Birth place:</span>
+          <span className={styles.textDisplay}>Other communities :</span>
           <br />
           <p>{other_groups}</p>
         </div>

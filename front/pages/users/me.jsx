@@ -24,7 +24,10 @@ const Me = ({ data }) => {
         </button>
       )}
       {isEdit ? (
-        <ProfileEdit profile_data={{ ...profile_data, email }} />
+        <ProfileEdit
+          profile_data={{ ...profile_data, email }}
+          toggleEditOff={() => setEdit(false)}
+        />
       ) : (
         <Profile profile_data={{ ...profile_data, email }} />
       )}
@@ -43,7 +46,6 @@ export async function getServerSideProps(ctx) {
   });
   const data = await res.json();
 
-  
   return {
     props: { data },
   };
