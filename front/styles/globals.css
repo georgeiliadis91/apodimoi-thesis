@@ -89,6 +89,7 @@ form select {
 form option {
   font-size: 13px;
 }
+
 form option.island {
   font-weight: 700;
 }

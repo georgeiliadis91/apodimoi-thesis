@@ -13,7 +13,6 @@ const News = ({ data }) => {
       {data.map((item) => {
         const { attributes } = item;
         return (
-          
           <ArticlesBlock
             key={item.id}
             id={item.id}
@@ -35,7 +34,6 @@ export async function getServerSideProps() {
     process.env.NEXT_PUBLIC_API_URL + "/api/articles?populate=thumbnail_img"
   );
   const { data } = await res.json();
-  console.log("here", data);
   return {
     props: { data },
   };

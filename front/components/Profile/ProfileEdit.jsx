@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { permissionModel } from "../../constants";
 import { flatterPermissions } from "../../utils";
 import { FieldRenderer } from "../FieldRenderer/FieldRenderer";
@@ -12,6 +12,7 @@ function ProfileEdit({ profile_data }) {
   );
 
   const [userData, setUserData] = useState({ ...rest });
+  const [options, setOptions] = useState(null);
 
   const toggleChange = (e) => {
     const { name, value } = e.target;
@@ -35,6 +36,23 @@ function ProfileEdit({ profile_data }) {
     e.preventDefault();
     // todo handle submit
   };
+
+  useEffect(() => {
+    const fetchOptions = async () => {
+      const res = await fetch(
+        process.env.NEXT_PUBLIC_API_URL + "/api/toponimia"
+      );
+      const { data } = await res.json();
+
+      setOptions(data);
+    };
+
+    fetchOptions();
+  }, []);
+
+  if (!options) {
+    return null;
+  }
 
   return (
     <div>
@@ -78,6 +96,8 @@ function ProfileEdit({ profile_data }) {
                     value={userData[key]}
                     fieldName={key}
                     setFieldVal={updateField}
+                    options={options}
+                    island={userData.island}
                   />
                   {/* PERMISSION RADIO */}
                   <div className={styles.options}>
