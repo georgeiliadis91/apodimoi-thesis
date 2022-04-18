@@ -9,6 +9,7 @@ export const Users = ({ data }) => {
     <>
       <h1 className="pageTitle">Χρήστες</h1>
       {data.map((user) => {
+        if (!user) return null;
         const imgUrl = user?.profile_data?.profile_img?.formats?.thumbnail?.url
           ? `${process.env.NEXT_PUBLIC_API_URL}${user?.profile_data?.profile_img?.formats?.thumbnail?.url}`
           : "/assets/profile_pic.jpeg";
@@ -34,6 +35,7 @@ export async function getServerSideProps(ctx) {
     },
   });
   const data = await res.json();
+
   return {
     props: { data },
   };

@@ -45,6 +45,7 @@ function ProfileEdit({ profile_data, toggleEditOff }) {
 
     console.log(jwt);
     axios
+    axios
       .put(
         process.env.NEXT_PUBLIC_API_URL + "/api/users/me?populate=*",
         formattedData,

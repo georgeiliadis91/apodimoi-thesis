@@ -41,53 +41,88 @@ function Profile({ profile_data }) {
         {surname && (
           <span className={styles.textDisplay}>Surname: {surname}</span>
         )}
-        <span className={styles.textDisplay}>Island of Origin: {island}</span>
-        <span className={styles.textDisplay}>
-          Current Location: {current_country}
-        </span>
-        <span className={styles.textDisplay}>Birthdate: {birthdate}</span>
+        {island && (
+          <span className={styles.textDisplay}>Island of Origin: {island}</span>
+        )}
+        {current_country && (
+          <span className={styles.textDisplay}>
+            Current Location: {current_country}
+          </span>
+        )}
+        {birthdate && (
+          <span className={styles.textDisplay}>Birthdate: {birthdate}</span>
+        )}
       </section>
       <section className={styles.rightColumn}>
         {/* family related data */}
         <div className={styles.rightSubSection}>
           <h2 className={styles.secondaryTitle}>Family data</h2>
 
-          <span className={styles.textDisplay}>Birth place: {birth_place}</span>
+          {birth_place && (
+            <span className={styles.textDisplay}>
+              Birth place: {birth_place}
+            </span>
+          )}
+          {father_name && (
+            <span className={styles.textDisplay}>
+              Fathers name: {father_name}
+            </span>
+          )}
 
-          <span className={styles.textDisplay}>
-            Fathers name: {father_name}
-          </span>
+          {father_surname && (
+            <span className={styles.textDisplay}>
+              Mothers name: {father_surname}
+            </span>
+          )}
 
-          <span className={styles.textDisplay}>
-            Mothers name: {father_surname}
-          </span>
+          {mother_name && (
+            <span className={styles.textDisplay}>
+              Birth place: {mother_name}
+            </span>
+          )}
 
-          <span className={styles.textDisplay}>Birth place: {mother_name}</span>
-
-          <span className={styles.textDisplay}>
-            Birth place: {mother_surname}
-          </span>
+          {mother_surname && (
+            <span className={styles.textDisplay}>
+              Birth place: {mother_surname}
+            </span>
+          )}
         </div>
 
         {/* personal data */}
         <div className={styles.rightSubSection}>
           <h2 className={styles.secondaryTitle}>Personal data</h2>
-          <span className={styles.textDisplay}>
-            Current city: {current_city}
-          </span>
+          {current_city && (
+            <span className={styles.textDisplay}>
+              Current city: {current_city}
+            </span>
+          )}
 
-          <span className={styles.textDisplay}>Postal Code: {postal_code}</span>
+          {postal_code && (
+            <span className={styles.textDisplay}>
+              Postal Code: {postal_code}
+            </span>
+          )}
 
-          <span className={styles.textDisplay}>Street: {current_street}</span>
+          {current_street && (
+            <span className={styles.textDisplay}>Street: {current_street}</span>
+          )}
 
-          <span className={styles.textDisplay}>Occupation: {occupation}</span>
+          {occupation && (
+            <span className={styles.textDisplay}>Occupation: {occupation}</span>
+          )}
 
-          <span className={styles.textDisplay}>
-            Phone number: {phone_number}
-          </span>
-          <span className={styles.textDisplay}>Other communities :</span>
-          <br />
-          <p>{other_groups}</p>
+          {phone_number && (
+            <span className={styles.textDisplay}>
+              Phone number: {phone_number}
+            </span>
+          )}
+          {other_groups && (
+            <>
+              <span className={styles.textDisplay}>Other communities :</span>
+              <br />
+              <p>{other_groups}</p>
+            </>
+          )}
         </div>
       </section>
     </div>

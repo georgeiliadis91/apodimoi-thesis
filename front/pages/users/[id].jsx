@@ -6,6 +6,7 @@ const Users = ({ data }) => {
 
   if (!data) return null;
 
+  // Add the profile component here for the display
   return (
     <div className={styles.root}>
       <h1 className={styles.username}>{username}</h1>
