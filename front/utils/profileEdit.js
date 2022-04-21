@@ -25,7 +25,6 @@ export const createUserData = (data, permissions) => {
       permissions: {
         email: permissions.email,
         username: permissions.username,
-        everything: permissions.everything,
         profile_data: {
           name: permissions.name,
           island: permissions.island,
