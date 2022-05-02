@@ -29,10 +29,11 @@ export const Users = ({ data }) => {
 
 export async function getServerSideProps(ctx) {
   const jwt = parseCookies(ctx).jwt;
+  const headers = jwt && {
+    Authorization: `Bearer ${jwt}`,
+  };
   const res = await fetch(process.env.NEXT_PUBLIC_API_URL + "/api/users", {
-    headers: {
-      Authorization: `Bearer ${jwt}`,
-    },
+    headers: headers,
   });
   const data = await res.json();
 

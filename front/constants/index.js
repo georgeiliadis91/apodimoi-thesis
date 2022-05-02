@@ -36,4 +36,5 @@ export const inputMatcher = {
   dimotiki_enotita: inputTypes.select,
 };
 
-export const privatePaths = ["/users", "/users/me"];
+// List of private paths
+export const privatePaths = ["/users/me"];
