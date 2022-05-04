@@ -29,6 +29,8 @@ export const Users = ({ data }) => {
 
 export async function getServerSideProps(ctx) {
   const jwt = parseCookies(ctx).jwt;
+  // In case a cookie is not found, do not add the Auth header, cause it creates
+  // issues with authenticated results.
   const headers = jwt && {
     Authorization: `Bearer ${jwt}`,
   };
