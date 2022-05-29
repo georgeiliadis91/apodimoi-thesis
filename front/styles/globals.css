@@ -94,3 +94,9 @@ form option {
 form option.island {
   font-weight: 700;
 }
+
+.item-overview-display-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  column-gap: 10px;
+}

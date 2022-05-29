@@ -10,21 +10,23 @@ const News = ({ data }) => {
   return (
     <>
       <h1 className="pageTitle">Νέα</h1>
-      {data.map((item) => {
-        const { attributes } = item;
-        return (
-          <ArticlesBlock
-            key={item.id}
-            id={item.id}
-            title={attributes.title}
-            description={parse250Chars(attributes.description)}
-            imgUrl={`${process.env.NEXT_PUBLIC_API_URL}${getImageUrl(
-              attributes.thumbnail_img,
-              "thumbnail"
-            )}`}
-          />
-        );
-      })}
+      <div className="item-overview-display-grid">
+        {data.map((item) => {
+          const { attributes } = item;
+          return (
+            <ArticlesBlock
+              key={item.id}
+              id={item.id}
+              title={attributes.title}
+              description={parse250Chars(attributes.description)}
+              imgUrl={`${process.env.NEXT_PUBLIC_API_URL}${getImageUrl(
+                attributes.thumbnail_img,
+                "thumbnail"
+              )}`}
+            />
+          );
+        })}
+      </div>
     </>
   );
 };

@@ -5,6 +5,10 @@
   margin-bottom: 24px;
   cursor: pointer;
   transition: 0.3s;
+  height: 134px;
+  overflow: hidden;
+  border: 1px solid #c1c1c1;
+  border-radius: 6px;
 }
 
 .root:hover {
@@ -13,6 +17,16 @@
 
 .descriptionBox {
   padding: 10px;
+  overflow: hidden;
+}
+
+.descriptionBox p {
+  display: -webkit-box;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  line-clamp: 5;
+  -webkit-line-clamp: 5;
+  -webkit-box-orient: vertical;
 }
 
 .title {

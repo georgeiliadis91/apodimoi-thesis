@@ -10,7 +10,7 @@ import {
 } from "chart.js";
 import { Bar } from "react-chartjs-2";
 import { getRandomColors } from "../../utils";
-
+import styles from "./UserLocationChart.module.css";
 ChartJS.register(
   CategoryScale,
   LinearScale,
@@ -22,13 +22,18 @@ ChartJS.register(
 
 export const options = {
   responsive: true,
+  indexAxis: "y",
+  elements: {
+    bar: {
+      borderWidth: 2,
+    },
+  },
   plugins: {
     legend: {
       display: false,
     },
     title: {
-      display: true,
-      text: "User Country List",
+      display: false,
     },
   },
 };
@@ -52,8 +57,9 @@ export const UserLocationChart = ({ countryList }) => {
   };
 
   return (
-    <div>
-      <Bar options={options} data={chartData} />;
+    <div className={styles.root}>
+      <h2>User location chat</h2>
+      <Bar options={options} data={chartData} />
     </div>
   );
 };

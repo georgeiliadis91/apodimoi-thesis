@@ -9,17 +9,21 @@ export const Users = ({ data, countryData }) => {
   return (
     <>
       <h1 className="pageTitle">Χρήστες</h1>
-      {data.map((user) => {
-        if (!user) return null;
-        return (
-          <UserBlock
-            id={user.id}
-            key={user.id}
-            username={user.username}
-            email={user.email}
-          />
-        );
-      })}
+      <div className="item-overview-display-grid">
+        {data.map((user) => {
+          if (!user) return null;
+          return (
+            <UserBlock
+              id={user.id}
+              key={user.id}
+              username={user.username}
+              email={user.email}
+              country={user.profile_data.current_country}
+              island={user.profile_data.island}
+            />
+          );
+        })}
+      </div>
 
       <br />
       <UserLocationChart countryList={countryData} />
