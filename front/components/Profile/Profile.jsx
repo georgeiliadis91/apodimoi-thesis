@@ -6,7 +6,6 @@ import styles from "./Profile.module.css";
 function Profile({ profile_data }) {
   const {
     email,
-    profile_img,
     birth_place,
     birthdate,
     current_country,
@@ -29,13 +28,6 @@ function Profile({ profile_data }) {
   return (
     <div className={styles.profileContainer}>
       <section className={styles.leftColumn}>
-        {/* important user data */}
-        <img
-          className={styles.profileImg}
-          // TODO add a default img
-          src={addLocalhostToUri(profile_img?.formats?.small?.url) || ""}
-          alt="profile_img"
-        />
         {email && <span className={styles.textDisplay}>Email: {email}</span>}
         {name && <span className={styles.textDisplay}>Name: {name}</span>}
         {surname && (

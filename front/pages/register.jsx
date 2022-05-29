@@ -43,7 +43,7 @@ const Register = ({ data }) => {
           profile_data: {
             name: creds.name,
             surname: creds.surname,
-            country: "Greece",
+            current_country: creds.current_country,
             island: creds.island,
             dimotiki_enotita: creds.dimotiki_enotita,
           },

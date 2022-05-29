@@ -1,8 +1,9 @@
 import React from "react";
+import { UserLocationChart } from "../components/UserLocationChart/UserLocationChart";
 import { UserBlock } from "../components/UserBlock/UserBlock";
 import { parseCookies } from "nookies";
 
-export const Users = ({ data }) => {
+export const Users = ({ data, countryData }) => {
   if (!data) return null;
 
   return (
@@ -10,19 +11,18 @@ export const Users = ({ data }) => {
       <h1 className="pageTitle">Χρήστες</h1>
       {data.map((user) => {
         if (!user) return null;
-        const imgUrl = user?.profile_data?.profile_img?.formats?.thumbnail?.url
-          ? `${process.env.NEXT_PUBLIC_API_URL}${user?.profile_data?.profile_img?.formats?.thumbnail?.url}`
-          : "/assets/profile_pic.jpeg";
         return (
           <UserBlock
             id={user.id}
             key={user.id}
             username={user.username}
             email={user.email}
-            profile_img={imgUrl}
           />
         );
       })}
+
+      <br />
+      <UserLocationChart countryList={countryData} />
     </>
   );
 };
@@ -37,10 +37,19 @@ export async function getServerSideProps(ctx) {
   const res = await fetch(process.env.NEXT_PUBLIC_API_URL + "/api/users", {
     headers: headers,
   });
+
+  const countryRes = await fetch(
+    process.env.NEXT_PUBLIC_API_URL + "/api/users/countries",
+    {
+      headers: headers,
+    }
+  );
+
   const data = await res.json();
+  const countryData = await countryRes.json();
 
   return {
-    props: { data },
+    props: { data, countryData },
   };
 }
 

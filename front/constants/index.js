@@ -31,7 +31,6 @@ export const inputMatcher = {
   other_groups: inputTypes.textarea,
   phone_number: inputTypes.number,
   postal_code: inputTypes.text,
-  profile_img: inputTypes.image,
   surname: inputTypes.text,
   dimotiki_enotita: inputTypes.select,
 };
