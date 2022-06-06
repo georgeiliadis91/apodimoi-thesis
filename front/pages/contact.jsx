@@ -4,6 +4,7 @@ import { isEmail } from "../utils";
 
 const initState = {
   email: "",
+  name: "",
   message: "",
 };
 
@@ -15,6 +16,7 @@ const contact = () => {
     if (
       contactFormData.email &&
       contactFormData.message &&
+      contactFormData.name &&
       isEmail(contactFormData.email)
     ) {
       e.preventDefault();
@@ -22,6 +24,7 @@ const contact = () => {
         .post(process.env.NEXT_PUBLIC_API_URL + "/api/contacts", {
           data: {
             email: contactFormData.email,
+            name: contactFormData.name,
             message: contactFormData.message,
           },
         })
@@ -50,6 +53,15 @@ const contact = () => {
           id="email"
           placeholder="Enter your email"
           value={contactFormData.email}
+          onChange={onChange}
+          required
+        />
+        <input
+          type="name"
+          name="name"
+          id="name"
+          placeholder="Enter your name"
+          value={contactFormData.name}
           onChange={onChange}
           required
         />
