@@ -2,6 +2,7 @@ import React, { useContext } from "react";
 import { UserContext } from "../../store/store";
 import { useRouter } from "next/router";
 import styles from "./Navbar.module.css";
+import { NavBarItem } from "./components/NavBarItem";
 
 export const Navbar = (props) => {
   const { navbar } = props;
@@ -17,13 +18,7 @@ export const Navbar = (props) => {
     <div className={styles.navbarContainer}>
       <div className={styles.navbarContentLeft}>
         {Object.entries(navbar.leftSideMenu).map(([key, val]) => (
-          <a
-            className={`${styles.menuItem} ${styles.left}`}
-            key={key}
-            href={`/${key}`}
-          >
-            {val}
-          </a>
+          <NavBarItem key={key} keyVal={key} value={val} />
         ))}
       </div>
       <div className={styles.navbarContentRight}>

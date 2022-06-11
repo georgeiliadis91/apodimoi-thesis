@@ -1,5 +1,5 @@
 .navbarContainer {
-  background-color: #383cc1;
+  background-color: #0088cc;
   padding: 0 10%;
   height: 85px;
   color: #fff;
@@ -10,9 +10,7 @@
 
 .menuItem {
   color: #fff;
-  font-weight: bold;
   text-decoration: none;
-
   cursor: pointer;
 }
 
@@ -26,11 +24,15 @@
 
 .logOutBtn {
   background: #fff;
-  color: #383cc1;
+  color: #0088cc;
   border: none;
   border-radius: 5px;
   padding: 4px 8px;
   font-weight: 600;
   font-size: 16px;
   cursor: pointer;
+}
+
+.navbarContentLeft {
+  position: relative;
 }

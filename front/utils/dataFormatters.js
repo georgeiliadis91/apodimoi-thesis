@@ -21,6 +21,17 @@ export const getImageUrl = (imgObj, size = "large") => {
   return null;
 };
 
+// get single imageUrl
+export const getSingleImageUrl = (imgObj, size = "large") => {
+  if (imgObj?.data?.attributes?.formats?.[size]?.url) {
+    return `${imgObj.data.attributes.formats?.[size].url}`;
+  }
+  if (imgObj?.data?.attributes?.url) {
+    return `${imgObj.data.attributes.url}`;
+  }
+  return null;
+};
+
 // extract data from the default strapi v4 api
 export const parseDataFromRequestSingleType = ({ data }) => {
   if (data.attributes) return data.attributes;

@@ -56,6 +56,7 @@ const contact = () => {
           onChange={onChange}
           required
         />
+        <label htmlFor="message">Name:</label>
         <input
           type="name"
           name="name"

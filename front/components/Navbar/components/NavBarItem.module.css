@@ -1,0 +1,37 @@
+.menuItem {
+  color: #fff;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.left {
+  margin-right: 1rem;
+}
+
+/* .NavBarItemDropDown {
+  position: relative; */
+/* } */
+
+.dropDownMenu {
+  display: flex;
+  flex-direction: column;
+  background: #fff;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  color: #0088cc;
+  position: absolute;
+  z-index: 100;
+  right: 0;
+  top: 150%;
+  box-shadow: 0 0 5px 2px #ccc;
+  overflow: hidden;
+}
+
+.dropDownMenuitem {
+  padding: 16px 12px;
+}
+.dropDownMenuitem:hover {
+  color: #fff;
+  background: #0088cc;
+  cursor: pointer;
+}
