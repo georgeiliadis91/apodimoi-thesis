@@ -135,14 +135,20 @@ h2.advisor-title {
   font-size: 26px;
   margin-bottom: 12px;
 }
+.advisor-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  column-gap: 16px;
+}
 .advisor-list {
-  display: flex;
+  display: grid;
   flex-direction: column;
   align-items: flex-start;
   margin-bottom: 24px;
   background: #e4e4e4;
-  padding: 6px 8px;
-  border-radius: 2px;
+  padding: 14px 12px 10px;
+  border-radius: 6px;
+  position: relative;
 }
 
 .advisor-list span {
@@ -151,14 +157,67 @@ h2.advisor-title {
 }
 .advisor-list a {
   font-size: 18px;
-  margin-bottom: 12px;
 }
 
-.advisor-list a[href^="tel:"]:before {
+a[href^="tel:"]:before {
   content: "\260e";
   margin-right: 10px;
 }
-.advisor-list a[href^="mailto:"]:before {
+a[href^="mailto:"]:before {
   content: "\1f4e7";
   margin-right: 10px;
+}
+
+.advisor-list div.advisor-kids {
+  background: rgb(105, 175, 0);
+  color: white;
+  padding: 6px 10px;
+  border-radius: 8px;
+  position: absolute;
+  right: 12px;
+  top: 12px;
+}
+
+.advisor-list img.advisor-list-img-link {
+  max-width: 350px;
+  height: 150px;
+  object-fit: cover;
+  padding: 6px 10px;
+  border-radius: 8px;
+}
+
+ul.data-list {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+ul.data-list li {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.list-label {
+  font-size: 24px;
+  background: #ccc;
+  padding: 8px 10px;
+}
+
+ul.data-list span {
+  flex: 0 0 25%;
+  padding: 8px;
+}
+
+ul.data-list li.list-item {
+  min-height: 42px;
+}
+
+ul.data-list li.list-item:nth-child(even) {
+  background: #fff;
+}
+
+ul.data-list li.list-item:nth-child(odd) {
+  background: rgb(242, 241, 241);
 }

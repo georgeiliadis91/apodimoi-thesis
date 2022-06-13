@@ -1,10 +1,12 @@
 import React, { useState, useEffect } from "react";
 import { Navbar } from "../Navbar/Navbar";
 import { Footer } from "../Footer/Footer";
-import { parseDataFromRequestSingleType } from "../../utils";
+import { useRouter } from "next/router";
 import styles from "./Layout.module.css";
 
 export const Layout = ({ navigation, children }) => {
+  const router = useRouter();
+
   if (!navigation) {
     return null;
   }
@@ -12,7 +14,7 @@ export const Layout = ({ navigation, children }) => {
   return (
     <div className={styles.layoutContainer}>
       <Navbar className={styles.navbar} navbar={navigation.navbar} />
-      <main className={styles.main}>{children}</main>
+      <main className={router.pathname !== "/" && styles.main}>{children}</main>
       <Footer className={styles.footer} footer={navigation.footer} />
     </div>
   );

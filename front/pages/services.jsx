@@ -1,26 +1,44 @@
-import React from "react";
+import React, { useState } from "react";
 import styles from "../styles/Services.module.css";
 
 const Services = ({ data }) => {
+  const [search, setSearch] = useState("");
   if (!data) return null;
   return (
-    <>
-      <h1 className="pageTitle">Υπηρεσίες</h1>
-      <div className={styles.serviceTable}>
-        {data.map(({ attributes, id }) => {
+    <div className={styles.servicesContainer}>
+      <h1 className="pageTitle">Χρήσιμα Τηλέφωνα</h1>
+
+      {/* TODO ADD SEARCH INPUT FIELD */}
+
+      <ul className={styles.serviceTable}>
+        <li className={styles.serviceTableRow}>
+          <span className={styles.serviceTableLabels}>Υπηρεσία</span>
+          <span className={styles.serviceTableLabels}>E-mail</span>
+          <span className={styles.serviceTableLabels}>Τηλέφωνο</span>
+        </li>
+        {data.map(({ attributes, id }, index) => {
           const { service_name, email, number } = attributes;
           return (
-            <div className={styles.serviceRow} key={id}>
-              <span className={`${styles.cell} ${styles.title}`}>
+            <li
+              className={`${styles.serviceRow} ${
+                index % 2 === 0 ? styles.odd : styles.even
+              }`}
+              key={id}
+            >
+              <span className={`${styles.serviceTableCell} ${styles.title}`}>
                 {service_name}
               </span>
-              <span className={`${styles.cell}`}>{email}</span>
-              <span className={`${styles.cell}`}>{number}</span>
-            </div>
+              <span className={`${styles.serviceTableCell}`}>
+                {email && <a href={`mailto:${email}`}>{email}</a>}
+              </span>
+              <span className={`${styles.serviceTableCell}`}>
+                {number && <a href={`tel:+30${number}`}>{number}</a>}
+              </span>
+            </li>
           );
         })}
-      </div>
-    </>
+      </ul>
+    </div>
   );
 };
 
