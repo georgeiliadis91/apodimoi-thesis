@@ -36,4 +36,12 @@ export const inputMatcher = {
 };
 
 // List of private paths
-export const privatePaths = ["/users/me"];
+
+export const privatePaths = [
+  "/users/me",
+  "/radio",
+  "/advisor",
+  "/classes",
+  "/services",
+  "/communities",
+];
