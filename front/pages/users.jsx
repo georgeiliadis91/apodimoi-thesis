@@ -1,21 +1,21 @@
 import React from "react";
+import dynamic from "next/dynamic";
 import { UserLocationChart } from "../components/UserLocationChart/UserLocationChart";
 import { UserBlock } from "../components/UserBlock/UserBlock";
 import { parseCookies } from "nookies";
 
 export const Users = ({ data, countryData }) => {
-  const Map = dynamic(
-    () => import("@components/UserMap/UserMap"), // replace '@components/map' with your component's location
-    {
-      loading: () => <p>loading...</p>,
-      ssr: false, // This line is important. It's what prevents server-side render
-    }
-  );
+  const Map = dynamic(() => import("../components/UserMap/UserMap"), {
+    loading: () => <p>loading map...</p>,
+    ssr: false,
+  });
 
   if (!data) return null;
 
   return (
     <>
+      <Map />
+      <br />
       <h1 className="pageTitle">Χρήστες</h1>
       <div className="item-overview-display-grid">
         {data.map((user) => {
@@ -32,11 +32,10 @@ export const Users = ({ data, countryData }) => {
           );
         })}
       </div>
-
+      {/* 
       <br />
       <UserLocationChart countryList={countryData} />
-      <br />
-      <Map />
+      <br /> */}
     </>
   );
 };

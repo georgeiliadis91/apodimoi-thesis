@@ -221,3 +221,7 @@ ul.data-list li.list-item:nth-child(even) {
 ul.data-list li.list-item:nth-child(odd) {
   background: rgb(242, 241, 241);
 }
+
+/* .markercluster-map {
+  height: 500px;
+} */

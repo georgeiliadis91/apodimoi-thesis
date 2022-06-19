@@ -1,23 +1,42 @@
-import { MapContainer, Marker, Popup, TileLayer } from "react-leaflet";
+import {
+  MapContainer,
+  Marker,
+  TileLayer,
+  Popup,
+  CircleMarker,
+} from "react-leaflet";
 import "leaflet/dist/leaflet.css";
+import MarkerClusterGroup from "react-leaflet-markercluster";
+import "leaflet/dist/leaflet.css";
+import "leaflet-defaulticon-compatibility/dist/leaflet-defaulticon-compatibility.css";
+import "leaflet-defaulticon-compatibility";
+import "react-leaflet-markercluster/dist/styles.min.css";
 
 const UserMap = () => {
   return (
     <MapContainer
-      center={[51.505, -0.09]}
-      zoom={13}
-      scrollWheelZoom={false}
-      style={{ height: 400, width: "100%" }}
+      className="markercluster-map"
+      center={[51.0, 19.0]}
+      zoom={4}
+      maxZoom={18}
+      style={{ height: 500, width: "100%", marginBottom: "46px" }}
     >
       <TileLayer
-        attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
         url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+        attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
       />
-      <Marker position={[51.505, -0.09]}>
-        <Popup>
-          A pretty CSS3 popup. <br /> Easily customizable.
-        </Popup>
-      </Marker>
+
+      <MarkerClusterGroup>
+        <Marker position={[49.8397, 24.0297]}>
+          <Popup>
+            A pretty CSS3 popup. <br /> Easily customizable.
+          </Popup>
+        </Marker>
+        <Marker position={[52.2297, 21.0122]} />
+        <Marker position={[51.5074, -0.0901]} />
+      </MarkerClusterGroup>
     </MapContainer>
   );
 };
+
+export default UserMap;

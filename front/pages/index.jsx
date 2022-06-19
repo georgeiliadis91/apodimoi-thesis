@@ -23,6 +23,18 @@ const Home = ({ data }) => {
           src="https://unpkg.com/leaflet@1.8.0/dist/leaflet.js"
           integrity="sha512-BB3hKbKWOc9Ez/TAwyWxNXeoV9c1v6FIeYiBieIWkpLjauysF18NzgR1MBNBXf8/KABdlkX68nAhlwcDFLGPCQ=="
         ></script>
+        <link
+          rel="stylesheet"
+          href="https://unpkg.com/react-leaflet-markercluster/dist/styles.min.css"
+        />
+        <link
+          rel="stylesheet"
+          href="https://unpkg.com/leaflet/dist/leaflet.css"
+        />
+        <link
+          rel="stylesheet"
+          href="https://unpkg.com/react-leaflet-markercluster/dist/styles.min.css"
+        />
       </Head>
       <img
         className={styles.headerImg}
