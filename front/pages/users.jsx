@@ -4,6 +4,14 @@ import { UserBlock } from "../components/UserBlock/UserBlock";
 import { parseCookies } from "nookies";
 
 export const Users = ({ data, countryData }) => {
+  const Map = dynamic(
+    () => import("@components/UserMap/UserMap"), // replace '@components/map' with your component's location
+    {
+      loading: () => <p>loading...</p>,
+      ssr: false, // This line is important. It's what prevents server-side render
+    }
+  );
+
   if (!data) return null;
 
   return (
@@ -27,6 +35,8 @@ export const Users = ({ data, countryData }) => {
 
       <br />
       <UserLocationChart countryList={countryData} />
+      <br />
+      <Map />
     </>
   );
 };
