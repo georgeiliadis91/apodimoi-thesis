@@ -14,7 +14,7 @@ export const Users = ({ data, countryData }) => {
 
   return (
     <>
-      <Map />
+      <Map userData={countryData} />
       <br />
       <h1 className="pageTitle">Χρήστες</h1>
       <div className="item-overview-display-grid">
@@ -32,10 +32,6 @@ export const Users = ({ data, countryData }) => {
           );
         })}
       </div>
-      {/* 
-      <br />
-      <UserLocationChart countryList={countryData} />
-      <br /> */}
     </>
   );
 };
