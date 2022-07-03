@@ -43,6 +43,7 @@ export async function getServerSideProps(ctx) {
   const headers = jwt && {
     Authorization: `Bearer ${jwt}`,
   };
+
   const res = await fetch(process.env.NEXT_PUBLIC_API_URL + "/api/users", {
     headers: headers,
   });

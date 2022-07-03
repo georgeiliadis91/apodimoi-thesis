@@ -17,3 +17,15 @@ export const getRandomColors = (length) => {
   }
   return colors;
 };
+
+// checks and adds locale on url
+
+export const localeUrl = (url, locale) => {
+  if (!locale || locale === "en") return url;
+
+  if (url.includes("?")) {
+    return `${url}&locale=${locale}`;
+  } else {
+    return `${url}?locale=${locale}`;
+  }
+};

@@ -32,10 +32,12 @@ const Radio = ({ data }) => {
   );
 };
 
-export async function getServerSideProps() {
-  const res = await fetch(
-    process.env.NEXT_PUBLIC_API_URL + "/api/radios?populate=image"
-  );
+export async function getServerSideProps(ctx) {
+  const { locale } = ctx;
+  const url = process.env.NEXT_PUBLIC_API_URL + "/api/radios?populate=image";
+  const finalUrl = localeUrl(url, locale);
+
+  const res = await fetch(finalUrl);
   const { data } = await res.json();
   return {
     props: { data },

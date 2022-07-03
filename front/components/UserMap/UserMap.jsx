@@ -33,7 +33,7 @@ const UserMap = ({ userData }) => {
           const lng = countrylatLongData[key].longitude;
 
           return (
-            <Marker position={[lat, lng]}>
+            <Marker position={[lat, lng]} key={`${lng}${lat}`}>
               <Popup>{`${val} people in ${key}`}</Popup>
             </Marker>
           );

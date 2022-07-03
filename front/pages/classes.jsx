@@ -40,10 +40,11 @@ const Services = ({ data }) => {
   );
 };
 
-export async function getServerSideProps(context) {
-  const res = await fetch(
-    process.env.NEXT_PUBLIC_API_URL + "/api/lessons?populate=list.img_lnk"
-  );
+export async function getServerSideProps(ctx) {
+  const url =
+    process.env.NEXT_PUBLIC_API_URL + "/api/lessons?populate=list.img_lnk";
+  const finalUrl = localeUrl(url, locale);
+  const res = await fetch(finalUrl);
   const { data } = await res.json();
 
   return {

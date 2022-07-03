@@ -41,9 +41,11 @@ const Communities = ({ data }) => {
 };
 
 export async function getServerSideProps() {
-  const res = await fetch(
-    process.env.NEXT_PUBLIC_API_URL + "/api/communities?populate=*"
-  );
+  const { locale } = ctx;
+  const url = process.env.NEXT_PUBLIC_API_URL + "/api/communities?populate=*";
+  const finalUrl = localeUrl(url, locale);
+
+  const res = await fetch(finalUrl);
   const { data } = await res.json();
   return {
     props: { data },

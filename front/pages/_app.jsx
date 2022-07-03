@@ -4,6 +4,7 @@ import { parseCookies } from "nookies";
 import Globalstate from "../store/store";
 import { parseDataFromRequestSingleType } from "../utils";
 import { privatePaths } from "../constants";
+import { localeUrl } from "../utils/helpers";
 
 function MyApp({ Component, pageProps, navigation, isLoggedIn }) {
   return (
@@ -34,10 +35,9 @@ MyApp.getInitialProps = async ({ Component, ctx }) => {
   const jwt = parseCookies(ctx).jwt;
 
   const { locale } = ctx;
-
-  const layoutData = await fetch(
-    process.env.NEXT_PUBLIC_API_URL + "/api/layout"
-  );
+  const url = process.env.NEXT_PUBLIC_API_URL + "/api/layout";
+  const finalUrl = localeUrl(url, locale);
+  const layoutData = await fetch(finalUrl);
   const navigation = await layoutData.json();
 
   if (Component.getInitialProps) {

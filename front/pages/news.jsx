@@ -1,15 +1,17 @@
 import React from "react";
+import { useTranslations } from "../hooks/useTranslations";
 import { ArticlesBlock } from "../components/ArticlesBlock/ArticlesBlock";
-import { parse250Chars, getImageUrl } from "../utils";
+import { parse250Chars, getImageUrl, localeUrl } from "../utils";
 
 const News = ({ data }) => {
+  const { t } = useTranslations();
   if (!data) {
     return null;
   }
 
   return (
     <>
-      <h1 className="pageTitle">Νέα</h1>
+      <h1 className="pageTitle">{t.newsTitle}</h1>
       <div className="item-overview-display-grid">
         {data.map((item) => {
           const { attributes } = item;
@@ -31,10 +33,13 @@ const News = ({ data }) => {
   );
 };
 
-export async function getServerSideProps() {
-  const res = await fetch(
-    process.env.NEXT_PUBLIC_API_URL + "/api/articles?populate=thumbnail_img"
-  );
+export async function getServerSideProps(ctx) {
+  const { locale } = ctx;
+  const url =
+    process.env.NEXT_PUBLIC_API_URL + "/api/articles?populate=thumbnail_img";
+  const finalUrl = localeUrl(url, locale);
+
+  const res = await fetch(finalUrl);
   const { data } = await res.json();
   return {
     props: { data },
