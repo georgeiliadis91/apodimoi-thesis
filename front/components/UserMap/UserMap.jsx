@@ -20,7 +20,7 @@ const UserMap = ({ userData }) => {
       zoom={3}
       maxZoom={18}
       minZoom={2}
-      style={{ height: 500, width: "100%", marginBottom: "46px" }}
+      style={{ height: 500, width: "100%", marginBottom: "46px", zIndex: 0 }}
     >
       <TileLayer
         url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"

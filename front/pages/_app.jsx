@@ -33,6 +33,8 @@ MyApp.getInitialProps = async ({ Component, ctx }) => {
   let pageProps = {};
   const jwt = parseCookies(ctx).jwt;
 
+  const { locale } = ctx;
+
   const layoutData = await fetch(
     process.env.NEXT_PUBLIC_API_URL + "/api/layout"
   );
