@@ -4,7 +4,7 @@ import { useRouter } from "next/router";
 import { NavBarItem } from "./components/NavBarItem";
 import { useTranslations } from "../../hooks/useTranslations";
 import styles from "./Navbar.module.css";
-
+import Link from "next/link";
 export const Navbar = (props) => {
   const { navbar } = props;
   const { logged, logOut } = useContext(UserContext);
@@ -25,9 +25,12 @@ export const Navbar = (props) => {
       <div className={styles.navbarContentRight}>
         {logged ? (
           <>
-            <a className={`${styles.menuItem} ${styles.left}`} href="/users/me">
+            <Link
+              className={`${styles.menuItem} ${styles.left}`}
+              href="/users/me"
+            >
               {t.navbarLogin}
-            </a>
+            </Link>
             <button className={styles.logOutBtn} onClick={logOutUser}>
               {t.navbarLogout}
             </button>

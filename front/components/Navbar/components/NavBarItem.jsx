@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import Link from "next/link";
 import styles from "./NavBarItem.module.css";
 
 export const NavBarItem = ({ value, keyVal }) => {
@@ -23,13 +24,13 @@ export const NavBarItem = ({ value, keyVal }) => {
         <div className={styles.dropDownMenu}>
           {Object.entries(value.values).map(([key, val]) => {
             return (
-              <a
+              <Link
                 key={key}
                 href={key !== "home" ? `/${key}` : "/"}
                 className={styles.dropDownMenuitem}
               >
                 {val}
-              </a>
+              </Link>
             );
           })}
         </div>

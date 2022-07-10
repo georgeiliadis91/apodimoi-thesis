@@ -9,6 +9,7 @@
   flex-direction: column;
   justify-content: space-between;
   align-items: flex-start;
+  position: relative;
 }
 .footerContent {
   color: #fff;
@@ -22,4 +23,18 @@
   font-size: 1.2rem;
   font-weight: 300;
   flex: 0 0 auto;
+}
+
+.langContainer {
+  position: absolute;
+  bottom: 20px;
+  right: 10%;
+}
+
+.langContainer a {
+  color: #fff;
+  font-size: 1.2rem;
+  font-weight: 400;
+  flex: 0 0 auto;
+  margin-left: 8px;
 }
