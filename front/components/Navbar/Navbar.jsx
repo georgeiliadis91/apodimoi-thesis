@@ -1,14 +1,15 @@
 import React, { useContext } from "react";
 import { UserContext } from "../../store/store";
 import { useRouter } from "next/router";
-import styles from "./Navbar.module.css";
 import { NavBarItem } from "./components/NavBarItem";
+import { useTranslations } from "../../hooks/useTranslations";
+import styles from "./Navbar.module.css";
 
 export const Navbar = (props) => {
   const { navbar } = props;
   const { logged, logOut } = useContext(UserContext);
   const Routes = useRouter();
-
+  const { t } = useTranslations();
   const logOutUser = () => {
     logOut();
     Routes.replace("/");
@@ -25,10 +26,10 @@ export const Navbar = (props) => {
         {logged ? (
           <>
             <a className={`${styles.menuItem} ${styles.left}`} href="/users/me">
-              Profile
+              {t.navbarLogin}
             </a>
             <button className={styles.logOutBtn} onClick={logOutUser}>
-              Log Out
+              {t.navbarLogout}
             </button>
           </>
         ) : (

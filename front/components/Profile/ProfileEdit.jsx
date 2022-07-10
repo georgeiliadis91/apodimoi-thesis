@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { permissionModel } from "../../constants";
-import { flattenPermissions, createUserData } from "../../utils";
+import { flattenPermissions, createUserData, capitalize } from "../../utils";
 import { useRouter } from "next/router";
 import axios from "axios";
 import { FieldRenderer } from "../FieldRenderer/FieldRenderer";
@@ -112,14 +112,16 @@ function ProfileEdit({ profile_data, toggleEditOff }) {
       <form onSubmit={handleSubmit}>
         <div className="radio">
           {Object.entries(permSettings)
-            // todo this is tmp remove it later
             .filter(([key]) => {
               return !["profile_img", "username"].includes(key);
             })
             .map(([key, value], index) => {
+              console.log("key", key, capitalize(key));
               return (
                 <div key={`${index}-${key}`} className={styles.row}>
-                  <span className={styles.labelKey}>{key}</span>
+                  <span className={styles.labelKey}>
+                    {t[`me${capitalize(key)}`]}
+                  </span>
                   {/* EDIT INPUT VAL */}
                   <FieldRenderer
                     className={styles.inputRenderer}

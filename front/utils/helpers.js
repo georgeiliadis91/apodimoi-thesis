@@ -29,3 +29,11 @@ export const localeUrl = (url, locale) => {
     return `${url}?locale=${locale}`;
   }
 };
+
+// removes _ and capitalizes first letter of each word
+export const capitalize = (str) => {
+  return str
+    .split("_")
+    .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
+    .join("");
+};

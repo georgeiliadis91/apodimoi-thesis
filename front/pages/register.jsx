@@ -4,6 +4,7 @@ import { useRouter } from "next/router";
 import { UserContext } from "../store/store";
 import countryList from "../json-data-files/countryList.json";
 import axios from "axios";
+import { useTranslations } from "../hooks/useTranslations";
 import { setCookie } from "nookies";
 
 const initState = {
@@ -23,6 +24,7 @@ const Register = ({ data }) => {
     island: Object.keys(data.attributes.toponimia)[0],
     dimotiki_enotita: Object.keys(data.attributes.toponimia)[0],
   });
+  const { t } = useTranslations();
   const [err, setErrors] = useState("");
 
   const Router = useRouter();
@@ -73,20 +75,20 @@ const Register = ({ data }) => {
   return (
     <div className="form-container">
       <form className="loginForm" onSubmit={handleSubmit}>
-        <h2 className="form-title">Register</h2>
+        <h2 className="form-title">{t.registerTitle}</h2>
 
-        <label htmlFor="email">Email:</label>
+        <label htmlFor="email">{t.registerEmail}:</label>
         <input
           type="email"
           name="email"
           id="email"
           required
-          placeholder="Enter your email"
+          placeholder={t.registerEmailPlaceholder}
           value={creds.email}
           onChange={onChange}
         />
 
-        <label htmlFor="password">Password:</label>
+        <label htmlFor="password">{t.registerPassword}:</label>
         <input
           type="password"
           name="password"
@@ -98,7 +100,7 @@ const Register = ({ data }) => {
           minLength={8}
         />
 
-        <label htmlFor="password">Confirm Password:</label>
+        <label htmlFor="password">{t.registerPasswordPlaceholder}:</label>
         <input
           type="password"
           name="password2"
@@ -110,29 +112,29 @@ const Register = ({ data }) => {
           minLength={8}
         />
 
-        <label htmlFor="Name">Ονομα</label>
+        <label htmlFor="Name">{t.registerName}</label>
         <input
           required
           type="text"
           name="name"
           id="name"
-          placeholder="Enter your name"
+          placeholder={t.registerNamePlaceholder}
           value={creds.name}
           onChange={onChange}
         />
 
-        <label htmlFor="Surname">Επίθετο:</label>
+        <label htmlFor="Surname">{t.registerSurname}:</label>
         <input
           required
           type="text"
           name="surname"
           id="surname"
-          placeholder="Enter your surname"
+          placeholder={t.registerSurnamenPlaceholder}
           value={creds.surname}
           onChange={onChange}
         />
 
-        <label htmlFor="island">Νησί:</label>
+        <label htmlFor="island">{t.registerIsland}:</label>
 
         <select name="island" id="island" required onChange={onChange}>
           {Object.keys(data.attributes.toponimia).map((key, index) => {
@@ -149,7 +151,7 @@ const Register = ({ data }) => {
           })}
         </select>
 
-        <label htmlFor="dimotiki_enotita">Δημοτική Ενότητα:</label>
+        <label htmlFor="dimotiki_enotita">{t.registerMunicipality}:</label>
         <select
           name="dimotiki_enotita"
           id="dimotiki_enotita"
@@ -183,7 +185,7 @@ const Register = ({ data }) => {
           )}
         </select>
 
-        <label htmlFor="dimotiki_enotita">Χώρα διαμονής:</label>
+        <label htmlFor="dimotiki_enotita">{t.registerCountry}:</label>
         <select
           name="current_country"
           id="current_country"
@@ -204,7 +206,7 @@ const Register = ({ data }) => {
 
         <br />
         <button className="form-submitBtn" type="submit">
-          Register
+          {t.registerBtn}
         </button>
       </form>
     </div>

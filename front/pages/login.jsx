@@ -4,6 +4,7 @@ import { verifyLogin } from "../utils";
 import axios from "axios";
 import { UserContext } from "../store/store";
 import { setCookie } from "nookies";
+import { useTranslations } from "../hooks/useTranslations";
 
 const initState = {
   email: "",
@@ -15,6 +16,7 @@ const Login = ({ data }) => {
   const Router = useRouter();
   const [err, setErr] = useState("");
   const { logIn } = useContext(UserContext);
+  const { t } = useTranslations();
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (verifyLogin(creds.email, creds.password)) {
@@ -51,25 +53,25 @@ const Login = ({ data }) => {
   return (
     <div className="form-container">
       <form className="loginForm" onSubmit={handleSubmit}>
-        <h2 className="form-title">Login</h2>
-        <label htmlFor="email">Email:</label>
+        <h2 className="form-title">{t.loginTitle}</h2>
+        <label htmlFor="email">{t.loginEmail}:</label>
         <input
           required
           type="email"
           name="email"
           id="email"
-          placeholder="Enter your email"
+          placeholder={t.loginEmailPlaceholder}
           value={creds.email}
           onChange={onChange}
         />
 
-        <label htmlFor="password">Password:</label>
+        <label htmlFor="password">{t.loginPassword}:</label>
         <input
           required
           type="password"
           name="password"
           id="password"
-          placeholder="Enter your password"
+          placeholder={t.loginPasswordPlaceholder}
           value={creds.password}
           onChange={onChange}
         />
@@ -78,7 +80,7 @@ const Login = ({ data }) => {
 
         {err && <span className="formErrors">{err}</span>}
         <button className="form-submitBtn" type="submit">
-          Login
+          {t.loginBtnLogin}
         </button>
       </form>
     </div>
