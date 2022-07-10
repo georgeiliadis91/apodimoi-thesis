@@ -43,4 +43,8 @@ export default {
   meOccupation: "Επάγγελμα",
   mePhone: "Τηλέφωνο",
   meOtherCommunities: "Άλλες Κοιν´λωτητες",
+  meField: "Ονομα Πεδίου",
+  private: "Κρυφό",
+  authenticated: "Χρήστες",
+  public: "Δημόσιο",
 };

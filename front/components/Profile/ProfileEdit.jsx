@@ -5,11 +5,13 @@ import { useRouter } from "next/router";
 import axios from "axios";
 import { FieldRenderer } from "../FieldRenderer/FieldRenderer";
 import { parseCookies } from "nookies";
+import { useTranslations } from "../../hooks/useTranslations";
 import styles from "./ProfileEdit.module.css";
 
 function ProfileEdit({ profile_data, toggleEditOff }) {
   const Router = useRouter();
   const { permissions, ...rest } = profile_data;
+  const { t } = useTranslations();
 
   const [permSettings, setPermissions] = useState(
     flattenPermissions(permissions)
@@ -85,16 +87,16 @@ function ProfileEdit({ profile_data, toggleEditOff }) {
   return (
     <div>
       <div className={styles.row}>
-        <h5 className={styles.labelKey}>Property</h5>
+        <h5 className={styles.labelKey}>{t.meField}</h5>
         <div className={styles.options}>
-          <label>{permissionModel.private}</label>
-          <label>{permissionModel.authed}</label>
-          <label>{permissionModel.public}</label>
+          <label>{t[permissionModel.private]}</label>
+          <label>{t[permissionModel.authed]}</label>
+          <label>{t[permissionModel.public]}</label>
         </div>
       </div>
       <br />
       <div className={styles.setAllRow}>
-        <h5 className={styles.setAllLabel}>Set All</h5>
+        <h5 className={styles.setAllLabel}>{t.meSetAll}</h5>
         <div className={styles.options}>
           <button onClick={() => setAllPermissions(permissionModel.private)}>
             +

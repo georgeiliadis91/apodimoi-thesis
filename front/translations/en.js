@@ -43,4 +43,8 @@ export default {
   meOccupation: "Occupation",
   mePhone: "Phone",
   meOtherCommunities: "Other Communities",
+  meField: "Field Name",
+  private: "Private",
+  authenticated: "Authenticated",
+  public: "Public",
 };
