@@ -1,13 +1,13 @@
 import React from "react";
-import { getSingleImageUrl } from "../utils";
+import { getSingleImageUrl, localeUrl } from "../utils";
+import { useTranslations } from "../hooks/useTranslations";
 
 const Services = ({ data }) => {
+  const { t } = useTranslations();
   if (!data) return null;
   return (
     <>
-      <h1 className="pageTitle">Μαθήματα</h1>
-
-      {/* TODO ADD SEARCH INPUT FIELD */}
+      <h1 className="pageTitle">{t.classesTitle}</h1>
 
       {data.map((item) => {
         const { attributes } = item;
@@ -28,7 +28,11 @@ const Services = ({ data }) => {
                         }${getSingleImageUrl(item.img_lnk, "url")}`}
                       />
                     </a>
-                    {item.kids && <div className="advisor-kids">KIDS</div>}
+                    {item.kids && (
+                      <div className="advisor-kids">
+                        {t.classesKidsBubbleLabel}
+                      </div>
+                    )}
                   </div>
                 );
               })}
@@ -41,9 +45,11 @@ const Services = ({ data }) => {
 };
 
 export async function getServerSideProps(ctx) {
+  const { locale } = ctx;
   const url =
     process.env.NEXT_PUBLIC_API_URL + "/api/lessons?populate=list.img_lnk";
   const finalUrl = localeUrl(url, locale);
+
   const res = await fetch(finalUrl);
   const { data } = await res.json();
 

@@ -3,8 +3,10 @@ import dynamic from "next/dynamic";
 import { UserLocationChart } from "../components/UserLocationChart/UserLocationChart";
 import { UserBlock } from "../components/UserBlock/UserBlock";
 import { parseCookies } from "nookies";
-
+import { useTranslations } from "../hooks/useTranslations";
 export const Users = ({ data, countryData }) => {
+  const { t } = useTranslations();
+
   const Map = dynamic(() => import("../components/UserMap/UserMap"), {
     loading: () => <p>loading map...</p>,
     ssr: false,
@@ -16,7 +18,7 @@ export const Users = ({ data, countryData }) => {
     <>
       <Map userData={countryData} />
       <br />
-      <h1 className="pageTitle">Χρήστες</h1>
+      <h1 className="pageTitle">{t.userTitle}</h1>
       <div className="item-overview-display-grid">
         {data.map((user) => {
           if (!user) return null;

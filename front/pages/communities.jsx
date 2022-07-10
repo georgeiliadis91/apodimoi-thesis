@@ -1,20 +1,23 @@
 import React from "react";
-import { ArticlesBlock } from "../components/ArticlesBlock/ArticlesBlock";
+import { localeUrl } from "../utils";
+import { useTranslations } from "../hooks/useTranslations";
 
 const Communities = ({ data }) => {
+  const { t } = useTranslations();
+
   if (!data) {
     return null;
   }
 
   return (
     <>
-      <h1 className="pageTitle">Σύλλογοι Κοινότητες</h1>
+      <h1 className="pageTitle">{t.communitiesTitle}</h1>
       <ul className="data-list">
         <li className="list-headers">
-          <span className="list-label">Σύλλογος</span>
-          <span className="list-label">E-mail</span>
-          <span className="list-label">Τηλέφωνο</span>
-          <span className="list-label">Διεύθυνση</span>
+          <span className="list-label">{t.communitiesCommunityLabel}</span>
+          <span className="list-label">{t.communitiesEmailLabel}</span>
+          <span className="list-label">{t.communitiesPhoneLabel}</span>
+          <span className="list-label">{t.communitiesAddressLabel}</span>
         </li>
         {data.map((item) => {
           const { attributes } = item;
@@ -40,7 +43,7 @@ const Communities = ({ data }) => {
   );
 };
 
-export async function getServerSideProps() {
+export async function getServerSideProps(ctx) {
   const { locale } = ctx;
   const url = process.env.NEXT_PUBLIC_API_URL + "/api/communities?populate=*";
   const finalUrl = localeUrl(url, locale);

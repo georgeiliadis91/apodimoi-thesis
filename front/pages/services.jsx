@@ -1,12 +1,16 @@
 import React, { useState } from "react";
+import { useTranslations } from "../hooks/useTranslations";
 import styles from "../styles/Services.module.css";
+import { localeUrl } from "../utils/helpers";
 
 const Services = ({ data }) => {
   const [search, setSearch] = useState("");
+  const { t } = useTranslations();
+
   if (!data) return null;
   return (
     <div className={styles.servicesContainer}>
-      <h1 className="pageTitle">Χρήσιμα Τηλέφωνα</h1>
+      <h1 className="pageTitle">{t.servicesTitle}</h1>
 
       {/* TODO ADD SEARCH INPUT FIELD */}
 

@@ -1,15 +1,16 @@
 import React from "react";
-import { ArticlesBlock } from "../components/ArticlesBlock/ArticlesBlock";
-import { getSingleImageUrl } from "../utils";
-
+import { getSingleImageUrl, localeUrl } from "../utils";
+import { useTranslations } from "../hooks/useTranslations";
 const Radio = ({ data }) => {
+  const { t } = useTranslations();
+
   if (!data) {
     return null;
   }
 
   return (
     <>
-      <h1 className="pageTitle">Ραδιοφωνικοί σταθμοί</h1>
+      <h1 className="pageTitle">{t.radioTitle}</h1>
       {data.map((item) => {
         const { attributes } = item;
         return (

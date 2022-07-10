@@ -1,15 +1,17 @@
 import React from "react";
-import { ArticlesBlock } from "../components/ArticlesBlock/ArticlesBlock";
-import { getSingleImageUrl } from "../utils";
+import { localeUrl } from "../utils";
+import { useTranslations } from "../hooks/useTranslations";
 
 const Advisor = ({ data }) => {
+  const { t } = useTranslations();
+
   if (!data) {
     return null;
   }
 
   return (
     <>
-      <h1 className="pageTitle">Σύμβουλοι - Χρήσιμα στοιχεία επικοινωνίας</h1>
+      <h1 className="pageTitle">{t.advisorTitle}</h1>
       {data.map((item) => {
         const { attributes } = item;
         return (

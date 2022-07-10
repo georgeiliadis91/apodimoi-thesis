@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import axios from "axios";
 import { isEmail } from "../utils";
+import { useTranslations } from "../hooks/useTranslations";
 
 const initState = {
   email: "",
@@ -10,7 +11,7 @@ const initState = {
 
 const contact = () => {
   const [contactFormData, setContactFormData] = useState(initState);
-  const [err, setErr] = useState("");
+  const { t } = useTranslations();
 
   const handleSubmit = (e) => {
     if (
@@ -43,35 +44,35 @@ const contact = () => {
 
   return (
     <div>
-      <h1 className="pageTitle">Φορμα Επικοινωνίας</h1>
+      <h1 className="pageTitle">{t.contactTitle}</h1>
       <form className="loginForm" onSubmit={handleSubmit}>
-        <h2 className="form-title">Συμπληρώστε το μήνυμα σας</h2>
-        <label htmlFor="email">Email:</label>
+        <h2 className="form-title">{t.contactCTA}</h2>
+        <label htmlFor="email">{t.contactEmailLabel}</label>
         <input
           type="email"
           name="email"
           id="email"
-          placeholder="Enter your email"
+          placeholder={t.contactEmailPlaceholder}
           value={contactFormData.email}
           onChange={onChange}
           required
         />
-        <label htmlFor="message">Name:</label>
+        <label htmlFor="message">{t.contactNameLabel}</label>
         <input
           type="name"
           name="name"
           id="name"
-          placeholder="Enter your name"
+          placeholder={t.contactNamePlaceholder}
           value={contactFormData.name}
           onChange={onChange}
           required
         />
-        <label htmlFor="message">Your Message:</label>
+        <label htmlFor="message">{t.contactMessageLabel}</label>
         <textarea
           name="message"
           type="text"
           id="message"
-          placeholder="Enter your message"
+          placeholder={t.contactMessagePlaceholder}
           value={contactFormData.message}
           onChange={onChange}
           required

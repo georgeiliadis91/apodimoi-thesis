@@ -1,26 +1,27 @@
 import React, { useState } from "react";
 import { parseCookies } from "nookies";
-
+import { useTranslations } from "../../hooks/useTranslations";
 import styles from "./Me.module.css";
 import Profile from "../../components/Profile/Profile";
 import ProfileEdit from "../../components/Profile/ProfileEdit";
 
 const Me = ({ data }) => {
-  const [isEdit, setEdit] = useState(false);
   const { email, profile_data } = data;
+  const { t } = useTranslations();
+  const [isEdit, setEdit] = useState(false);
 
   const toggleEdit = () => setEdit(!isEdit);
 
   return (
     <div className={styles.root}>
-      <h1 className={styles.title}>My profile</h1>
+      <h1 className={styles.title}>{t.meTitle}</h1>
       {isEdit ? (
         <button onClick={toggleEdit} className={styles.editBtnCancel}>
-          Cancel
+          {t.meCancel}
         </button>
       ) : (
         <button onClick={toggleEdit} className={styles.editBtn}>
-          Edit
+          {t.meEdit}
         </button>
       )}
       {isEdit ? (

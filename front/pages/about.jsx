@@ -1,15 +1,17 @@
 import React from "react";
 import ImageCarousel from "../components/ImageCarousel/ImageCarousel";
 import { formatImage, localeUrl } from "../utils";
+import { useTranslations } from "../hooks/useTranslations";
 
 const About = ({ data }) => {
   const { description, images } = data?.attributes;
+  const { t } = useTranslations();
 
   if (!data) return null;
   const formatterImageArray = formatImage(images.data);
   return (
     <>
-      <h1 className="pageTitle">Σχετικά</h1>
+      <h1 className="pageTitle">{t.aboutTitle}</h1>
       <ImageCarousel imageArray={formatterImageArray} />
       <p className="pagedescription">{description}</p>
     </>

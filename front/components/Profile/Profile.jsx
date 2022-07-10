@@ -1,6 +1,5 @@
 import React from "react";
-
-import { addLocalhostToUri } from "../../utils";
+import { useTranslations } from "../../hooks/useTranslations";
 import styles from "./Profile.module.css";
 
 function Profile({ profile_data }) {
@@ -25,92 +24,114 @@ function Profile({ profile_data }) {
     permissions,
   } = profile_data;
 
+  const { t } = useTranslations();
+
   return (
     <div className={styles.profileContainer}>
       <section className={styles.leftColumn}>
-        {email && <span className={styles.textDisplay}>Email: {email}</span>}
-        {name && <span className={styles.textDisplay}>Name: {name}</span>}
+        {email && (
+          <span className={styles.textDisplay}>
+            {t.meEmail}: {email}
+          </span>
+        )}
+        {name && (
+          <span className={styles.textDisplay}>
+            {t.meName}: {name}
+          </span>
+        )}
         {surname && (
-          <span className={styles.textDisplay}>Surname: {surname}</span>
+          <span className={styles.textDisplay}>
+            {t.meSurname}: {surname}
+          </span>
         )}
         {island && (
-          <span className={styles.textDisplay}>Island of Origin: {island}</span>
+          <span className={styles.textDisplay}>
+            {t.meIslandOfOrigin}: {island}
+          </span>
         )}
         {current_country && (
           <span className={styles.textDisplay}>
-            Current Location: {current_country}
+            {t.meCurrLocation}: {current_country}
           </span>
         )}
         {birthdate && (
-          <span className={styles.textDisplay}>Birthdate: {birthdate}</span>
+          <span className={styles.textDisplay}>
+            {t.meBirthdate}: {birthdate}
+          </span>
         )}
       </section>
       <section className={styles.rightColumn}>
         {/* family related data */}
         <div className={styles.rightSubSection}>
-          <h2 className={styles.secondaryTitle}>Family data</h2>
+          <h2 className={styles.secondaryTitle}>{t.meFamilyData}</h2>
 
           {birth_place && (
             <span className={styles.textDisplay}>
-              Birth place: {birth_place}
+              {t.meBirthPlace}: {birth_place}
             </span>
           )}
           {father_name && (
             <span className={styles.textDisplay}>
-              Fathers name: {father_name}
+              {t.meFathersName}: {father_name}
             </span>
           )}
 
           {father_surname && (
             <span className={styles.textDisplay}>
-              Mothers name: {father_surname}
+              {t.FathersSurname}: {father_surname}
             </span>
           )}
 
           {mother_name && (
             <span className={styles.textDisplay}>
-              Birth place: {mother_name}
+              {t.meMothersName}: {mother_name}
             </span>
           )}
 
           {mother_surname && (
             <span className={styles.textDisplay}>
-              Birth place: {mother_surname}
+              {t.meMothersSurname}: {mother_surname}
             </span>
           )}
         </div>
 
         {/* personal data */}
         <div className={styles.rightSubSection}>
-          <h2 className={styles.secondaryTitle}>Personal data</h2>
+          <h2 className={styles.secondaryTitle}>{t.mePersonalData}</h2>
           {current_city && (
             <span className={styles.textDisplay}>
-              Current city: {current_city}
+              {t.meCurrCity}: {current_city}
             </span>
           )}
 
           {postal_code && (
             <span className={styles.textDisplay}>
-              Postal Code: {postal_code}
+              {t.mePostalCode}: {postal_code}
             </span>
           )}
 
           {current_street && (
-            <span className={styles.textDisplay}>Street: {current_street}</span>
+            <span className={styles.textDisplay}>
+              {t.meStreet}: {current_street}
+            </span>
           )}
 
           {occupation && (
-            <span className={styles.textDisplay}>Occupation: {occupation}</span>
+            <span className={styles.textDisplay}>
+              {t.meOccupation}: {occupation}
+            </span>
           )}
 
           {phone_number && (
             <span className={styles.textDisplay}>
-              Phone number: {phone_number}
+              {t.mePhone}: {phone_number}
             </span>
           )}
           {other_groups && (
             <>
-              <span className={styles.textDisplay}>Other communities :</span>
+              <span className={styles.textDisplay}>
+                {t.meOtherCommunities} :
+              </span>
               <br />
               <p>{other_groups}</p>
             </>
