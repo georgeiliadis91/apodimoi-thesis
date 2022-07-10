@@ -1,10 +1,11 @@
 import React, { useContext } from "react";
+import Link from "next/link";
 import { UserContext } from "../../store/store";
 import { useRouter } from "next/router";
 import { NavBarItem } from "./components/NavBarItem";
 import { useTranslations } from "../../hooks/useTranslations";
 import styles from "./Navbar.module.css";
-import Link from "next/link";
+
 export const Navbar = (props) => {
   const { navbar } = props;
   const { logged, logOut } = useContext(UserContext);
