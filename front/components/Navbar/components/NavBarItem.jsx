@@ -6,12 +6,12 @@ export const NavBarItem = ({ value, keyVal }) => {
   const [show, setShow] = useState(false);
   if (!value.values) {
     return (
-      <a
+      <Link
         className={`${styles.menuItem} ${styles.left}`}
         href={keyVal !== "home" ? `/${keyVal}` : "/"}
       >
         {value}
-      </a>
+      </Link>
     );
   }
 
@@ -29,7 +29,7 @@ export const NavBarItem = ({ value, keyVal }) => {
                 href={key !== "home" ? `/${key}` : "/"}
                 className={styles.dropDownMenuitem}
               >
-                {val}
+                <a onClick={() => setShow(false)}>{val}</a>
               </Link>
             );
           })}

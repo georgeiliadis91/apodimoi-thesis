@@ -25,11 +25,14 @@
   top: 150%;
   box-shadow: 0 0 5px 2px #ccc;
   overflow: hidden;
+  gap: 6px;
+  padding: 12px 14px;
 }
 
 .dropDownMenuitem {
   padding: 16px 12px;
 }
+
 .dropDownMenuitem:hover {
   color: #fff;
   background: #0088cc;

@@ -11,24 +11,26 @@ const Radio = ({ data }) => {
   return (
     <>
       <h1 className="pageTitle">{t.radioTitle}</h1>
-      {data.map((item) => {
-        const { attributes } = item;
-        return (
-          <div className="radio-item">
-            <h2 className="radio-title">{attributes.Title}</h2>
-            <a href={attributes.link}>
-              <img
-                alt={`${attributes.Title}-img`}
-                src={`${process.env.NEXT_PUBLIC_API_URL}${getSingleImageUrl(
-                  attributes.image,
-                  "url"
-                )}`}
-              />
-            </a>
-            <p className="radio-body">{attributes.body}</p>
-          </div>
-        );
-      })}
+      <div className="content-block-container">
+        {data.map((item) => {
+          const { attributes } = item;
+          return (
+            <div className="content-block-list">
+              <h2 className="advisor-title">{attributes.Title}</h2>
+              <a href={attributes.link}>
+                <img
+                  alt={`${attributes.Title}-img`}
+                  src={`${process.env.NEXT_PUBLIC_API_URL}${getSingleImageUrl(
+                    attributes.image,
+                    "url"
+                  )}`}
+                />
+              </a>
+              <p className="radio-body">{attributes.body}</p>
+            </div>
+          );
+        })}
+      </div>
     </>
   );
 };

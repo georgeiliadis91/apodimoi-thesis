@@ -35,4 +35,13 @@
 
 .navbarContentLeft {
   position: relative;
+  display: flex;
+  gap: 8px;
+}
+
+.navbarContentRight {
+  position: relative;
+  display: flex;
+  gap: 8px;
+  align-items: center;
 }

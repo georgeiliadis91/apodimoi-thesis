@@ -14,14 +14,14 @@ const Services = ({ data }) => {
         return (
           <div className="advisor-item">
             <h2 className="advisor-title">{attributes.Topic}</h2>
-            <div className="advisor-container">
+            <div className="content-block-container">
               {attributes.list.map((item) => {
                 return (
-                  <div className="advisor-list">
+                  <div className="content-block-list">
                     <span>{item.title}</span>
                     <a href={item.link}>
                       <img
-                        className="advisor-list-img-link"
+                        className="content-block-list-img-link"
                         alt={`${attributes.title}-img`}
                         src={`${
                           process.env.NEXT_PUBLIC_API_URL

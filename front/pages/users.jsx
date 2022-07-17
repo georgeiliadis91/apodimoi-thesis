@@ -19,7 +19,7 @@ export const Users = ({ data, countryData }) => {
       <Map userData={countryData} />
       <br />
       <h1 className="pageTitle">{t.userTitle}</h1>
-      <div className="item-overview-display-grid">
+      <div className="content-block-container">
         {data.map((user) => {
           if (!user) return null;
           return (

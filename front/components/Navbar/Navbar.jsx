@@ -39,13 +39,13 @@ export const Navbar = (props) => {
         ) : (
           <>
             {Object.entries(navbar.rightSideMenu).map(([key, val]) => (
-              <a
+              <Link
                 className={`${styles.menuItem} ${styles.left}`}
                 key={key}
                 href={key}
               >
                 {val}
-              </a>
+              </Link>
             ))}
           </>
         )}

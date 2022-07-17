@@ -19,7 +19,7 @@ const Advisor = ({ data }) => {
             <h2 className="advisor-title">{attributes.island}</h2>
             {attributes.list.map((item) => {
               return (
-                <div className="advisor-list">
+                <div className="content-block-list">
                   <span>{item.description}</span>
                   {item.email && (
                     <a href={`mailto:${item.email}`}>{item.email}</a>

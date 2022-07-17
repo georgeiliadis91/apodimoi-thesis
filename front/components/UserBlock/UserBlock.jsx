@@ -9,7 +9,7 @@ export const UserBlock = ({
   current_country,
 }) => {
   return (
-    <a href={`users/${id}`} className={styles.root}>
+    <a href={`users/${id}`} className="content-block-list">
       <div className={styles.descriptionBox}>
         <h3 className={styles.username}>{username}</h3>
         <div className={styles.details}>

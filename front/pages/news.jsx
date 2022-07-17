@@ -12,7 +12,7 @@ const News = ({ data }) => {
   return (
     <>
       <h1 className="pageTitle">{t.newsTitle}</h1>
-      <div className="item-overview-display-grid">
+      <div className="content-block-container">
         {data.map((item) => {
           const { attributes } = item;
           return (

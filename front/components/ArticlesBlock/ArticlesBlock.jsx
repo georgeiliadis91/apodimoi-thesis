@@ -5,7 +5,7 @@ import styles from "./ArticlesBlock.module.css";
 
 export const ArticlesBlock = ({ id, title, imgUrl, description }) => {
   return (
-    <a className={styles.root} href={`news/${id}`}>
+    <a className="content-block-list advisor-horizontal" href={`news/${id}`}>
       <img
         className={styles.articleImg}
         src={imgUrl}
