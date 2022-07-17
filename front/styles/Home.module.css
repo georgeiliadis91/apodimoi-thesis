@@ -58,3 +58,38 @@
   width: auto;
   object-fit: cover;
 }
+
+@media only screen and (max-width: 960px) {
+  .headerImg {
+    height: 240px;
+  }
+
+  .homeContentLabel {
+    font-size: 26px;
+    margin-bottom: 14px;
+  }
+
+  .homeContentDescription {
+    font-size: 16px;
+    margin-bottom: 24px;
+  }
+
+  .homeContentLogo {
+    height: 140px;
+  }
+
+  .quoteContainer {
+    position: relative;
+    height: 240px;
+  }
+
+  .quoteImg {
+    height: 240px;
+  }
+
+  .quoteText {
+    font-size: 22px;
+    width: 85%;
+    line-height: 24px;
+  }
+}

@@ -21,7 +21,7 @@ export const Users = ({ data, countryData }) => {
       <h1 className="pageTitle">{t.userTitle}</h1>
       <div className="content-block-container">
         {data.map((user) => {
-          if (!user) return null;
+          if (!user || !user.username || !user.email) return null;
           return (
             <UserBlock
               id={user.id}

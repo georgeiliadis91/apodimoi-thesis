@@ -45,3 +45,10 @@
   gap: 8px;
   align-items: center;
 }
+
+@media only screen and (max-width: 960px) {
+  .navbarContentLeft,
+  .navbarContentRight {
+    display: none;
+  }
+}
