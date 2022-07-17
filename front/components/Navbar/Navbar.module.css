@@ -47,8 +47,7 @@
 }
 
 @media only screen and (max-width: 960px) {
-  .navbarContentLeft,
-  .navbarContentRight {
+  .navbarContentLeft {
     display: none;
   }
 }

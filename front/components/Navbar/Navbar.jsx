@@ -4,6 +4,7 @@ import { UserContext } from "../../store/store";
 import { useRouter } from "next/router";
 import { NavBarItem } from "./components/NavBarItem";
 import { useTranslations } from "../../hooks/useTranslations";
+import { NavbarMobileMenu } from "./NavbarMobileMenu";
 import styles from "./Navbar.module.css";
 
 export const Navbar = (props) => {
@@ -18,6 +19,10 @@ export const Navbar = (props) => {
 
   return (
     <div className={styles.navbarContainer}>
+      {/* mobile */}
+      <NavbarMobileMenu leftSideMenu={navbar.leftSideMenu} />
+
+      {/* desktop */}
       <div className={styles.navbarContentLeft}>
         {Object.entries(navbar.leftSideMenu).map(([key, val]) => (
           <NavBarItem key={key} keyVal={key} value={val} />

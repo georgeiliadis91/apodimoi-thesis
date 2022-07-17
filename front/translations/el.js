@@ -81,4 +81,5 @@ export default {
   registerMunicipality: "Δημοτική Κοινότητα",
   registerCountry: "Χώρα",
   registerBtn: "Εγγραφή",
+  burgerMenuLabel: "Μενού",
 };

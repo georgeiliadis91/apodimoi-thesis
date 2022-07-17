@@ -81,4 +81,5 @@ export default {
   registerMunicipality: "Municipality",
   registerCountry: "Country",
   registerBtn: "Register",
+  burgerMenuLabel: "Menu",
 };
