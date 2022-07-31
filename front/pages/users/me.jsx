@@ -13,7 +13,7 @@ const Me = ({ data }) => {
   const toggleEdit = () => setEdit(!isEdit);
 
   return (
-    <div className={styles.root}>
+    <div className="content-block-list">
       <h1 className={styles.title}>{t.meTitle}</h1>
       {isEdit ? (
         <button onClick={toggleEdit} className={styles.editBtnCancel}>

@@ -45,8 +45,6 @@ function ProfileEdit({ profile_data, toggleEditOff }) {
     const formattedData = createUserData(userData, permSettings);
     const jwt = parseCookies().jwt;
 
-    console.log(jwt);
-    axios;
     axios
       .put(
         process.env.NEXT_PUBLIC_API_URL + "/api/users/me?populate=*",

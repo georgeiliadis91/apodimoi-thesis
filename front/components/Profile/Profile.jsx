@@ -21,7 +21,6 @@ function Profile({ profile_data }) {
     occupation,
     phone_number,
     other_groups,
-    permissions,
   } = profile_data;
 
   const { t } = useTranslations();
@@ -78,7 +77,7 @@ function Profile({ profile_data }) {
 
           {father_surname && (
             <span className={styles.textDisplay}>
-              {t.FathersSurname}: {father_surname}
+              {t.meFathersSurname}: {father_surname}
             </span>
           )}
 
