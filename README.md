@@ -21,13 +21,13 @@ Run
 
 docker exec -it <container-name> psql -U strapi -d postgres -c "CREATE DATABASE strapi"
 
-note strapi on the above command are the usernamen and db name inside the container if you alter those inside your dockerfile you need to alter those as well.
+note strapi on the above command are the username and db name inside the container if you alter those inside your dockerfile you need to alter those as well.
 
 Now that you have your database created you need to import the data_dump form the backend project located under the db_backup folder insider the backend project.
 
 You can do this by running
 
-docker exec -i <container-name> /bin/bash -c "PGPASSWORD=strapi psql --username strapi strapi" < ~/path/to/file/strapi-thesisDB.sql
+* docker exec -i <container-name> /bin/bash -c "PGPASSWORD=strapi psql --username strapi strapi" < ~/path/to/file/strapi-thesisDB.sql *
 
 If every thing went smooth you should have the database populated with the correct data.
 
