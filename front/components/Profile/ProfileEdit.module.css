@@ -13,19 +13,19 @@
 }
 
 .setAllRow > .setAllLabel {
-  flex: 0 0 70%;
+  flex: 0 0 65%;
   font-size: 22px;
 }
 
 .row > .options {
-  flex: 0 0 30%;
+  flex: 0 0 35%;
   display: flex;
   justify-content: space-around;
   text-transform: capitalize;
 }
 
 .setAllRow > .options {
-  flex: 0 0 30%;
+  flex: 0 0 35%;
   display: flex;
   justify-content: space-around;
   text-transform: capitalize;
@@ -78,4 +78,59 @@
   cursor: pointer;
   position: absolute;
   right: 40px;
+}
+
+.optionMobileLabel {
+  padding: 0 !important;
+  font-size: 12px;
+}
+
+@media only screen and (max-width: 960px) {
+  .row > .options {
+    width: 100%;
+    flex: 0 0 100%;
+    align-items: center;
+    gap: 6px;
+  }
+
+  .labelKey {
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+
+  .setAllRow > .options {
+    flex: 0 0 100%;
+  }
+
+  .setAllRow > .setAllLabel {
+    display: none;
+  }
+
+  .row {
+    align-items: flex-start;
+    justify-content: flex-start;
+    flex-direction: column;
+    gap: 0;
+  }
+
+  .firstRow {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .firstRow > * {
+    margin-bottom: 0;
+  }
+
+  .firstRow > input {
+    min-width: 280px;
+  }
+
+  span.label {
+    margin: 0;
+  }
+
+  .submitBtn {
+    position: unset;
+  }
 }

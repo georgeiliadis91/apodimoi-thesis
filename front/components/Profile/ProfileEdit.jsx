@@ -16,9 +16,23 @@ function ProfileEdit({ profile_data, toggleEditOff }) {
   const [permSettings, setPermissions] = useState(
     flattenPermissions(permissions)
   );
-
   const [userData, setUserData] = useState({ ...rest });
   const [options, setOptions] = useState(null);
+  const [isMobile, setIsMobile] = useState(false);
+
+  //choose the screen size
+  const handleResize = () => {
+    if (window.innerWidth < 960) {
+      setIsMobile(true);
+    } else {
+      setIsMobile(false);
+    }
+  };
+
+  // create an event listener
+  useEffect(() => {
+    window.addEventListener("resize", handleResize);
+  });
 
   const toggleChange = (e) => {
     const { name, value } = e.target;
@@ -82,19 +96,102 @@ function ProfileEdit({ profile_data, toggleEditOff }) {
     return null;
   }
 
+  const permissionLabelPrivate = t[permissionModel.private];
+  const permissionLabelAuthed = t[permissionModel.authed];
+  const permissionLabelPublic = t[permissionModel.public];
+  // desktop layout
+  if (!isMobile) {
+    return (
+      <div>
+        <div className={styles.row}>
+          <h5 className={styles.labelKey}>{t.meField}</h5>
+          <div className={styles.options}>
+            <label>{permissionLabelPrivate}</label>
+            <label>{permissionLabelAuthed}</label>
+            <label>{permissionLabelPublic}</label>
+          </div>
+        </div>
+        <br />
+        <div className={styles.setAllRow}>
+          <h5 className={styles.setAllLabel}>{t.meSetAll}</h5>
+          <div className={styles.options}>
+            <button onClick={() => setAllPermissions(permissionModel.private)}>
+              +
+            </button>
+            <button onClick={() => setAllPermissions(permissionModel.authed)}>
+              +
+            </button>
+            <button onClick={() => setAllPermissions(permissionModel.public)}>
+              +
+            </button>
+          </div>
+        </div>
+        <form onSubmit={handleSubmit}>
+          <div className="radio">
+            {Object.entries(permSettings)
+              .filter(([key]) => {
+                return !["profile_img", "username"].includes(key);
+              })
+              .map(([key, value], index) => {
+                console.log("key", key, capitalize(key));
+                return (
+                  <div key={`${index}-${key}`} className={styles.row}>
+                    <span className={styles.labelKey}>
+                      {t[`me${capitalize(key)}`]}
+                    </span>
+                    {/* EDIT INPUT VAL */}
+                    <FieldRenderer
+                      className={styles.inputRenderer}
+                      value={userData[key]}
+                      fieldName={key}
+                      setFieldVal={updateField}
+                      options={options}
+                      island={userData.island}
+                    />
+                    {/* PERMISSION RADIO */}
+                    <div className={styles.options}>
+                      <input
+                        type="radio"
+                        name={key}
+                        value={permissionModel.private}
+                        checked={value === permissionModel.private}
+                        onChange={toggleChange}
+                      />
+                      <input
+                        type="radio"
+                        name={key}
+                        value={permissionModel.authed}
+                        checked={value === permissionModel.authed}
+                        onChange={toggleChange}
+                      />
+                      <input
+                        type="radio"
+                        name={key}
+                        value={permissionModel.public}
+                        checked={value === permissionModel.public}
+                        onChange={toggleChange}
+                      />
+                    </div>
+                  </div>
+                );
+              })}
+          </div>
+          <input className={styles.submitBtn} type="submit" value="Submit" />
+        </form>
+      </div>
+    );
+  }
+  // mobile layout
   return (
     <div>
       <div className={styles.row}>
-        <h5 className={styles.labelKey}>{t.meField}</h5>
         <div className={styles.options}>
-          <label>{t[permissionModel.private]}</label>
-          <label>{t[permissionModel.authed]}</label>
-          <label>{t[permissionModel.public]}</label>
+          <label>{permissionLabelPrivate}</label>
+          <label>{permissionLabelAuthed}</label>
+          <label>{permissionLabelPublic}</label>
         </div>
       </div>
-      <br />
       <div className={styles.setAllRow}>
-        <h5 className={styles.setAllLabel}>{t.meSetAll}</h5>
         <div className={styles.options}>
           <button onClick={() => setAllPermissions(permissionModel.private)}>
             +
@@ -114,23 +211,27 @@ function ProfileEdit({ profile_data, toggleEditOff }) {
               return !["profile_img", "username"].includes(key);
             })
             .map(([key, value], index) => {
-              console.log("key", key, capitalize(key));
               return (
                 <div key={`${index}-${key}`} className={styles.row}>
-                  <span className={styles.labelKey}>
-                    {t[`me${capitalize(key)}`]}
-                  </span>
-                  {/* EDIT INPUT VAL */}
-                  <FieldRenderer
-                    className={styles.inputRenderer}
-                    value={userData[key]}
-                    fieldName={key}
-                    setFieldVal={updateField}
-                    options={options}
-                    island={userData.island}
-                  />
+                  <div className={styles.firstRow}>
+                    <span className={styles.labelKey}>
+                      {t[`me${capitalize(key)}`]}
+                    </span>
+                    {/* EDIT INPUT VAL */}
+                    <FieldRenderer
+                      className={styles.inputRenderer}
+                      value={userData[key]}
+                      fieldName={key}
+                      setFieldVal={updateField}
+                      options={options}
+                      island={userData.island}
+                    />
+                  </div>
                   {/* PERMISSION RADIO */}
                   <div className={styles.options}>
+                    <span className={styles.optionMobileLabel}>
+                      {permissionLabelPrivate}
+                    </span>
                     <input
                       type="radio"
                       name={key}
@@ -138,6 +239,9 @@ function ProfileEdit({ profile_data, toggleEditOff }) {
                       checked={value === permissionModel.private}
                       onChange={toggleChange}
                     />
+                    <span className={styles.optionMobileLabel}>
+                      {permissionLabelAuthed}
+                    </span>
                     <input
                       type="radio"
                       name={key}
@@ -145,6 +249,9 @@ function ProfileEdit({ profile_data, toggleEditOff }) {
                       checked={value === permissionModel.authed}
                       onChange={toggleChange}
                     />
+                    <span className={styles.optionMobileLabel}>
+                      {permissionLabelPublic}
+                    </span>
                     <input
                       type="radio"
                       name={key}
