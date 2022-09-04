@@ -4,7 +4,13 @@ import { UserLocationChart } from "../components/UserLocationChart/UserLocationC
 import { UserBlock } from "../components/UserBlock/UserBlock";
 import { parseCookies } from "nookies";
 import { useTranslations } from "../hooks/useTranslations";
-export const Users = ({ data, countryData }) => {
+export const Users = ({
+  data,
+  countryList,
+  islandList,
+  birthPlaceList,
+  dimotikiEnotitaList,
+}) => {
   const { t } = useTranslations();
 
   const Map = dynamic(() => import("../components/UserMap/UserMap"), {
@@ -16,7 +22,7 @@ export const Users = ({ data, countryData }) => {
 
   return (
     <>
-      <Map userData={countryData} />
+      <Map userData={countryList} />
       <br />
       <h1 className="pageTitle">{t.userTitle}</h1>
       <div className="content-block-container">
@@ -50,7 +56,7 @@ export async function getServerSideProps(ctx) {
     headers: headers,
   });
 
-  const countryRes = await fetch(
+  const statResponse = await fetch(
     process.env.NEXT_PUBLIC_API_URL + "/api/users/countries",
     {
       headers: headers,
@@ -58,10 +64,17 @@ export async function getServerSideProps(ctx) {
   );
 
   const data = await res.json();
-  const countryData = await countryRes.json();
+  const { countryList, islandList, birthPlaceList, dimotikiEnotitaList } =
+    await statResponse.json();
 
   return {
-    props: { data, countryData },
+    props: {
+      data,
+      countryList,
+      islandList,
+      birthPlaceList,
+      dimotikiEnotitaList,
+    },
   };
 }
 
