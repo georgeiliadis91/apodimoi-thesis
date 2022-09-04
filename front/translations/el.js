@@ -83,4 +83,7 @@ export default {
   registerCountry: "Χώρα",
   registerBtn: "Εγγραφή",
   burgerMenuLabel: "Μενού",
+  chartUserCountryLabel: "Αριθμός Χρηστών ανά Χώρα",
+  chartUserIslandLabel: "Αριθμός Χρηστών ανά νησί",
+  chartUserDimotikiEnotitaLabel: "Αριθμός Χρηστών ανά Δήμο/Δημοτικη Ενότητα",
 };

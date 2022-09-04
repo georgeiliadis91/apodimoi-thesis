@@ -83,4 +83,7 @@ export default {
   registerCountry: "Country",
   registerBtn: "Register",
   burgerMenuLabel: "Menu",
+  chartUserCountryLabel: "Users per Country",
+  chartUserIslandLabel: "Users per Island",
+  chartUserDimotikiEnotitaLabel: "Users per Municipality",
 };

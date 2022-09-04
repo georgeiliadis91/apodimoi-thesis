@@ -1,6 +1,10 @@
-import React from "react";
+import React, { useState } from "react";
 import dynamic from "next/dynamic";
-import { UserLocationChart } from "../components/UserLocationChart/UserLocationChart";
+import {
+  UserLocationChart,
+  UserDimotikiEnotitaList,
+  UserIslandChart,
+} from "../components/UserLocationChart/UserLocationChart";
 import { UserBlock } from "../components/UserBlock/UserBlock";
 import { parseCookies } from "nookies";
 import { useTranslations } from "../hooks/useTranslations";
@@ -23,6 +27,10 @@ export const Users = ({
   return (
     <>
       <Map userData={countryList} />
+      <br />
+      <UserLocationChart countryList={countryList} />
+      <UserIslandChart islandList={islandList} />
+      <UserDimotikiEnotitaList dimotikiEnotitaList={dimotikiEnotitaList} />
       <br />
       <h1 className="pageTitle">{t.userTitle}</h1>
       <div className="content-block-container">
