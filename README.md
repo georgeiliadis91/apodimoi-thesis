@@ -4,8 +4,8 @@ to run application
 
 #### For the database
 
-docker-compose pull -> pull the docker postgres img from docker hub
-docker-compose up -> builds the image locally
+``` docker-compose pull -> pull ``` the docker postgres img from docker hub
+``` docker-compose up ``` -> builds the image locally
 
 ``` docker start <container-name> ```
 
