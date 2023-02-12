@@ -35,7 +35,7 @@ export const Navbar = (props) => {
               className={`${styles.menuItem} ${styles.left}`}
               href="/users/me"
             >
-              {t.navbarLogin}
+              {t.meTitle}
             </Link>
             <button className={styles.logOutBtn} onClick={logOutUser}>
               {t.navbarLogout}

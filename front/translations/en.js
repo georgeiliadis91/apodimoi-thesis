@@ -82,4 +82,5 @@ export default {
   registerCountry: "Country",
   registerBtn: "Register",
   burgerMenuLabel: "Menu",
+  usersMapDetails: "Toggle Map",
 };

@@ -82,4 +82,5 @@ export default {
   registerCountry: "Χώρα",
   registerBtn: "Εγγραφή",
   burgerMenuLabel: "Μενού",
+  usersMapDetails: "Χάρτης Χρηστών",
 };
