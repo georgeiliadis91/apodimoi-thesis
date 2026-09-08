@@ -1,8 +1,6 @@
-import React from "react";
+import { useRouter } from "next/router";
 import { Navbar } from "../Navbar/Navbar";
 import { Footer } from "../Footer/Footer";
-import { useRouter } from "next/router";
-import styles from "./Layout.module.css";
 
 export const Layout = ({ navigation, children }) => {
   const router = useRouter();
@@ -12,10 +10,18 @@ export const Layout = ({ navigation, children }) => {
   }
 
   return (
-    <div className={styles.layoutContainer}>
-      <Navbar className={styles.navbar} navbar={navigation.navbar} />
-      <main className={router.pathname !== "/" && styles.main}>{children}</main>
-      <Footer className={styles.footer} footer={navigation.footer} />
+    <div className="flex min-h-screen flex-col">
+      <Navbar navbar={navigation.navbar} />
+      <main
+        className={
+          router.pathname !== "/"
+            ? "flex flex-1 flex-col px-3 py-8 sm:px-[10%]"
+            : "flex flex-1 flex-col"
+        }
+      >
+        {children}
+      </main>
+      <Footer footer={navigation.footer} />
     </div>
   );
 };

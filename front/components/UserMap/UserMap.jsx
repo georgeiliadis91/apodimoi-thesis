@@ -11,7 +11,7 @@ import MarkerClusterGroup from "react-leaflet-markercluster";
 import "leaflet/dist/leaflet.css";
 import "leaflet-defaulticon-compatibility/dist/leaflet-defaulticon-compatibility.css";
 import "leaflet-defaulticon-compatibility";
-import "react-leaflet-markercluster/dist/styles.min.css";
+import "react-leaflet-markercluster/styles";
 const UserMap = ({ userData }) => {
   return (
     <MapContainer

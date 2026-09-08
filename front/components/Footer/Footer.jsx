@@ -1,20 +1,26 @@
-import React from "react";
 import Link from "next/link";
 import { useRouter } from "next/router";
-import styles from "./Footer.module.css";
 
-export const Footer = (props) => {
+export const Footer = ({ footer }) => {
   const router = useRouter();
-  const { footer } = props;
+
   return (
-    <div className={styles.footerContainer}>
-      <div className={styles.footerContent}>{footer.content}</div>
-      <span className={styles.copyright}>{footer.copyright}</span>
-      <div className={styles.langContainer}>
-        <Link className={styles.langToggle} href={router.pathname} locale="el">
+    <div className="flex flex-col items-start justify-between gap-2 bg-[#2f4858] px-[5%] py-5 text-white sm:flex-row sm:items-center">
+      <div className="flex-1 text-lg font-light">{footer.content}</div>
+      <span className="text-lg font-light">{footer.copyright}</span>
+      <div className="flex gap-2">
+        <Link
+          href={router.pathname}
+          locale="el"
+          className="font-medium hover:underline"
+        >
           GR
         </Link>
-        <Link className={styles.langToggle} href={router.pathname} locale="en">
+        <Link
+          href={router.pathname}
+          locale="en"
+          className="font-medium hover:underline"
+        >
           EN
         </Link>
       </div>

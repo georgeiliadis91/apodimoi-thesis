@@ -4,4 +4,7 @@ module.exports = {
     locales: ["en", "el"],
     defaultLocale: "en",
   },
+  turbopack: {
+    root: __dirname,
+  },
 };
