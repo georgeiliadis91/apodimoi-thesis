@@ -10,10 +10,7 @@ export const NavBarItem = ({ value, keyVal }) => {
   if (!value.values) {
     return (
       <NavigationMenuItem>
-        <NavigationMenuLink
-          asChild
-          className="bg-transparent text-primary-foreground hover:bg-primary-foreground/15 hover:text-primary-foreground focus:bg-primary-foreground/15 focus:text-primary-foreground"
-        >
+        <NavigationMenuLink asChild>
           <Link href={keyVal !== "home" ? `/${keyVal}` : "/"}>{value}</Link>
         </NavigationMenuLink>
       </NavigationMenuItem>
@@ -22,9 +19,7 @@ export const NavBarItem = ({ value, keyVal }) => {
 
   return (
     <NavigationMenuItem>
-      <NavigationMenuTrigger className="bg-transparent text-primary-foreground hover:bg-primary-foreground/15 hover:text-primary-foreground focus:bg-primary-foreground/15 focus:text-primary-foreground data-open:bg-primary-foreground/15 data-open:text-primary-foreground">
-        {value.name}
-      </NavigationMenuTrigger>
+      <NavigationMenuTrigger>{value.name}</NavigationMenuTrigger>
       <NavigationMenuContent>
         <ul className="grid w-48 gap-1">
           {Object.entries(value.values).map(([key, val]) => (

@@ -5,7 +5,7 @@ export const Footer = ({ footer }) => {
   const router = useRouter();
 
   return (
-    <div className="flex flex-col items-start justify-between gap-2 bg-[#2f4858] px-[5%] py-5 text-white sm:flex-row sm:items-center">
+    <div className="flex flex-col items-start justify-between gap-2 border-t border-border bg-foreground px-[5%] py-5 text-background sm:flex-row sm:items-center">
       <div className="flex-1 text-lg font-light">{footer.content}</div>
       <span className="text-lg font-light">{footer.copyright}</span>
       <div className="flex gap-2">

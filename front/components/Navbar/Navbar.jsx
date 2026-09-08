@@ -35,12 +35,7 @@ export const Navbar = ({ navbar }) => {
       <div className="flex md:hidden">
         <Sheet open={mobileOpen} onOpenChange={setMobileOpen}>
           <SheetTrigger asChild>
-            <Button
-              variant="ghost"
-              size="icon"
-              className="text-primary-foreground hover:bg-primary-foreground/15 hover:text-primary-foreground"
-              aria-label={t.burgerMenuLabel}
-            >
+            <Button variant="ghost" size="icon" aria-label={t.burgerMenuLabel}>
               <Menu className="size-6" />
             </Button>
           </SheetTrigger>
@@ -102,12 +97,7 @@ export const Navbar = ({ navbar }) => {
             <Link href="/users/me" className="font-medium hover:underline">
               {t.navbarProfile}
             </Link>
-            <Button
-              size="sm"
-              variant="secondary"
-              className="bg-primary-foreground text-primary hover:bg-primary-foreground/90"
-              onClick={logOutUser}
-            >
+            <Button size="sm" variant="secondary" onClick={logOutUser}>
               {t.navbarLogout}
             </Button>
           </>
