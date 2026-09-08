@@ -1,6 +1,13 @@
-import React from "react";
 import { localeUrl } from "../utils";
 import { useTranslations } from "../hooks/useTranslations";
+import {
+  Table,
+  TableHeader,
+  TableBody,
+  TableRow,
+  TableHead,
+  TableCell,
+} from "@/components/ui/table";
 
 const Communities = ({ data }) => {
   const { t } = useTranslations();
@@ -10,36 +17,54 @@ const Communities = ({ data }) => {
   }
 
   return (
-    <>
-      <h1 className="pageTitle">{t.communitiesTitle}</h1>
-      <ul className="data-list">
-        <li className="list-headers">
-          <span className="list-label">{t.communitiesCommunityLabel}</span>
-          <span className="list-label">{t.communitiesEmailLabel}</span>
-          <span className="list-label">{t.communitiesPhoneLabel}</span>
-          <span className="list-label">{t.communitiesAddressLabel}</span>
-        </li>
-        {data.map((item) => {
-          const { attributes } = item;
-          return (
-            <li key={item.id} className="list-item">
-              <span className="list-item-data">{attributes.name}</span>
-              <span className="list-item-data">
-                {attributes.email && (
-                  <a href={`mailto:${attributes.email}`}>{attributes.email}</a>
-                )}
-              </span>
-              <span className="list-item-data">
-                {attributes.tel && (
-                  <a href={`tel:+30${attributes.tel}`}>{attributes.tel}</a>
-                )}
-              </span>
-              <span className="list-item-data">{attributes.address}</span>
-            </li>
-          );
-        })}
-      </ul>
-    </>
+    <div className="flex flex-col gap-8">
+      <h1 className="text-center text-3xl font-bold">
+        {t.communitiesTitle}
+      </h1>
+      <Table>
+        <TableHeader>
+          <TableRow>
+            <TableHead>{t.communitiesCommunityLabel}</TableHead>
+            <TableHead>{t.communitiesEmailLabel}</TableHead>
+            <TableHead>{t.communitiesPhoneLabel}</TableHead>
+            <TableHead>{t.communitiesAddressLabel}</TableHead>
+          </TableRow>
+        </TableHeader>
+        <TableBody>
+          {data.map((item) => {
+            const { attributes } = item;
+            return (
+              <TableRow key={item.id}>
+                <TableCell className="font-medium">
+                  {attributes.name}
+                </TableCell>
+                <TableCell>
+                  {attributes.email && (
+                    <a
+                      className="hover:underline"
+                      href={`mailto:${attributes.email}`}
+                    >
+                      {attributes.email}
+                    </a>
+                  )}
+                </TableCell>
+                <TableCell>
+                  {attributes.tel && (
+                    <a
+                      className="hover:underline"
+                      href={`tel:+30${attributes.tel}`}
+                    >
+                      {attributes.tel}
+                    </a>
+                  )}
+                </TableCell>
+                <TableCell>{attributes.address}</TableCell>
+              </TableRow>
+            );
+          })}
+        </TableBody>
+      </Table>
+    </div>
   );
 };
 

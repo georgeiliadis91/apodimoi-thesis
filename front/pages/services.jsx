@@ -1,47 +1,74 @@
-import React, { useState } from "react";
+import { useMemo, useState } from "react";
 import { useTranslations } from "../hooks/useTranslations";
-import styles from "../styles/Services.module.css";
 import { localeUrl } from "../utils/helpers";
+import {
+  Table,
+  TableHeader,
+  TableBody,
+  TableRow,
+  TableHead,
+  TableCell,
+} from "@/components/ui/table";
+import { Input } from "@/components/ui/input";
 
 const Services = ({ data }) => {
   const [search, setSearch] = useState("");
   const { t } = useTranslations();
 
+  const filteredData = useMemo(() => {
+    if (!data) return [];
+    const query = search.trim().toLowerCase();
+    if (!query) return data;
+    return data.filter(({ attributes }) =>
+      attributes.service_name?.toLowerCase().includes(query)
+    );
+  }, [data, search]);
+
   if (!data) return null;
   return (
-    <div className={styles.servicesContainer}>
-      <h1 className="pageTitle">{t.servicesTitle}</h1>
+    <div className="mx-auto flex max-w-2xl flex-col gap-6">
+      <h1 className="text-center text-3xl font-bold">{t.servicesTitle}</h1>
 
-      {/* TODO ADD SEARCH INPUT FIELD */}
+      <Input
+        type="search"
+        placeholder="Αναζήτηση υπηρεσίας..."
+        value={search}
+        onChange={(e) => setSearch(e.target.value)}
+      />
 
-      <ul className={styles.serviceTable}>
-        <li className={styles.serviceTableRow}>
-          <span className={styles.serviceTableLabels}>Υπηρεσία</span>
-          <span className={styles.serviceTableLabels}>E-mail</span>
-          <span className={styles.serviceTableLabels}>Τηλέφωνο</span>
-        </li>
-        {data.map(({ attributes, id }, index) => {
-          const { service_name, email, number } = attributes;
-          return (
-            <li
-              className={`${styles.serviceRow} ${
-                index % 2 === 0 ? styles.odd : styles.even
-              }`}
-              key={id}
-            >
-              <span className={`${styles.serviceTableCell} ${styles.title}`}>
-                {service_name}
-              </span>
-              <span className={`${styles.serviceTableCell}`}>
-                {email && <a href={`mailto:${email}`}>{email}</a>}
-              </span>
-              <span className={`${styles.serviceTableCell}`}>
-                {number && <a href={`tel:+30${number}`}>{number}</a>}
-              </span>
-            </li>
-          );
-        })}
-      </ul>
+      <Table>
+        <TableHeader>
+          <TableRow>
+            <TableHead>Υπηρεσία</TableHead>
+            <TableHead>E-mail</TableHead>
+            <TableHead>Τηλέφωνο</TableHead>
+          </TableRow>
+        </TableHeader>
+        <TableBody>
+          {filteredData.map(({ attributes, id }) => {
+            const { service_name, email, number } = attributes;
+            return (
+              <TableRow key={id}>
+                <TableCell className="font-medium">{service_name}</TableCell>
+                <TableCell>
+                  {email && (
+                    <a className="hover:underline" href={`mailto:${email}`}>
+                      {email}
+                    </a>
+                  )}
+                </TableCell>
+                <TableCell>
+                  {number && (
+                    <a className="hover:underline" href={`tel:+30${number}`}>
+                      {number}
+                    </a>
+                  )}
+                </TableCell>
+              </TableRow>
+            );
+          })}
+        </TableBody>
+      </Table>
     </div>
   );
 };
