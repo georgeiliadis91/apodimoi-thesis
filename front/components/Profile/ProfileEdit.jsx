@@ -14,11 +14,14 @@ function PermissionRadioGroup({ name, value, onChange, labels }) {
     <RadioGroup
       value={value}
       onValueChange={(val) => onChange({ target: { name, value: val } })}
-      className="flex flex-row gap-4"
+      className="flex w-auto shrink-0 flex-row gap-4"
     >
       {[permissionModel.private, permissionModel.authed, permissionModel.public].map(
         (level, index) => (
-          <div key={level} className="flex items-center gap-1.5">
+          <div
+            key={level}
+            className="flex w-24 items-center justify-center gap-1.5 sm:justify-center"
+          >
             <RadioGroupItem
               value={level}
               id={`${name}-${level}`}
