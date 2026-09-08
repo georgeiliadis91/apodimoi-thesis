@@ -30,7 +30,7 @@ export const Navbar = ({ navbar }) => {
   };
 
   return (
-    <div className="flex h-[85px] items-center justify-between bg-primary px-[5%] text-primary-foreground">
+    <div className="relative z-50 flex h-[85px] items-center justify-between bg-primary px-[5%] text-primary-foreground">
       {/* mobile */}
       <div className="flex md:hidden">
         <Sheet open={mobileOpen} onOpenChange={setMobileOpen}>
