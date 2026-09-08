@@ -1,6 +1,15 @@
-import React from "react";
 import { useTranslations } from "../../hooks/useTranslations";
-import styles from "./Profile.module.css";
+import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
+
+function Field({ label, value }) {
+  if (!value) return null;
+  return (
+    <div className="flex flex-col gap-0.5">
+      <span className="text-sm text-muted-foreground">{label}</span>
+      <span>{value}</span>
+    </div>
+  );
+}
 
 function Profile({ profile_data }) {
   const {
@@ -26,117 +35,53 @@ function Profile({ profile_data }) {
   const { t } = useTranslations();
 
   return (
-    <div className={styles.profileContainer}>
-      <section className={styles.leftColumn}>
-        {email && (
-          <span className={styles.textDisplay}>
-            {t.meEmail}: {email}
-          </span>
-        )}
-        {name && (
-          <span className={styles.textDisplay}>
-            {t.meName}: {name}
-          </span>
-        )}
-        {surname && (
-          <span className={styles.textDisplay}>
-            {t.meSurname}: {surname}
-          </span>
-        )}
-        {island && (
-          <span className={styles.textDisplay}>
-            {t.meIslandOfOrigin}: {island}
-          </span>
-        )}
-        {current_country && (
-          <span className={styles.textDisplay}>
-            {t.meCurrLocation}: {current_country}
-          </span>
-        )}
-        {birthdate && (
-          <span className={styles.textDisplay}>
-            {t.meBirthdate}: {birthdate}
-          </span>
-        )}
-      </section>
-      <section className={styles.rightColumn}>
-        {/* family related data */}
-        <div className={styles.rightSubSection}>
-          <h2 className={styles.secondaryTitle}>{t.meFamilyData}</h2>
+    <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
+      <Card>
+        <CardContent className="flex flex-col gap-3">
+          <Field label={t.meEmail} value={email} />
+          <Field label={t.meName} value={name} />
+          <Field label={t.meSurname} value={surname} />
+          <Field label={t.meIslandOfOrigin} value={island} />
+          <Field label={t.meCurrLocation} value={current_country} />
+          <Field label={t.meBirthdate} value={birthdate} />
+        </CardContent>
+      </Card>
 
-          {birth_place && (
-            <span className={styles.textDisplay}>
-              {t.meBirthPlace}: {birth_place}
-            </span>
-          )}
-          {father_name && (
-            <span className={styles.textDisplay}>
-              {t.meFathersName}: {father_name}
-            </span>
-          )}
+      <div className="flex flex-col gap-6">
+        <Card>
+          <CardHeader>
+            <CardTitle>{t.meFamilyData}</CardTitle>
+          </CardHeader>
+          <CardContent className="flex flex-col gap-3">
+            <Field label={t.meBirthPlace} value={birth_place} />
+            <Field label={t.meFathersName} value={father_name} />
+            <Field label={t.meFathersSurname} value={father_surname} />
+            <Field label={t.meMothersName} value={mother_name} />
+            <Field label={t.meMothersSurname} value={mother_surname} />
+          </CardContent>
+        </Card>
 
-          {father_surname && (
-            <span className={styles.textDisplay}>
-              {t.meFathersSurname}: {father_surname}
-            </span>
-          )}
-
-          {mother_name && (
-            <span className={styles.textDisplay}>
-              {t.meMothersName}: {mother_name}
-            </span>
-          )}
-
-          {mother_surname && (
-            <span className={styles.textDisplay}>
-              {t.meMothersSurname}: {mother_surname}
-            </span>
-          )}
-        </div>
-
-        {/* personal data */}
-        <div className={styles.rightSubSection}>
-          <h2 className={styles.secondaryTitle}>{t.mePersonalData}</h2>
-          {current_city && (
-            <span className={styles.textDisplay}>
-              {t.meCurrCity}: {current_city}
-            </span>
-          )}
-
-          {postal_code && (
-            <span className={styles.textDisplay}>
-              {t.mePostalCode}: {postal_code}
-            </span>
-          )}
-
-          {current_street && (
-            <span className={styles.textDisplay}>
-              {t.meStreet}: {current_street}
-            </span>
-          )}
-
-          {occupation && (
-            <span className={styles.textDisplay}>
-              {t.meOccupation}: {occupation}
-            </span>
-          )}
-
-          {phone_number && (
-            <span className={styles.textDisplay}>
-              {t.mePhone}: {phone_number}
-            </span>
-          )}
-          {other_groups && (
-            <>
-              <span className={styles.textDisplay}>
-                {t.meOtherCommunities} :
-              </span>
-              <br />
-              <p>{other_groups}</p>
-            </>
-          )}
-        </div>
-      </section>
+        <Card>
+          <CardHeader>
+            <CardTitle>{t.mePersonalData}</CardTitle>
+          </CardHeader>
+          <CardContent className="flex flex-col gap-3">
+            <Field label={t.meCurrCity} value={current_city} />
+            <Field label={t.mePostalCode} value={postal_code} />
+            <Field label={t.meStreet} value={current_street} />
+            <Field label={t.meOccupation} value={occupation} />
+            <Field label={t.mePhone} value={phone_number} />
+            {other_groups && (
+              <div className="flex flex-col gap-0.5">
+                <span className="text-sm text-muted-foreground">
+                  {t.meOtherCommunities}
+                </span>
+                <p>{other_groups}</p>
+              </div>
+            )}
+          </CardContent>
+        </Card>
+      </div>
     </div>
   );
 }

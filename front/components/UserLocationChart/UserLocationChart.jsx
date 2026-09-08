@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import {
   Chart as ChartJS,
   CategoryScale,
@@ -9,19 +9,19 @@ import {
   Legend,
 } from "chart.js";
 import { Bar } from "react-chartjs-2";
+import { ChevronDown } from "lucide-react";
 import { getRandomColors } from "../../utils";
-import styles from "./UserLocationChart.module.css";
-import { useTranslations } from "../../hooks/useTranslations";
-ChartJS.register(
-  CategoryScale,
-  LinearScale,
-  BarElement,
-  Title,
-  Tooltip,
-  Legend
-);
+import { Button } from "@/components/ui/button";
+import { Card, CardContent } from "@/components/ui/card";
+import {
+  Collapsible,
+  CollapsibleContent,
+  CollapsibleTrigger,
+} from "@/components/ui/collapsible";
 
-export const options = {
+ChartJS.register(CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend);
+
+export const chartOptions = {
   responsive: true,
   indexAxis: "y",
   elements: {
@@ -39,91 +39,36 @@ export const options = {
   },
 };
 
-// Country list should be in the format of
-// {
-//     countryName: number,
-//     countryName: number,
-// }
-
-export const UserLocationChart = ({ countryList }) => {
-  const { t } = useTranslations();
-  const [toggle, setToggle] = useState(false);
+export const UserStatChart = ({ triggerLabel, label, dataMap }) => {
+  const [open, setOpen] = useState(false);
   const chartData = {
-    labels: Object.keys(countryList),
+    labels: Object.keys(dataMap),
     datasets: [
       {
-        label: t.chartUserCountryLabel,
-        data: Object.values(countryList),
-        backgroundColor: () => getRandomColors(Object.keys(countryList).length),
+        label,
+        data: Object.values(dataMap),
+        backgroundColor: () => getRandomColors(Object.keys(dataMap).length),
       },
     ],
   };
 
   return (
-    <>
-      <button onClick={() => setToggle(!toggle)}>Show countries</button>
-      {toggle && (
-        <div className={styles.root}>
-          <h2>{t.chartUserCountryLabel}</h2>
-          <Bar options={options} data={chartData} />
-        </div>
-      )}
-    </>
-  );
-};
-
-export const UserIslandChart = ({ islandList }) => {
-  const { t } = useTranslations();
-  const [toggle, setToggle] = useState(false);
-  const chartData = {
-    labels: Object.keys(islandList),
-    datasets: [
-      {
-        label: t.chartUserIslandLabel,
-        data: Object.values(islandList),
-        backgroundColor: () => getRandomColors(Object.keys(islandList).length),
-      },
-    ],
-  };
-
-  return (
-    <>
-      <button onClick={() => setToggle(!toggle)}>Show island stats</button>
-      {toggle && (
-        <div className={styles.root}>
-          <h2>{t.chartUserIslandLabel}</h2>
-          <Bar options={options} data={chartData} />
-        </div>
-      )}
-    </>
-  );
-};
-export const UserDimotikiEnotitaList = ({ dimotikiEnotitaList }) => {
-  const { t } = useTranslations();
-  const [toggle, setToggle] = useState(false);
-  const chartData = {
-    labels: Object.keys(dimotikiEnotitaList),
-    datasets: [
-      {
-        label: t.chartUserDimotikiEnotitaLabel,
-        data: Object.values(dimotikiEnotitaList),
-        backgroundColor: () =>
-          getRandomColors(Object.keys(dimotikiEnotitaList).length),
-      },
-    ],
-  };
-
-  return (
-    <>
-      <button onClick={() => setToggle(!toggle)}>
-        Show municipality stats{" "}
-      </button>
-      {toggle && (
-        <div className={styles.root}>
-          <h2>{t.chartUserDimotikiEnotitaLabel}</h2>
-          <Bar options={options} data={chartData} />
-        </div>
-      )}
-    </>
+    <Collapsible open={open} onOpenChange={setOpen}>
+      <CollapsibleTrigger asChild>
+        <Button variant="outline">
+          {triggerLabel}
+          <ChevronDown
+            className={`size-4 transition-transform ${open ? "rotate-180" : ""}`}
+          />
+        </Button>
+      </CollapsibleTrigger>
+      <CollapsibleContent>
+        <Card className="mt-3">
+          <CardContent>
+            <Bar options={chartOptions} data={chartData} />
+          </CardContent>
+        </Card>
+      </CollapsibleContent>
+    </Collapsible>
   );
 };

@@ -1,9 +1,9 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { parseCookies } from "nookies";
 import { useTranslations } from "../../hooks/useTranslations";
-import styles from "./Me.module.css";
 import Profile from "../../components/Profile/Profile";
 import ProfileEdit from "../../components/Profile/ProfileEdit";
+import { Button } from "@/components/ui/button";
 
 const Me = ({ data }) => {
   const { email, profile_data } = data;
@@ -13,17 +13,16 @@ const Me = ({ data }) => {
   const toggleEdit = () => setEdit(!isEdit);
 
   return (
-    <div className="content-block-list">
-      <h1 className={styles.title}>{t.meTitle}</h1>
-      {isEdit ? (
-        <button onClick={toggleEdit} className={styles.editBtnCancel}>
-          {t.meCancel}
-        </button>
-      ) : (
-        <button onClick={toggleEdit} className={styles.editBtn}>
-          {t.meEdit}
-        </button>
-      )}
+    <div className="mx-auto flex max-w-4xl flex-col gap-6">
+      <div className="flex items-center justify-between">
+        <h1 className="text-3xl font-bold">{t.meTitle}</h1>
+        <Button
+          variant={isEdit ? "outline" : "default"}
+          onClick={toggleEdit}
+        >
+          {isEdit ? t.meCancel : t.meEdit}
+        </Button>
+      </div>
       {isEdit ? (
         <ProfileEdit
           profile_data={{ ...profile_data, email }}

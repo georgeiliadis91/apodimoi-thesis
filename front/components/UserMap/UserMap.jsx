@@ -8,19 +8,17 @@ import {
 import countrylatLongData from "../../json-data-files/countriesWithLat.json";
 import "leaflet/dist/leaflet.css";
 import MarkerClusterGroup from "react-leaflet-markercluster";
-import "leaflet/dist/leaflet.css";
 import "leaflet-defaulticon-compatibility/dist/leaflet-defaulticon-compatibility.css";
 import "leaflet-defaulticon-compatibility";
 import "react-leaflet-markercluster/styles";
 const UserMap = ({ userData }) => {
   return (
     <MapContainer
-      className="markercluster-map"
+      className="z-0 mb-12 h-[500px] w-full"
       center={[45, 23]}
       zoom={3}
       maxZoom={18}
       minZoom={2}
-      style={{ height: 500, width: "100%", marginBottom: "46px", zIndex: 0 }}
     >
       <TileLayer
         url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
