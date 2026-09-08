@@ -1,4 +1,3 @@
-import React from "react";
 import ImageCarousel from "../components/ImageCarousel/ImageCarousel";
 import { formatImage, localeUrl } from "../utils";
 import { useTranslations } from "../hooks/useTranslations";
@@ -10,11 +9,11 @@ const About = ({ data }) => {
   if (!data) return null;
   const formatterImageArray = formatImage(images.data);
   return (
-    <>
-      <h1 className="pageTitle">{t.aboutTitle}</h1>
+    <div className="mx-auto flex max-w-3xl flex-col gap-8">
+      <h1 className="text-center text-3xl font-bold">{t.aboutTitle}</h1>
       <ImageCarousel imageArray={formatterImageArray} />
-      <p className="pagedescription">{description}</p>
-    </>
+      <p className="text-muted-foreground">{description}</p>
+    </div>
   );
 };
 

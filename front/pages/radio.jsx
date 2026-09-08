@@ -1,6 +1,7 @@
-import React from "react";
 import { getSingleImageUrl, localeUrl } from "../utils";
 import { useTranslations } from "../hooks/useTranslations";
+import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
+
 const Radio = ({ data }) => {
   const { t } = useTranslations();
 
@@ -9,29 +10,33 @@ const Radio = ({ data }) => {
   }
 
   return (
-    <>
-      <h1 className="pageTitle">{t.radioTitle}</h1>
-      <div className="content-block-container">
+    <div className="flex flex-col gap-8">
+      <h1 className="text-center text-3xl font-bold">{t.radioTitle}</h1>
+      <div className="grid grid-cols-1 gap-6 sm:grid-cols-2">
         {data.map((item) => {
           const { attributes } = item;
           return (
-            <div className="content-block-list">
-              <h2 className="advisor-title">{attributes.Title}</h2>
-              <a href={attributes.link}>
-                <img
-                  alt={`${attributes.Title}-img`}
-                  src={`${process.env.NEXT_PUBLIC_API_URL}${getSingleImageUrl(
-                    attributes.image,
-                    "url"
-                  )}`}
-                />
-              </a>
-              <p className="radio-body">{attributes.body}</p>
-            </div>
+            <Card key={attributes.Title}>
+              <CardHeader>
+                <CardTitle>{attributes.Title}</CardTitle>
+              </CardHeader>
+              <CardContent className="flex flex-col gap-3">
+                <a href={attributes.link}>
+                  <img
+                    alt={`${attributes.Title}-img`}
+                    className="aspect-video w-full rounded-md object-cover"
+                    src={`${
+                      process.env.NEXT_PUBLIC_API_URL
+                    }${getSingleImageUrl(attributes.image, "url")}`}
+                  />
+                </a>
+                <p className="text-muted-foreground">{attributes.body}</p>
+              </CardContent>
+            </Card>
           );
         })}
       </div>
-    </>
+    </div>
   );
 };
 

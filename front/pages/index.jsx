@@ -3,59 +3,37 @@ import { getSingleImageUrl } from "../utils";
 import { useTranslations } from "../hooks/useTranslations";
 import { localeUrl } from "../utils";
 
-import styles from "../styles/Home.module.css";
-
 const Home = ({ data }) => {
   const { attributes } = data;
 
   const { t } = useTranslations();
   return (
-    <div className={styles.container}>
+    <div className="mb-24">
       <Head>
         <title>{t.homeTitle}</title>
         <meta
           name="αποδημοι_αιγαίου"
           content="Ψηφιακό κέντρο αποδήμων ανατολικού Αιγαίου"
         />
-        {/* TODO add logo */}
         <link rel="icon" href="/favicon.ico" />
-        <link
-          rel="stylesheet"
-          href="https://unpkg.com/leaflet@1.8.0/dist/leaflet.css"
-          integrity="sha512-hoalWLoI8r4UszCkZ5kL8vayOGVae1oxXe/2A4AO6J9+580uKHDO3JdHb7NzwwzK5xr/Fs0W40kiNHxM9vyTtQ=="
-        />
-        <script
-          src="https://unpkg.com/leaflet@1.8.0/dist/leaflet.js"
-          integrity="sha512-BB3hKbKWOc9Ez/TAwyWxNXeoV9c1v6FIeYiBieIWkpLjauysF18NzgR1MBNBXf8/KABdlkX68nAhlwcDFLGPCQ=="
-        ></script>
-        <link
-          rel="stylesheet"
-          href="https://unpkg.com/react-leaflet-markercluster/dist/styles.min.css"
-        />
-        <link
-          rel="stylesheet"
-          href="https://unpkg.com/leaflet/dist/leaflet.css"
-        />
-        <link
-          rel="stylesheet"
-          href="https://unpkg.com/react-leaflet-markercluster/dist/styles.min.css"
-        />
       </Head>
       <img
-        className={styles.headerImg}
+        className="h-60 w-full object-cover sm:h-[650px]"
         alt="header-img"
         src={`${process.env.NEXT_PUBLIC_API_URL}${getSingleImageUrl(
           attributes.top_img,
           "url"
         )}`}
       />
-      <div className={styles.homeContent}>
-        <h1 className={styles.homeContentLabel}>{attributes.intro_label}</h1>
-        <p className={styles.homeContentDescription}>
+      <div className="flex flex-col items-center justify-center px-6 py-12 text-center sm:px-[20%]">
+        <h1 className="mb-4 text-2xl font-bold sm:mb-6 sm:text-5xl">
+          {attributes.intro_label}
+        </h1>
+        <p className="mb-6 text-base text-muted-foreground sm:text-xl">
           {attributes.intro_description}
         </p>
         <img
-          className={styles.homeContentLogo}
+          className="h-36 w-auto object-cover sm:h-60"
           alt="logo"
           src={`${process.env.NEXT_PUBLIC_API_URL}${getSingleImageUrl(
             attributes.logo,
@@ -64,16 +42,18 @@ const Home = ({ data }) => {
         />
       </div>
 
-      <div className={styles.quoteContainer}>
+      <div className="relative h-60 sm:h-[350px]">
         <img
-          className={styles.quoteImg}
+          className="h-60 w-full object-cover sm:h-[350px]"
           alt="quote-img"
           src={`${process.env.NEXT_PUBLIC_API_URL}${getSingleImageUrl(
             attributes.quote_img,
             "url"
           )}`}
         />
-        <span className={styles.quoteText}>{attributes.quote}</span>
+        <span className="absolute top-1/2 left-1/2 w-[85%] -translate-x-1/2 -translate-y-1/2 text-lg leading-6 text-white sm:w-3/5 sm:text-3xl sm:leading-10">
+          {attributes.quote}
+        </span>
       </div>
     </div>
   );
