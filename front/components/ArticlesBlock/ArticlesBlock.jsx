@@ -1,20 +1,21 @@
-import React from "react";
+import Link from "next/link";
 import { replaceSpacesToDash } from "../../utils";
-
-import styles from "./ArticlesBlock.module.css";
+import { Card, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
 
 export const ArticlesBlock = ({ id, title, imgUrl, description }) => {
   return (
-    <a className="content-block-list advisor-horizontal" href={`news/${id}`}>
-      <img
-        className={styles.articleImg}
-        src={imgUrl}
-        alt={replaceSpacesToDash(title)}
-      />
-      <div className={styles.descriptionBox}>
-        <h2 className={styles.title}>{title}</h2>
-        <p className={styles.description}>{description}</p>
-      </div>
-    </a>
+    <Link href={`/news/${id}`}>
+      <Card className="h-full transition-shadow hover:shadow-md">
+        <img
+          className="aspect-video w-full rounded-t-xl object-cover"
+          src={imgUrl}
+          alt={replaceSpacesToDash(title)}
+        />
+        <CardHeader>
+          <CardTitle>{title}</CardTitle>
+          <CardDescription>{description}</CardDescription>
+        </CardHeader>
+      </Card>
+    </Link>
   );
 };

@@ -226,10 +226,6 @@ form option.island {
   font-weight: 700;
 }
 
-h2.advisor-title {
-  font-size: 26px;
-  margin-bottom: 12px;
-}
 .content-block-container {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -269,11 +265,6 @@ a[href^="mailto:"]:before {
   }
   .content-block-container {
     grid-template-columns: 1fr;
-  }
-
-  h2.advisor-title {
-    font-size: 18px;
-    margin-bottom: 12px;
   }
 
   .content-block-list span {

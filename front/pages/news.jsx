@@ -1,4 +1,3 @@
-import React from "react";
 import { useTranslations } from "../hooks/useTranslations";
 import { ArticlesBlock } from "../components/ArticlesBlock/ArticlesBlock";
 import { parse250Chars, getImageUrl, localeUrl } from "../utils";
@@ -10,9 +9,9 @@ const News = ({ data }) => {
   }
 
   return (
-    <>
-      <h1 className="pageTitle">{t.newsTitle}</h1>
-      <div className="content-block-container">
+    <div className="flex flex-col gap-8">
+      <h1 className="text-center text-3xl font-bold">{t.newsTitle}</h1>
+      <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-3">
         {data.map((item) => {
           const { attributes } = item;
           return (
@@ -29,7 +28,7 @@ const News = ({ data }) => {
           );
         })}
       </div>
-    </>
+    </div>
   );
 };
 
