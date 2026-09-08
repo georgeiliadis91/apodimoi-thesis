@@ -15,8 +15,8 @@ export const Layout = ({ navigation, children }) => {
       <main
         className={
           router.pathname !== "/"
-            ? "flex flex-1 flex-col px-3 py-8 sm:px-[10%]"
-            : "flex flex-1 flex-col"
+            ? "flex-1 px-3 py-8 sm:px-[10%]"
+            : "flex-1"
         }
       >
         {children}

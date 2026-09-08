@@ -1,10 +1,12 @@
 import "../styles/globals.css";
+import Router from "next/router";
 import { Layout } from "../components/views/Layout";
 import { parseCookies } from "nookies";
 import Globalstate from "../store/store";
 import { parseDataFromRequestSingleType } from "../utils";
 import { privatePaths } from "../constants";
 import { localeUrl } from "../utils/helpers";
+import { Toaster } from "@/components/ui/sonner";
 
 function MyApp({ Component, pageProps, navigation, isLoggedIn }) {
   return (
@@ -14,6 +16,7 @@ function MyApp({ Component, pageProps, navigation, isLoggedIn }) {
           <Component {...pageProps} />
         </Layout>
       </Globalstate>
+      <Toaster />
     </>
   );
 }

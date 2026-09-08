@@ -1,3 +1,5 @@
+@layer legacy;
+
 @import "tailwindcss";
 @import "tw-animate-css";
 @import "shadcn/tailwind.css";
@@ -137,6 +139,8 @@
  * each block is deleted once nothing references its classnames anymore.
  * --------------------------------------------------------------------- */
 
+@layer legacy {
+
 html,
 body {
   padding: 0;
@@ -271,3 +275,5 @@ a[href^="mailto:"]:before {
     padding-right: 60px;
   }
 }
+
+} /* end @layer legacy */
