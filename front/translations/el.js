@@ -11,6 +11,7 @@ export default {
   contactNamePlaceholder: "Το όνομα σας",
   contactMessageLabel: "Μήνυμα",
   contactMessagePlaceholder: "Γράψτε το μήνυμα σας εδώ",
+  contactSuccessMessage: "Το μήνυμά σας στάλθηκε, ευχαριστούμε!",
   radioTitle: "Ραδιοφωνικοί σταθμοί",
   advisorTitle: "Σύμβουλοι & Χρήσιμα στοιχεία επικοινωνίας",
   classesTitle: "Μαθηματα",

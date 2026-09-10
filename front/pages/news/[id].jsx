@@ -1,21 +1,18 @@
-import React from "react";
 import { getImageUrl } from "../../utils";
-import styles from "./NewsArticle.module.css";
 
 const NewsArticle = ({ data }) => {
+  if (!data) return null;
   const { title, description, thumbnail_img } = data.attributes;
 
-  if (!data) return null;
-
   return (
-    <div className={styles.root}>
-      <h1 className={styles.title}>{title}</h1>
+    <div className="mx-auto flex max-w-2xl flex-col gap-6">
+      <h1 className="text-center text-3xl font-bold">{title}</h1>
       <img
-        className={styles.articleImg}
+        className="w-full rounded-lg object-contain"
         src={`${process.env.NEXT_PUBLIC_API_URL}${getImageUrl(thumbnail_img)}`}
         alt={title}
       />
-      <p>{description}</p>
+      <p className="text-muted-foreground">{description}</p>
     </div>
   );
 };

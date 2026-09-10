@@ -1,7 +1,14 @@
-import React from "react";
 import { inputMatcher, inputTypes } from "../../constants";
 import countryList from "../../json-data-files/countryList.json";
-import styles from "./Fieldrenderer.module.css";
+import { Input } from "@/components/ui/input";
+import { Textarea } from "@/components/ui/textarea";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
 
 export const FieldRenderer = ({
   fieldName,
@@ -11,148 +18,107 @@ export const FieldRenderer = ({
   island,
 }) => {
   const inputType = inputMatcher[fieldName] || "";
+  const setValue = (val) =>
+    setFieldVal({ target: { name: fieldName, value: val } });
 
   switch (inputType) {
     case inputTypes.file:
       return (
-        <input
-          className={styles.inputField}
-          type="file"
-          value={value}
-          name={fieldName}
-          onChange={setFieldVal}
-        />
+        <Input type="file" name={fieldName} onChange={setFieldVal} />
       );
     case inputTypes.textarea:
       return (
-        <textarea
-          className={styles.inputField}
-          value={value}
-          name={fieldName}
-          onChange={setFieldVal}
-        />
+        <Textarea value={value || ""} name={fieldName} onChange={setFieldVal} />
       );
-    case inputTypes.select:
+    case inputTypes.select: {
       if (fieldName === "dimotiki_enotita") {
-        // island and dimotiki enotita are exceptions and need field values to render
+        const municipalities = island
+          ? Object.values(options.attributes.toponimia[island] || {})
+          : [];
         return (
-          <select
-            className={styles.inputField}
-            name={fieldName}
-            id={fieldName}
-            // disabled if no island selected
-            disabled={!island}
-            required
-            onChange={setFieldVal}
-          >
-            {options.attributes.toponimia[island] && (
-              <>
-                <option className="island" value={island} defaultValue={value}>
-                  {island}
-                </option>
-                <>
-                  {Object.values(options.attributes.toponimia[island]).map(
-                    (val) => {
-                      return (
-                        <option
-                          className="dimotiki_enotita"
-                          key={val}
-                          value={val}
-                        >
-                          {val}
-                        </option>
-                      );
-                    }
-                  )}
-                </>
-              </>
-            )}
-          </select>
+          <Select value={value || ""} onValueChange={setValue} disabled={!island}>
+            <SelectTrigger>
+              <SelectValue />
+            </SelectTrigger>
+            <SelectContent>
+              {municipalities.map((municipality) => (
+                <SelectItem key={municipality} value={municipality}>
+                  {municipality}
+                </SelectItem>
+              ))}
+            </SelectContent>
+          </Select>
         );
       }
 
       if (fieldName === "island" || fieldName === "birth_place") {
         return (
-          <select
-            name={fieldName}
-            id={fieldName}
-            required
-            onChange={setFieldVal}
-            defaultValue={value}
-            className={styles.inputField}
-          >
-            {Object.keys(options.attributes.toponimia).map((key, index) => {
-              return (
-                <option
-                  className="island"
-                  key={key}
-                  value={key}
-                  defaultValue={index === 0}
-                >
+          <Select value={value || ""} onValueChange={setValue}>
+            <SelectTrigger>
+              <SelectValue />
+            </SelectTrigger>
+            <SelectContent>
+              {Object.keys(options.attributes.toponimia).map((key) => (
+                <SelectItem key={key} value={key}>
                   {key}
-                </option>
-              );
-            })}
-          </select>
+                </SelectItem>
+              ))}
+            </SelectContent>
+          </Select>
         );
       }
 
       if (fieldName === "current_country") {
         return (
-          <select
-            className={styles.inputField}
-            name={fieldName}
-            id={fieldName}
-            required
-            onChange={setFieldVal}
-            defaultValue={value}
-          >
-            {countryList.map(({ label }) => {
-              return (
-                <option className="island" key={label} value={label}>
+          <Select value={value || ""} onValueChange={setValue}>
+            <SelectTrigger>
+              <SelectValue />
+            </SelectTrigger>
+            <SelectContent>
+              {countryList.map(({ label }) => (
+                <SelectItem key={label} value={label}>
                   {label}
-                </option>
-              );
-            })}
-          </select>
+                </SelectItem>
+              ))}
+            </SelectContent>
+          </Select>
         );
       }
+
+      return null;
+    }
     case inputTypes.number:
       return (
-        <input
-          className={styles.inputField}
+        <Input
           type="number"
-          value={value}
+          value={value || ""}
           name={fieldName}
           onChange={setFieldVal}
         />
       );
     case inputTypes.email:
       return (
-        <input
-          className={styles.inputField}
+        <Input
           type="email"
-          value={value}
+          value={value || ""}
           name={fieldName}
           onChange={setFieldVal}
         />
       );
     case inputTypes.date:
       return (
-        <input
-          className={styles.inputField}
+        <Input
           type="date"
-          value={value}
+          value={value || ""}
           name={fieldName}
           onChange={setFieldVal}
         />
       );
     default:
       return (
-        <input
-          className={styles.inputField}
+        <Input
           type="text"
-          value={value}
+          value={value || ""}
           name={fieldName}
           onChange={setFieldVal}
         />

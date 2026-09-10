@@ -28,7 +28,7 @@ export const flattenPermissions = (permissions) => {
     if (key === "profile_data") {
       Object.keys(permissions.profile_data).forEach((key) => {
         const keyPermission = permissions.profile_data[key];
-        permissions[key] = keyPermission;
+        newPermissions[key] = keyPermission;
       });
     } else {
       newPermissions[key] = fieldKey;

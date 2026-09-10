@@ -1,6 +1,6 @@
-import React from "react";
 import { localeUrl } from "../utils";
 import { useTranslations } from "../hooks/useTranslations";
+import { Card, CardContent } from "@/components/ui/card";
 
 const Advisor = ({ data }) => {
   const { t } = useTranslations();
@@ -10,30 +10,42 @@ const Advisor = ({ data }) => {
   }
 
   return (
-    <>
-      <h1 className="pageTitle">{t.advisorTitle}</h1>
+    <div className="flex flex-col gap-10">
+      <h1 className="text-center text-3xl font-bold">{t.advisorTitle}</h1>
       {data.map((item) => {
         const { attributes } = item;
         return (
-          <div className="advisor-item">
-            <h2 className="advisor-title">{attributes.island}</h2>
-            {attributes.list.map((item) => {
-              return (
-                <div className="content-block-list">
-                  <span>{item.description}</span>
-                  {item.email && (
-                    <a href={`mailto:${item.email}`}>{item.email}</a>
-                  )}
-                  {item.phone && (
-                    <a href={`tel:+30${item.phone}`}>{item.phone}</a>
-                  )}
-                </div>
-              );
-            })}
+          <div key={attributes.island} className="flex flex-col gap-4">
+            <h2 className="text-xl font-semibold">{attributes.island}</h2>
+            <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
+              {attributes.list.map((listItem, index) => (
+                <Card key={index}>
+                  <CardContent className="flex flex-col gap-2">
+                    <span>{listItem.description}</span>
+                    {listItem.email && (
+                      <a
+                        className="text-sm text-muted-foreground hover:underline"
+                        href={`mailto:${listItem.email}`}
+                      >
+                        {listItem.email}
+                      </a>
+                    )}
+                    {listItem.phone && (
+                      <a
+                        className="text-sm text-muted-foreground hover:underline"
+                        href={`tel:+30${listItem.phone}`}
+                      >
+                        {listItem.phone}
+                      </a>
+                    )}
+                  </CardContent>
+                </Card>
+              ))}
+            </div>
           </div>
         );
       })}
-    </>
+    </div>
   );
 };
 

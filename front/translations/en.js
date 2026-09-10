@@ -11,6 +11,7 @@ export default {
   contactNamePlaceholder: "Your name",
   contactMessageLabel: "Message",
   contactMessagePlaceholder: "Write your message here",
+  contactSuccessMessage: "Your message has been sent, thank you!",
   radioTitle: "Radio Stations",
   advisorTitle: "Useful Information & Contacts",
   classesTitle: "Classes",

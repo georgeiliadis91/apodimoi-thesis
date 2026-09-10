@@ -1,54 +1,66 @@
-import React, { useState } from "react";
 import dynamic from "next/dynamic";
-import {
-  UserLocationChart,
-  UserDimotikiEnotitaList,
-  UserIslandChart,
-} from "../components/UserLocationChart/UserLocationChart";
-import { UserBlock } from "../components/UserBlock/UserBlock";
 import { parseCookies } from "nookies";
+import { UserStatChart } from "../components/UserLocationChart/UserLocationChart";
+import { UserBlock } from "../components/UserBlock/UserBlock";
+import { Skeleton } from "@/components/ui/skeleton";
 import { useTranslations } from "../hooks/useTranslations";
+
+const Map = dynamic(() => import("../components/UserMap/UserMap"), {
+  loading: () => <Skeleton className="mb-12 h-[500px] w-full" />,
+  ssr: false,
+});
+
 export const Users = ({
   data,
   countryList,
   islandList,
-  birthPlaceList,
   dimotikiEnotitaList,
 }) => {
   const { t } = useTranslations();
 
-  const Map = dynamic(() => import("../components/UserMap/UserMap"), {
-    loading: () => <p>loading map...</p>,
-    ssr: false,
-  });
-
   if (!data) return null;
 
   return (
-    <>
+    <div className="flex flex-col gap-10">
       <Map userData={countryList} />
-      <br />
-      <UserLocationChart countryList={countryList} />
-      <UserIslandChart islandList={islandList} />
-      <UserDimotikiEnotitaList dimotikiEnotitaList={dimotikiEnotitaList} />
-      <br />
-      <h1 className="pageTitle">{t.userTitle}</h1>
-      <div className="content-block-container">
-        {data.map((user) => {
-          if (!user || !user.username || !user.email) return null;
-          return (
-            <UserBlock
-              id={user.id}
-              key={user.id}
-              username={user.username}
-              email={user.email}
-              country={user.profile_data.current_country}
-              island={user.profile_data.island}
-            />
-          );
-        })}
+
+      <div className="flex flex-wrap gap-3">
+        <UserStatChart
+          triggerLabel={t.chartUserCountryLabel}
+          label={t.chartUserCountryLabel}
+          dataMap={countryList}
+        />
+        <UserStatChart
+          triggerLabel={t.chartUserIslandLabel}
+          label={t.chartUserIslandLabel}
+          dataMap={islandList}
+        />
+        <UserStatChart
+          triggerLabel={t.chartUserDimotikiEnotitaLabel}
+          label={t.chartUserDimotikiEnotitaLabel}
+          dataMap={dimotikiEnotitaList}
+        />
       </div>
-    </>
+
+      <div className="flex flex-col gap-6">
+        <h1 className="text-center text-3xl font-bold">{t.userTitle}</h1>
+        <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-3">
+          {data.map((user) => {
+            if (!user || !user.username || !user.email) return null;
+            return (
+              <UserBlock
+                id={user.id}
+                key={user.id}
+                username={user.username}
+                email={user.email}
+                country={user.profile_data.current_country}
+                island={user.profile_data.island}
+              />
+            );
+          })}
+        </div>
+      </div>
+    </div>
   );
 };
 
