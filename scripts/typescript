@@ -9084,4 +9084,28 @@ data/pg_stat_tmp/db_0.stat: Permission denied
 data/pg_stat_tmp/db_24715.stat: Permission denied
 data/pg_stat_tmp/global.stat: Permission denied
 data/pg_subtrans/0000: Permission denied
-data/pg_wal/000000010000000000000001:
+data/pg_wal/000000010000000000000001: Permission denied
+data/pg_wal/000000010000000000000002: Permission denied
+data/pg_xact/0000: Permission denied
+data/postgresql.auto.conf: Permission denied
+data/postgresql.conf: Permission denied
+data/postmaster.opts: Permission denied
+data/postmaster.pid: Permission denied
+[1m[3m%[23m[1m[0m                                                                              k..odimoi-thesis\[0m[23m[24m[J[01;32m➜ [01;32m [36mapodimoi-thesis [01;34mgit:([31mmaster[34m)[33m ✗ [00m[00m[01;34m[00m[K[?1h=[?2004hggiut co    g  ggti g  ggit commit -m ""a"d"d"e"d" "s"c"r"i"p"t"[?1l>[?2004l
+kgit\[master 7938010] added script
+ 3 files changed, 3161 insertions(+), 4 deletions(-)
+ create mode 100755 scripts/fix-postgres-data-dirs.sh
+[1m[3m%[23m[1m[0m                                                                              k..odimoi-thesis\[0m[23m[24m[J[01;32m➜ [01;32m [36mapodimoi-thesis [01;34mgit:([31mmaster[34m) [00m[01;34m[00m[K[?1h=[?2004hggit push [?1l>[?2004l
+kgit\Enumerating objects: 12, done.
+Counting objects:   8% (1/12)Counting objects:  16% (2/12)Counting objects:  25% (3/12)Counting objects:  33% (4/12)Counting objects:  41% (5/12)Counting objects:  50% (6/12)Counting objects:  58% (7/12)Counting objects:  66% (8/12)Counting objects:  75% (9/12)Counting objects:  83% (10/12)Counting objects:  91% (11/12)Counting objects: 100% (12/12)Counting objects: 100% (12/12), done.
+Delta compression using up to 6 threads
+Compressing objects:  16% (1/6)Compressing objects:  33% (2/6)Compressing objects:  50% (3/6)Compressing objects:  66% (4/6)Compressing objects:  83% (5/6)Compressing objects: 100% (6/6)Compressing objects: 100% (6/6), done.
+Writing objects:  14% (1/7)Writing objects:  28% (2/7)Writing objects:  42% (3/7)Writing objects:  57% (4/7)Writing objects:  71% (5/7)Writing objects:  85% (6/7)Writing objects: 100% (7/7)Writing objects: 100% (7/7), 3.82 KiB | 1.27 MiB/s, done.
+Total 7 (delta 2), reused 0 (delta 0), pack-reused 0
+remote: Resolving deltas:   0% (0/2)[Kremote: Resolving deltas:  50% (1/2)[Kremote: Resolving deltas: 100% (2/2)[Kremote: Resolving deltas: 100% (2/2), completed with 2 local objects.[K
+To github.com:georgeiliadis91/apodimoi-thesis.git
+   27f1dc0..7938010  master -> master
+[1m[3m%[23m[1m[0m                                                                              k..odimoi-thesis\[0m[23m[24m[J[01;32m➜ [01;32m [36mapodimoi-thesis [01;34mgit:([31mmaster[34m) [00m[01;34m[00m[K[?1h=[?2004h[0m[23m[24m[J[01;32m➜ [01;32m [36mapodimoi-thesis [01;34mgit:([31mmaster[34m) [00m[01;34m[00mcclear[?1l>[?2004l
+kclear\[H[J[1m[3m%[23m[1m[0m                                                                              k..odimoi-thesis\[0m[23m[24m[J[01;32m➜ [01;32m [36mapodimoi-thesis [01;34mgit:([31mmaster[34m) [00m[01;34m[00m[K[?1h=[?2004ha eexit[?1l>[?2004l
+kexit\
+Script done on 2026-09-10 15:40:36+03:00 [COMMAND_EXIT_CODE="0"]
