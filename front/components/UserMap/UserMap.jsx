@@ -15,8 +15,8 @@ const UserMap = ({ userData }) => {
   return (
     <MapContainer
       className="z-0 mb-12 h-[500px] w-full"
-      center={[45, 23]}
-      zoom={3}
+      center={[39, 22]}
+      zoom={2}
       maxZoom={18}
       minZoom={2}
     >
