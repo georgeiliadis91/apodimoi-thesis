@@ -68,6 +68,7 @@ export default {
   loginPassword: "Password",
   loginPasswordPlaceholder: "Fill in your password",
   loginBtnLogin: "Login",
+  authRequiredMessage: "You need to be logged in to view that page.",
   navbarProfile: "Profile",
   navbarLogout: "Logout",
   registerTitle: "Register",

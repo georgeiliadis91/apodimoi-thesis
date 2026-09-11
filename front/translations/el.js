@@ -68,6 +68,7 @@ export default {
   loginPassword: "Password",
   loginPasswordPlaceholder: "Συμπλήρωσε τον κωδικό σου",
   loginBtnLogin: "Σύνδεση",
+  authRequiredMessage: "Πρέπει να συνδεθείτε για να δείτε αυτή τη σελίδα.",
   navbarProfile: "Προφίλ",
   navbarLogout: "Αποσύνδεση",
   registerTitle: "Εγγραφή",

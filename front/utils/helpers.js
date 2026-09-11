@@ -41,7 +41,14 @@ export const localeUrl = (url, locale) => {
 export const requireAuthRedirect = (ctx) => {
   const { jwt } = parseCookies(ctx);
   if (jwt) return null;
-  return { redirect: { destination: "/login", permanent: false } };
+  const localePrefix =
+    ctx.locale && ctx.locale !== ctx.defaultLocale ? `/${ctx.locale}` : "";
+  return {
+    redirect: {
+      destination: `${localePrefix}/login?authRequired=1`,
+      permanent: false,
+    },
+  };
 };
 
 // removes _ and capitalizes first letter of each word
