@@ -88,4 +88,7 @@ export default {
   chartUserCountryLabel: "Users per Country",
   chartUserIslandLabel: "Users per Island",
   chartUserDimotikiEnotitaLabel: "Users per Municipality",
+  userStatsToggleLabel: "Statistics",
+  userSearchPlaceholder: "Search by username...",
+  userFilterAllLabel: "All",
 };

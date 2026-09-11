@@ -88,4 +88,7 @@ export default {
   chartUserCountryLabel: "Αριθμός Χρηστών ανά Χώρα",
   chartUserIslandLabel: "Αριθμός Χρηστών ανά νησί",
   chartUserDimotikiEnotitaLabel: "Αριθμός Χρηστών ανά Δήμο/Δημοτικη Ενότητα",
+  userStatsToggleLabel: "Στατιστικά",
+  userSearchPlaceholder: "Αναζήτηση με όνομα χρήστη...",
+  userFilterAllLabel: "Όλα",
 };
