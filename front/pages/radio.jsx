@@ -1,4 +1,4 @@
-import { getSingleImageUrl, localeUrl } from "../utils";
+import { getSingleImageUrl, localeUrl, requireAuthRedirect } from "../utils";
 import { useTranslations } from "../hooks/useTranslations";
 import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
 
@@ -41,6 +41,9 @@ const Radio = ({ data }) => {
 };
 
 export async function getServerSideProps(ctx) {
+  const authRedirect = requireAuthRedirect(ctx);
+  if (authRedirect) return authRedirect;
+
   const { locale } = ctx;
   const url = process.env.NEXT_PUBLIC_API_URL + "/api/radios?populate=image";
   const finalUrl = localeUrl(url, locale);

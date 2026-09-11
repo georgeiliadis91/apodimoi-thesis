@@ -1,4 +1,4 @@
-import { localeUrl } from "../utils";
+import { localeUrl, requireAuthRedirect } from "../utils";
 import { useTranslations } from "../hooks/useTranslations";
 import { Card, CardContent } from "@/components/ui/card";
 
@@ -50,6 +50,9 @@ const Advisor = ({ data }) => {
 };
 
 export async function getServerSideProps(ctx) {
+  const authRedirect = requireAuthRedirect(ctx);
+  if (authRedirect) return authRedirect;
+
   const { locale } = ctx;
   const url = process.env.NEXT_PUBLIC_API_URL + "/api/advisors?populate=*";
   const finalUrl = localeUrl(url, locale);

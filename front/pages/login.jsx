@@ -1,7 +1,8 @@
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import { useRouter } from "next/router";
 import axios from "axios";
 import { setCookie } from "nookies";
+import { toast } from "sonner";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Controller, useForm } from "react-hook-form";
 import * as z from "zod";
@@ -29,6 +30,19 @@ const Login = () => {
     resolver: zodResolver(loginSchema),
     defaultValues: { email: "", password: "" },
   });
+
+  useEffect(() => {
+    if (!router.isReady || !router.query.authRequired) return;
+    // A fixed id makes this idempotent under React StrictMode's
+    // double-invoked effects (dev only) -- the second call updates the
+    // same toast instead of stacking a duplicate.
+    toast.error(t.authRequiredMessage, { id: "auth-required" });
+    const { authRequired, ...rest } = router.query;
+    router.replace({ pathname: router.pathname, query: rest }, undefined, {
+      shallow: true,
+    });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [router.isReady, router.query.authRequired]);
 
   const onSubmit = (data) => {
     axios

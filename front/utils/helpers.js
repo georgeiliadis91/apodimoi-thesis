@@ -1,3 +1,5 @@
+import { parseCookies } from "nookies";
+
 const colorPalette = [
   "#12B0E8",
   "#38CC77",
@@ -28,6 +30,25 @@ export const localeUrl = (url, locale) => {
   } else {
     return `${url}?locale=${locale}`;
   }
+};
+
+// Returns a Next.js `redirect` prop for getServerSideProps when there's no
+// jwt cookie, or null when the request is authenticated. Must be used from
+// getServerSideProps (not _app's getInitialProps) so Next's client-side
+// router sees it as a proper redirect on page-data fetches too -- a raw
+// ctx.res redirect written from _app only works on full page loads and
+// leaves client-side navigations to a private page blank.
+export const requireAuthRedirect = (ctx) => {
+  const { jwt } = parseCookies(ctx);
+  if (jwt) return null;
+  const localePrefix =
+    ctx.locale && ctx.locale !== ctx.defaultLocale ? `/${ctx.locale}` : "";
+  return {
+    redirect: {
+      destination: `${localePrefix}/login?authRequired=1`,
+      permanent: false,
+    },
+  };
 };
 
 // removes _ and capitalizes first letter of each word

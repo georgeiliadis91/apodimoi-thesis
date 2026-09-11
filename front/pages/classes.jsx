@@ -1,4 +1,4 @@
-import { getSingleImageUrl, localeUrl } from "../utils";
+import { getSingleImageUrl, localeUrl, requireAuthRedirect } from "../utils";
 import { useTranslations } from "../hooks/useTranslations";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
@@ -46,6 +46,9 @@ const Classes = ({ data }) => {
 };
 
 export async function getServerSideProps(ctx) {
+  const authRedirect = requireAuthRedirect(ctx);
+  if (authRedirect) return authRedirect;
+
   const { locale } = ctx;
   const url =
     process.env.NEXT_PUBLIC_API_URL + "/api/lessons?populate=list.img_lnk";

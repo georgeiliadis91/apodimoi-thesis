@@ -10,6 +10,9 @@ const Toaster = ({
   return (
     <Sonner
       theme={theme}
+      position="top-center"
+      offset={{ top: 120 }}
+      closeButton
       className="toaster group"
       icons={{
         success: (
@@ -22,7 +25,7 @@ const Toaster = ({
           <TriangleAlertIcon className="size-4" />
         ),
         error: (
-          <OctagonXIcon className="size-4" />
+          <OctagonXIcon className="size-4 text-destructive" />
         ),
         loading: (
           <Loader2Icon className="size-4 animate-spin" />

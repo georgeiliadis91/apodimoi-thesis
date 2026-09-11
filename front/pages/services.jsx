@@ -1,6 +1,6 @@
 import { useMemo, useState } from "react";
 import { useTranslations } from "../hooks/useTranslations";
-import { localeUrl } from "../utils/helpers";
+import { localeUrl, requireAuthRedirect } from "../utils/helpers";
 import {
   Table,
   TableHeader,
@@ -25,6 +25,7 @@ const Services = ({ data }) => {
   }, [data, search]);
 
   if (!data) return null;
+
   return (
     <div className="mx-auto flex max-w-2xl flex-col gap-6">
       <h1 className="text-center text-3xl font-bold">{t.servicesTitle}</h1>
@@ -74,6 +75,9 @@ const Services = ({ data }) => {
 };
 
 export async function getServerSideProps(ctx) {
+  const authRedirect = requireAuthRedirect(ctx);
+  if (authRedirect) return authRedirect;
+
   const { locale } = ctx;
   const url = process.env.NEXT_PUBLIC_API_URL + "/api/services";
   const finalUrl = localeUrl(url, locale);

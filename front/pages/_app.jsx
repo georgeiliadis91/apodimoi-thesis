@@ -1,12 +1,10 @@
 import "../styles/globals.css";
 import { useEffect } from "react";
-import Router from "next/router";
 import { Inter } from "next/font/google";
 import { Layout } from "../components/views/Layout";
 import { parseCookies } from "nookies";
 import Globalstate from "../store/store";
 import { parseDataFromRequestSingleType } from "../utils";
-import { privatePaths } from "../constants";
 import { localeUrl } from "../utils/helpers";
 import { Toaster } from "@/components/ui/sonner";
 
@@ -37,18 +35,6 @@ function MyApp({ Component, pageProps, navigation, isLoggedIn }) {
   );
 }
 
-function redirectUser(ctx, location) {
-  if (ctx.req) {
-    ctx.res.writeHead(302, {
-      Location: location,
-      "Content-Type": "text/html; charset=utf-8",
-    });
-    ctx.res.end();
-  } else {
-    Router.push(location);
-  }
-}
-
 MyApp.getInitialProps = async ({ Component, ctx }) => {
   let pageProps = {};
   const jwt = parseCookies(ctx).jwt;
@@ -61,12 +47,6 @@ MyApp.getInitialProps = async ({ Component, ctx }) => {
 
   if (Component.getInitialProps) {
     pageProps = await Component.getInitialProps(ctx);
-  }
-
-  if (!jwt) {
-    if (privatePaths.includes(ctx.pathname)) {
-      redirectUser(ctx, "/login");
-    }
   }
 
   return {

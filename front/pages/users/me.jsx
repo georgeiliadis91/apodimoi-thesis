@@ -4,6 +4,7 @@ import { useTranslations } from "../../hooks/useTranslations";
 import Profile from "../../components/Profile/Profile";
 import ProfileEdit from "../../components/Profile/ProfileEdit";
 import { Button } from "@/components/ui/button";
+import { requireAuthRedirect } from "../../utils/helpers";
 
 const Me = ({ data }) => {
   const { email, profile_data } = data;
@@ -36,6 +37,9 @@ const Me = ({ data }) => {
 };
 
 export async function getServerSideProps(ctx) {
+  const authRedirect = requireAuthRedirect(ctx);
+  if (authRedirect) return authRedirect;
+
   const jwt = parseCookies(ctx).jwt;
 
   const res = await fetch(process.env.NEXT_PUBLIC_API_URL + "/api/users/me", {
